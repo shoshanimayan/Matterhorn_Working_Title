@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Art/Raccoon/Raccoon_back.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Art/Raccoon/Raccoon_front.png" type="Texture" id=5]
 
@@ -11,12 +11,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -36,8 +36,9 @@ custom_solver_bias = 0.0
 radius = 16.7974
 height = 18.4062
 
-[node name="Player" type="Area2D" index="0"]
+[node name="Player" type="Area2D"]
 
+position = Vector2( 33, 30 )
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
