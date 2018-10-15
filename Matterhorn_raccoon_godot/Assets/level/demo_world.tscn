@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Art/Tiles/Brick_1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Art/Tiles/Brick_3.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Art/Tiles/Grass_1.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Art/Tiles/Grass_2.png" type="Texture" id=6]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/enemy/bunny.tscn" type="PackedScene" id=8]
 
 [node name="Node2D" type="Node2D" index="0"]
 
@@ -1092,5 +1093,9 @@ texture = ExtResource( 6 )
 [node name="Player" parent="." index="78" instance=ExtResource( 7 )]
 
 position = Vector2( 32.5, 34 )
+
+[node name="KinematicBody2D" parent="." index="79" instance=ExtResource( 8 )]
+
+position = Vector2( 133.366, 71.5909 )
 
 
