@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Nodes/maps/Level1_PAL.tres" type="TileSet" id=1]
 [ext_resource path="res://Nodes/maps/InvisibleWall_PAL.tres" type="TileSet" id=2]
-[ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Nodes/enemies/bunny.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/enemies/bunny.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=4]
 
 [node name="Level1" type="Node" index="0"]
 
@@ -49,10 +49,10 @@ format = 1
 tile_data = PoolIntArray( 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 262147, 0, 0, 262150, 0, 0, 262153, 0, 0, 327683, 0, 0, 327686, 0, 0, 327689, 0, 0, 393225, 0, 0, 458761, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 524295, 0, 0, 524296, 0, 0, 524297, 0, 0 )
 _sections_unfolded = [ "Cell" ]
 
-[node name="Player" parent="." index="2" instance=ExtResource( 3 )]
-
-[node name="KinematicBody2D" parent="." index="3" instance=ExtResource( 4 )]
+[node name="KinematicBody2D" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 401.357, 187.755 )
+
+[node name="Player" parent="." index="3" instance=ExtResource( 4 )]
 
 
