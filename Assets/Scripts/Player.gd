@@ -4,8 +4,8 @@ signal hit
 export (int) var speed
 var screensize
 
-func _ready():
-	screensize = get_viewport_rect().size
+#func _ready():
+#	screensize = get_viewport_rect().size
 
 func _process(delta):
 	var velocity = Vector2()
@@ -27,10 +27,10 @@ func _process(delta):
 		$AnimatedSprite.play()
 	else:
 		$AnimatedSprite.stop()
-		
+	
 	position += velocity * delta
-	position.x = clamp(position.x, 0, screensize.x)
-	position.y = clamp(position.y, 0, screensize.y)
+	#position.x = clamp(position.x, 0, screensize.x)
+	#position.y = clamp(position.y, 0, screensize.y)
 	
 	if velocity.x > 0:
 		$AnimatedSprite.animation = "right"
