@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const speed = 40 
 var moveDir
-export(int) var moveTick = 1
+export(int) var moveTick = 10
 var moveTickMax = moveTick
 
 func _ready():
