@@ -6,15 +6,15 @@ const right = Vector2(1,0)
 const up = Vector2(0,-1)
 const down = Vector2(0,1)
 
-"choose random dorection"
 func random():
-	var d = randi() % 4 -1 
+	"""choose random direction"""
+	var d = randi() % 4
 	match d:
-		1:
+		0:
 			return left
-		2:
+		1:
 			return right
-		3:
+		2:
 			return up
-		4: 
-			return down 
+		3: 
+			return down

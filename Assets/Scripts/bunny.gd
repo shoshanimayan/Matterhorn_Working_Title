@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 const speed = 40 
 var moveDir
-var moveTimer =15
+export(int) var moveTick = 1
+var moveTickMax = moveTick
 
 func _ready():
 	moveDir = direction.random()
@@ -11,15 +12,15 @@ func _ready():
 func movementLoop():
 	var motion = moveDir.normalized() * speed
 	move_and_slide(motion, Vector2(0,0))
-	
+
 func _physics_process(delta):
-	"""movementLoop()"""
-	if moveTimer >0:
-		moveTimer-=1
-	if moveTimer==0 || is_on_wall():
+	movementLoop()
+	if moveTick > 0:
+		moveTick -= 1
+	if moveTick == 0 || is_on_wall():
 		moveDir = direction.random()
-		moveTimer = 15
-		
+		moveTick = moveTickMax
+
 func _process(delta):
 	$AnimatedSprite.play()
 	if moveDir == direction.right:
@@ -30,5 +31,3 @@ func _process(delta):
 		$AnimatedSprite.animation = "up"
 	if moveDir == direction.down:
 		$AnimatedSprite.animation = "down"
-			
-		
