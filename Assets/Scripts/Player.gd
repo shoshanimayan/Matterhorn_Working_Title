@@ -2,6 +2,7 @@ extends KinematicBody2D
 signal hit
 
 export (int) var speed
+var health = 6
 
 #func _ready():
 #	screensize = get_viewport_rect().size
