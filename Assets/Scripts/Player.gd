@@ -57,4 +57,5 @@ func _on_Player_body_entered(body):
 
 func attack():
 	if $RayCast2D.is_colliding():
-		$RayCast2D.get_collider().hit()
+		if $RayCast2D.get_collider().has_method("hit"):
+			$RayCast2D.get_collider().hit()
