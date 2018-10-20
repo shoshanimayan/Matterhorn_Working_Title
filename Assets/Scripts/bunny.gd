@@ -17,52 +17,40 @@ func movementLoop():
 	move_and_slide(motion, Vector2(0,0))
 
 func runAway(a):
-	if is_on_ceiling() || is_on_floor():
-		moveDir.y = 0
-		if moveDir.x == 0:
+	
+	a=a.normalized()*-1
+	if 1-abs(a.x) < 1-abs(a.y):
+		moveDir.x= direction.orientation(a.x)
+		moveDir.y =0
+	else:
+		moveDir.y = direction.orientation(a.y)
+		moveDir.x =0
+	
+	if is_on_wall():
+		if moveDir.x==0:
+			moveDir.y=0
 			match direction.orientation(a.x):
 				1:
 					moveDir.x = 1
 				-1: 
 					moveDir.x = -1
-			
-	if is_on_wall():
-		moveDir.x = 0
-		if moveDir.y==0:
+		else:
+			moveDir.x=0
 			match direction.orientation(a.y):
 				1:
 					moveDir.y = 1
 				-1: 
 					moveDir.y = -1
-	if abs(a.x) > abs(a.y):
-		match direction.orientation(a.x):
-			1:
-				moveDir.x = 1
-			-1: 
-				moveDir.x = -1
-	else:
-		match direction.orientation(a.y):
-			1:
-				moveDir.y = 1
-			-1: 
-				moveDir.y = -1
-	
-	
-			
-		
-	
-
 func _physics_process(delta):
 	playerDist =  get_parent().get_node("Player").position
-	var d= Vector2(position-playerDist)
+	var d= Vector2(playerDist-position)#.normalized()
 	var distance = sqrt((d.x*d.x)+(d.y*d.y))
 	
 	movementLoop()
-	if distance <= 100:
+	if distance <= 125:
 		speed = 80
 		moveDir = Vector2(0,0)
-		moveTick=0
-		print(distance)
+		moveTick=20
 		runAway(d)
 		
 	else: 
