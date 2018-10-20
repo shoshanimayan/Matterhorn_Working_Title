@@ -46,7 +46,7 @@ custom_solver_bias = 0.0
 radius = 18.0
 height = 0.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 16, 24 )
 input_pickable = false
@@ -74,7 +74,7 @@ _sections_unfolded = [ "Transform" ]
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 0.66, 0.66 )
+zoom = Vector2( 0.33, 0.33 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000

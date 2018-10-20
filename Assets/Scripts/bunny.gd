@@ -65,15 +65,14 @@ func runAway(a):
 					moveDir.y = -1
 					
 func _physics_process(delta):
-		
 	#getting distance between player and bunny
 	playerDist =  get_parent().get_node("Player").position
 	var d= Vector2(playerDist-position)#.normalized()
 	var distance = sqrt((d.x*d.x)+(d.y*d.y))
 	movementLoop()
 	
-	if is_on_wall():
-		hit()
+	#if is_on_wall():
+	#	hit()
 	
 	#check if player is close, thn run
 	if distance <= 125:
