@@ -1,6 +1,8 @@
 extends KinematicBody2D
 signal hit
 
+var dir = Vector2()
+
 export (int) var speed
 var maxHealth = 6
 var currentHealth = 4
@@ -11,7 +13,6 @@ var trash = 0
 #	screensize = get_viewport_rect().size
 
 func _process(delta):
-	var dir = Vector2()
 	if Input.is_action_pressed("ui_right"):
 		dir.x += 1
 	if Input.is_action_pressed("ui_left"):
@@ -36,14 +37,6 @@ func _process(delta):
 				$RayCast2D.cast_to.y = 50
 		attack()
 	
-	if dir.length() > 0:
-		$AnimatedSprite.play()
-		move_and_slide(dir.normalized()*speed, Vector2(0,0))
-		#dir = dir.normalized() * speed
-	else:
-		$AnimatedSprite.set_frame(0)
-		$AnimatedSprite.stop()
-	
 	if dir.x > 0:
 		$AnimatedSprite.animation = "right"
 	if dir.x < 0:
@@ -53,6 +46,16 @@ func _process(delta):
 		$AnimatedSprite.animation = "up"
 	if dir.y > 0 && dir.x == 0:
 		$AnimatedSprite.animation = "down"
+
+func _physics_process(delta):
+	if dir.length() > 0:
+		$AnimatedSprite.play()
+		move_and_collide(dir.normalized()*speed)
+		#move_and_slide(dir.normalized()*speed, Vector2(0,0))
+		dir = Vector2()
+	else:
+		$AnimatedSprite.set_frame(0)
+		$AnimatedSprite.stop()
 
 func _on_Player_body_entered(body):
 	print(body)
