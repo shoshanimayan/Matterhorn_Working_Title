@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Scripts/Pickup_Health.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/UI Sprites/Heart_Full_UI.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Scripts/Pickup_Trash_small.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Art/Pickups/Trash1.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 8.47392
+extents = Vector2( 8.78123, 6.22768 )
 
-[node name="Health Pickup" type="Area2D"]
+[node name="Trash_small Pickup" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -20,7 +20,6 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-healthRestored = 2
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -28,8 +27,9 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
+position = Vector2( -0.0944672, 2.55064 )
 shape = SubResource( 1 )
 
-[connection signal="body_entered" from="." to="." method="_on_Health_Pickup_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Trash_small_Pickup_body_entered"]
 
 
