@@ -16,6 +16,7 @@ func _ready():
 #takes 1 damage with hit
 func hit():
 	health-=1
+	dieCheck()
 
 #death and drop items
 func dieCheck():
@@ -90,7 +91,6 @@ func _physics_process(delta):
 			moveTick = moveTickMax
 
 func _process(delta):
-	dieCheck()
 	$AnimatedSprite.play()
 	if moveDir == direction.right:
 		$AnimatedSprite.animation = "right"
