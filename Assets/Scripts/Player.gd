@@ -9,11 +9,14 @@ var maxHealth = 6
 var currentHealth = 4
 var ammo = 0
 var trash = 0
+var timer =10
+var maxTimer = timer
 
 #func _ready():
 #	screensize = get_viewport_rect().size
 
 func _process(delta):
+	timer-=1
 	if Input.is_action_pressed("ui_right"):
 		dir.x += 1
 	if Input.is_action_pressed("ui_left"):
@@ -23,20 +26,22 @@ func _process(delta):
 	if Input.is_action_pressed("ui_down"):
 		dir.y += 1
 	if Input.is_action_pressed("ui_accept"):
-		match $AnimatedSprite.animation:
-			"left":
-				$RayCast2D.cast_to.x = -50
-				$RayCast2D.cast_to.y = 0
-			"right":
-				$RayCast2D.cast_to.x = 50
-				$RayCast2D.cast_to.y = 0
-			"up":
-				$RayCast2D.cast_to.x = 0
-				$RayCast2D.cast_to.y = -50
-			"down":	
-				$RayCast2D.cast_to.x =0
-				$RayCast2D.cast_to.y = 50
-		attack()
+		if timer == 0:
+			match $AnimatedSprite.animation:
+				"left":
+					$RayCast2D.cast_to.x = -50
+					$RayCast2D.cast_to.y = 0
+				"right":
+					$RayCast2D.cast_to.x = 50
+					$RayCast2D.cast_to.y = 0
+				"up":
+					$RayCast2D.cast_to.x = 0
+					$RayCast2D.cast_to.y = -50
+				"down":	
+					$RayCast2D.cast_to.x =0
+					$RayCast2D.cast_to.y = 50
+			attack()
+			timer = maxTimer
 	
 	if dir.x > 0:
 		$AnimatedSprite.animation = "right"
