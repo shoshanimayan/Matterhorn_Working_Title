@@ -2,6 +2,7 @@ extends KinematicBody2D
 signal hit
 
 var dir = Vector2()
+var other
 
 export (int) var speed
 var maxHealth = 6
@@ -57,10 +58,11 @@ func _physics_process(delta):
 		$AnimatedSprite.set_frame(0)
 		$AnimatedSprite.stop()
 
-func _on_Player_body_entered(body):
-	print(body)
+#func _on_Player_body_entered(body):
+#	print(body)
 
 func attack():
 	if $RayCast2D.is_colliding():
-		if $RayCast2D.get_collider().has_method("hit"):
-			$RayCast2D.get_collider().hit()
+		other = $RayCast2D.get_collider()
+		if other != null and other.has_method("hit"):
+			other.hit()
