@@ -18,6 +18,21 @@ func _process(delta):
 		dir.y -= 1
 	if Input.is_action_pressed("ui_down"):
 		dir.y += 1
+	if Input.is_action_pressed("ui_accept"):
+		match $AnimatedSprite.animation:
+			"left":
+				$RayCast2D.cast_to.x = -50
+				$RayCast2D.cast_to.y = 0
+			"right":
+				$RayCast2D.cast_to.x = 50
+				$RayCast2D.cast_to.y = 0
+			"up":
+				$RayCast2D.cast_to.x = 0
+				$RayCast2D.cast_to.y = -50
+			"down":	
+				$RayCast2D.cast_to.x =0
+				$RayCast2D.cast_to.y = 50
+		attack()
 	
 	if dir.length() > 0:
 		$AnimatedSprite.play()
@@ -39,3 +54,7 @@ func _process(delta):
 
 func _on_Player_body_entered(body):
 	print(body)
+
+func attack():
+	if $RayCast2D.is_colliding():
+		$RayCast2D.get_collider().hit()
