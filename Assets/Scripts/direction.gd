@@ -6,6 +6,13 @@ const right = Vector2(1,0)
 const up = Vector2(0,-1)
 const down = Vector2(0,1)
 
+func orientation(i):
+	if i > 0:
+		return 1
+	if i < 0:
+		return -1
+
+
 func random():
 	"""choose random direction"""
 	var d = randi() % 4
