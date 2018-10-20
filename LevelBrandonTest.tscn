@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Nodes/maps/Level1_PAL.tres" type="TileSet" id=1]
 [ext_resource path="res://Nodes/maps/InvisibleWall_PAL.tres" type="TileSet" id=2]
 [ext_resource path="res://Nodes/enemies/bunny.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/pickups/Health.tscn" type="PackedScene" id=5]
 
 [node name="Level1" type="Node" index="0"]
 
@@ -62,5 +63,10 @@ position = Vector2( 401.357, 187.755 )
 [node name="Player" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 163.329, 204.477 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Health Pickup" parent="." index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 41.1321, 282.617 )
 
 

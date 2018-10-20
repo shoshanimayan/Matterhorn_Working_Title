@@ -2,7 +2,6 @@ extends KinematicBody2D
 signal hit
 
 export (int) var speed
-var screensize
 
 #func _ready():
 #	screensize = get_viewport_rect().size
@@ -23,19 +22,18 @@ func _process(delta):
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite.play()
 	else:
+		$AnimatedSprite.set_frame(0)
 		$AnimatedSprite.stop()
 	
 	if velocity.x > 0:
 		$AnimatedSprite.animation = "right"
 	if velocity.x < 0:
 		$AnimatedSprite.animation = "left"
-	if velocity.y < 0:
+	# only use the up/down anims if the player goes directly up/down
+	if velocity.y < 0 && velocity.x == 0:
 		$AnimatedSprite.animation = "up"
-	if velocity.y > 0:
+	if velocity.y > 0 && velocity.x == 0:
 		$AnimatedSprite.animation = "down"
 
-#func _on_Player_body_entered(body):
-	# drain health?  check for death?
-	#hide() # FOR NOW
-	#emit_signal("hit")
-	#$CollisionShape2D.disabled = true
+func _on_Player_body_entered(body):
+	print(body)
