@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Nodes/maps/Level1_PAL.tres" type="TileSet" id=1]
 [ext_resource path="res://Nodes/maps/InvisibleWall_PAL.tres" type="TileSet" id=2]
 [ext_resource path="res://Nodes/enemies/bunny.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Scripts/HealthLabel.gd" type="Script" id=5]
-[ext_resource path="res://Nodes/pickups/Health.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/pickups/Health.tscn" type="PackedScene" id=5]
 
 [node name="Level1" type="Node" index="0"]
 
@@ -57,50 +56,36 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="KinematicBody2D" parent="." index="2" instance=ExtResource( 3 )]
+[node name="Bunny" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 401.357, 187.755 )
+position = Vector2( 27.4701, 311.346 )
 
-[node name="KinematicBody2D2" parent="." index="3" instance=ExtResource( 3 )]
+[node name="Bunny2" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 372.688, 257.589 )
 
-[node name="Player" parent="." index="4" instance=ExtResource( 4 )]
+[node name="Bunny3" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 401.357, 187.755 )
+
+[node name="Bunny4" parent="." index="5" instance=ExtResource( 3 )]
+
+position = Vector2( -10.8116, 223.379 )
+
+[node name="Player" parent="." index="6" instance=ExtResource( 4 )]
 
 position = Vector2( 46.4494, 221.384 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="Label" type="Label" parent="Player" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -509.0
-margin_top = -184.0
-margin_right = -458.0
-margin_bottom = -170.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "DUMMY"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = ExtResource( 5 )
-
-[node name="Health Pickup" parent="." index="5" instance=ExtResource( 6 )]
+[node name="Health Pickup" parent="." index="7" instance=ExtResource( 5 )]
 
 position = Vector2( 369.718, 267.915 )
 
-[node name="Health Pickup3" parent="." index="6" instance=ExtResource( 6 )]
+[node name="Health Pickup3" parent="." index="8" instance=ExtResource( 5 )]
 
 position = Vector2( 405.003, 188.525 )
 
-[node name="Health Pickup2" parent="." index="7" instance=ExtResource( 6 )]
+[node name="Health Pickup2" parent="." index="9" instance=ExtResource( 5 )]
 
 position = Vector2( 36.7216, 270.12 )
 
