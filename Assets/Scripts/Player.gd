@@ -17,10 +17,9 @@ func _process(delta):
 		velocity.y -= 1
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
-
-	move_and_slide(velocity.normalized()*speed,Vector2(0,0))
-
+	
 	if velocity.length() > 0:
+		move_and_slide(velocity.normalized()*speed,Vector2(0,0))
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite.play()
 	else:
@@ -34,9 +33,6 @@ func _process(delta):
 		$AnimatedSprite.animation = "up"
 	if velocity.y > 0:
 		$AnimatedSprite.animation = "down"
-
-func _physics_process(delta):
-    pass
 
 #func _on_Player_body_entered(body):
 	# drain health?  check for death?
