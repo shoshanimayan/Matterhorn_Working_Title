@@ -22,7 +22,9 @@ func _process(delta):
 		dir.y -= 1
 	if Input.is_action_pressed("ui_down"):
 		dir.y += 1
-	if Input.is_action_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_select"):
+		rangedAttack($AnimatedSprite.animation)
+	if Input.is_action_just_pressed("ui_accept"):
 		match $AnimatedSprite.animation:
 			"left":
 				$RayCast2D.cast_to.x = -attackRange
@@ -57,6 +59,17 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite.set_frame(0)
 		$AnimatedSprite.stop()
+
+func rangedAttack(dir):
+	var projectilePre = preload("res://Nodes/projectile_player.tscn")
+	var newProjectile = projectilePre.instance()
+	var newPosition= position
+	
+	#newProjectile.position = newPosition
+	newProjectile.set_v($AnimatedSprite.animation,newPosition)
+	get_tree().get_root().add_child(newProjectile) 
+
+
 
 func attack():
 	if $RayCast2D.is_colliding():
