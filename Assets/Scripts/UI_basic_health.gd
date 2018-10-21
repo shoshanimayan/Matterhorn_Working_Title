@@ -1,8 +1,21 @@
 extends Label
 
+var chealth
+var mhealth
+
+var half	# number of HALF hearts to render
+var full	# number of FULL hearts to render
+var empty	# number of EMPTY hearts to render
 
 func _process(delta):
-	# CHANGE player TO THE PATH OF THE Player NODE
 	var player = get_node("../../../..")
-	var formatString = "Health: %d/%d"
-	self.text = formatString % [player.currentHealth, player.maxHealth]
+	chealth = player.currentHealth
+	mhealth = player.maxHealth
+	
+	half = chealth % 2
+	full = floor(chealth/2)
+	empty = mhealth/2 - (full + half)
+	
+	# boring debug printouts
+	var formatString = "Health: %d/%d\n(%d full hearts, %d half hearts, %d black hearts)"
+	self.text = formatString % [chealth, mhealth, full, half, empty]

@@ -5,13 +5,11 @@ var dir = Vector2()
 var other
 
 export (int) var speed
+export (int) var myMeleeDamage
 var maxHealth = 6
-var currentHealth = 4
+var currentHealth = 1
 var ammo = 0
 var trash = 0
-
-#func _ready():
-#	screensize = get_viewport_rect().size
 
 func _process(delta):
 	if Input.is_action_pressed("ui_right"):
@@ -65,4 +63,12 @@ func attack():
 	if $RayCast2D.is_colliding():
 		other = $RayCast2D.get_collider()
 		if other != null and other.has_method("hit"):
-			other.hit()
+			other.hit(myMeleeDamage)
+
+func check_death():
+	if currentHealth <= 0:
+		hide()
+
+func get_hurt(damage):
+	currentHealth -= damage
+	check_death()
