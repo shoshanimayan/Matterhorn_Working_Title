@@ -1,15 +1,17 @@
 extends KinematicBody2D
-signal hit
+#signal hit
 
 var dir = Vector2()
 var other
 
-export (int) var speed
-export (int) var myMeleeDamage
+export (int) var speed = 3
+export (int) var myMeleeDamage = 1
 var maxHealth = 6
-var currentHealth = 1
-var ammo = 0
-var trash = 0
+export (int) var currentHealth = 1
+export (int) var ammo = 0
+export (int) var trash = 0
+
+var attackRange = 50
 
 func _process(delta):
 	if Input.is_action_pressed("ui_right"):
@@ -23,17 +25,17 @@ func _process(delta):
 	if Input.is_action_pressed("ui_accept"):
 		match $AnimatedSprite.animation:
 			"left":
-				$RayCast2D.cast_to.x = -50
+				$RayCast2D.cast_to.x = -attackRange
 				$RayCast2D.cast_to.y = 0
 			"right":
-				$RayCast2D.cast_to.x = 50
+				$RayCast2D.cast_to.x = attackRange
 				$RayCast2D.cast_to.y = 0
 			"up":
 				$RayCast2D.cast_to.x = 0
-				$RayCast2D.cast_to.y = -50
+				$RayCast2D.cast_to.y = -attackRange
 			"down":	
 				$RayCast2D.cast_to.x =0
-				$RayCast2D.cast_to.y = 50
+				$RayCast2D.cast_to.y = attackRange
 		attack()
 	
 	if dir.x > 0:
@@ -55,9 +57,6 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite.set_frame(0)
 		$AnimatedSprite.stop()
-
-#func _on_Player_body_entered(body):
-#	print(body)
 
 func attack():
 	if $RayCast2D.is_colliding():

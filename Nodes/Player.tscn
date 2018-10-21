@@ -56,6 +56,9 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 speed = 3
 myMeleeDamage = 1
+currentHealth = 1
+ammo = 0
+trash = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 

@@ -1,5 +1,6 @@
 extends Node2D
 
+var player
 var chealth
 var mhealth
 
@@ -14,12 +15,12 @@ var emptytex = preload("res://Assets/Art/UI Sprites/Heart_empty_UI.png")
 var hearts = []
 
 func _ready():
+	player = get_node("../../..")
 	hearts.append($Heart1)
 	hearts.append($Heart2)
 	hearts.append($Heart3)
 
 func _process(delta):
-	var player = get_node("../../..")
 	chealth = player.currentHealth
 	mhealth = player.maxHealth
 
@@ -31,3 +32,5 @@ func _process(delta):
 		hearts[i].set_texture(fulltex)
 	if half == 1:
 		hearts[ceil(chealth/2)].set_texture(halftex)
+	for i in range(empty):
+		hearts[(mhealth/2)-1 - i].set_texture(emptytex)
