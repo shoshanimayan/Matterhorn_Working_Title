@@ -38,7 +38,8 @@ func _process(delta):
 	if timer2!=0:
 		timer2 -=1 
 	if timer2 ==0:
-		$CollisionShape2D.disabled = true
+		if $CollisionShape2D.disabled == false:
+			$CollisionShape2D.disabled = true
 		
 
 	
