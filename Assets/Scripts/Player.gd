@@ -56,10 +56,19 @@ func move(dir):
 		col = col.get_collider()
 		if col.get_class() == "KinematicBody2D":
 			var d = Vector2(col.position-position).normalized() * -1
+			var v  = Vector2()
+			if 1-abs(d.x) < 1-abs(d.y):
+				v.x= direction.orientation(d.x)
+				v.y = 0
+			else:
+				v.y = direction.orientation(d.y)
+				v.x = 0
+			
+			
 			#if d does not work correctly to push the player back pls look and the bunny run away method
 			#just test
 			moving = false
-			move(d)
+			move(v.normalized()*30)
 			get_hurt(1)
 			moving= true
 
@@ -93,10 +102,14 @@ func attack():
 			other.hit(myMeleeDamage)
 
 func check_death():
+	
 	if currentHealth <= 0:
+		print("died")
 		hide()
 		moving = false
+		$CollisionShape2D.disabled=true
 
 func get_hurt(damage):
+	print(damage)
 	currentHealth -= damage
 	check_death()

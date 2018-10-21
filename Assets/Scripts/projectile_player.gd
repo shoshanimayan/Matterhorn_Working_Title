@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+var timer2 = 0
 var velocity= Vector2()
 const speed = 3.5
 var timer = 40
@@ -24,9 +24,10 @@ func move():
 				self.queue_free()
 			else:
 				self.queue_free()
-	#	else:
-	#		$CollisionShape2D.disabled = true
-		
+		else:
+			
+			$CollisionShape2D.disabled = true
+			timer2 = 1
 	
 
 func _process(delta):
@@ -34,7 +35,11 @@ func _process(delta):
 		timer-=1
 	if timer == 0:
 		velocity = direction.center
-	
+	if timer2!=0:
+		timer2 -=1 
+	if timer2 ==0:
+		$CollisionShape2D.disabled = true
+		
 
 	
 
@@ -49,22 +54,22 @@ func set_v(v,p):
 		"left":
 			velocity = direction.left
 			p.x = p.x - 15
-			print(p)
+#			print(p)
 			position = p
 		"right":
 			velocity = direction.right
 			p.x = p.x + 15
-			print(p)
+#			print(p)
 			position = p
 		"up":
 			velocity = direction.up
 			p.y = p.y-15 
-			print(p)
+#			print(p)
 			position = p
 		"down":
 			velocity = direction.down
 			p.y = p.y+15
-			print("down")
+#			print("down")
 			position = p
-	print(position)
+#	print(position)
 	
