@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 var dir = Vector2()
 var other
-
+var moving = true
 export (int) var speed = 3
 export (int) var myMeleeDamage = 1
 var maxHealth = 6
@@ -58,13 +58,16 @@ func move(dir):
 			var d = Vector2(col.position-position).normalized() * -1
 			#if d does not work correctly to push the player back pls look and the bunny run away method
 			#just test
+			moving = false
 			move(d)
 			get_hurt(1)
+			moving= true
 
 func _physics_process(delta):
 	if dir.length() > 0:
-		$AnimatedSprite.play()
-		move(dir.normalized()*speed)
+		if moving:
+			$AnimatedSprite.play()
+			move(dir.normalized()*speed)
 		
 		#move_and_slide(dir.normalized()*speed, Vector2(0,0))
 		dir = Vector2()
