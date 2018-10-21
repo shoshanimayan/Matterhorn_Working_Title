@@ -50,10 +50,22 @@ func _process(delta):
 	if dir.y > 0 && dir.x == 0:
 		$AnimatedSprite.animation = "down"
 
+func move(dir):
+	var col = move_and_collide(dir)
+	if col:
+		col = col.get_collider()
+		if col.get_class() == "KinematicBody2D":
+			var d = Vector2(col.position-position).normalized() * -1
+			#if d does not work correctly to push the player back pls look and the bunny run away method
+			#just test
+			move(d)
+			get_hurt(1)
+
 func _physics_process(delta):
 	if dir.length() > 0:
 		$AnimatedSprite.play()
-		move_and_collide(dir.normalized()*speed)
+		move(dir.normalized()*speed)
+		
 		#move_and_slide(dir.normalized()*speed, Vector2(0,0))
 		dir = Vector2()
 	else:
