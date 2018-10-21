@@ -1,10 +1,11 @@
 extends KinematicBody2D
 #signal hit
-
+var moveTimer = 0
+var shootTimer = 0
 var dir = Vector2()
 var other
 var moving = true
-export (int) var speed = 3
+export (int) var speed = 4
 export (int) var myMeleeDamage = 1
 var maxHealth = 6
 export (int) var currentHealth = 1
@@ -14,31 +15,44 @@ export (int) var trash = 0
 var attackRange = 50
 
 func _process(delta):
-	if Input.is_action_pressed("ui_right"):
-		dir.x += 1
-	if Input.is_action_pressed("ui_left"):
-		dir.x -= 1
-	if Input.is_action_pressed("ui_up"):
-		dir.y -= 1
-	if Input.is_action_pressed("ui_down"):
-		dir.y += 1
-	if Input.is_action_just_pressed("ui_select"):
-		rangedAttack($AnimatedSprite.animation)
-	if Input.is_action_just_pressed("ui_accept"):
-		match $AnimatedSprite.animation:
-			"left":
-				$RayCast2D.cast_to.x = -attackRange
-				$RayCast2D.cast_to.y = 0
-			"right":
-				$RayCast2D.cast_to.x = attackRange
-				$RayCast2D.cast_to.y = 0
-			"up":
-				$RayCast2D.cast_to.x = 0
-				$RayCast2D.cast_to.y = -attackRange
-			"down":	
-				$RayCast2D.cast_to.x =0
-				$RayCast2D.cast_to.y = attackRange
-		attack()
+	if shootTimer!=0:
+		shootTimer-=1
+	
+	if moveTimer!=0:
+		moveTimer-=1
+		
+	if moving:
+		if moveTimer ==0:
+			if Input.is_action_pressed("ui_right"):
+				dir.x += 1
+			if Input.is_action_pressed("ui_left"):
+				dir.x -= 1
+			if Input.is_action_pressed("ui_up"):
+				dir.y -= 1
+			if Input.is_action_pressed("ui_down"):
+				dir.y += 1
+		if Input.is_action_just_pressed("ui_select") :
+			
+			if shootTimer==0:
+				dir = Vector2(0,0)
+				rangedAttack($AnimatedSprite.animation)
+				moveTimer = 5
+				shootTimer =30
+		if Input.is_action_just_pressed("ui_accept"):	
+			match $AnimatedSprite.animation:
+				"left":
+					$RayCast2D.cast_to.x = -attackRange
+					$RayCast2D.cast_to.y = 0
+				"right":
+					$RayCast2D.cast_to.x = attackRange
+					$RayCast2D.cast_to.y = 0
+				"up":
+					$RayCast2D.cast_to.x = 0
+					$RayCast2D.cast_to.y = -attackRange
+				"down":	
+					$RayCast2D.cast_to.x =0
+					$RayCast2D.cast_to.y = attackRange
+			attack()
 	
 	if dir.x > 0:
 		$AnimatedSprite.animation = "right"
@@ -54,7 +68,8 @@ func move(dir):
 	var col = move_and_collide(dir)
 	if col:
 		col = col.get_collider()
-		if col.get_class() == "KinematicBody2D":
+		print (col.name)
+		if col.get_class() == "KinematicBody2D"  and !col.has_method("set_v"):
 			var d = Vector2(col.position-position).normalized() * -1
 			var v  = Vector2()
 			if 1-abs(d.x) < 1-abs(d.y):
@@ -74,9 +89,9 @@ func move(dir):
 
 func _physics_process(delta):
 	if dir.length() > 0:
-		if moving:
-			$AnimatedSprite.play()
-			move(dir.normalized()*speed)
+		
+		$AnimatedSprite.play()
+		move(dir.normalized()*speed)
 		
 		#move_and_slide(dir.normalized()*speed, Vector2(0,0))
 		dir = Vector2()
@@ -105,8 +120,8 @@ func check_death():
 	
 	if currentHealth <= 0:
 		print("died")
-		hide()
 		moving = false
+		hide()
 		$CollisionShape2D.disabled=true
 
 func get_hurt(damage):

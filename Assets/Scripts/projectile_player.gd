@@ -1,8 +1,10 @@
 extends KinematicBody2D
 var timer2 = 0
 var velocity= Vector2()
-const speed = 3.5
-var timer = 40
+const speed = 4
+var timer = 30
+
+
 
 func _ready():
 	pass
@@ -25,9 +27,8 @@ func move():
 			else:
 				self.queue_free()
 		else:
-			
 			$CollisionShape2D.disabled = true
-			timer2 = 1
+			timer2 = 10
 	
 
 func _process(delta):
@@ -38,8 +39,8 @@ func _process(delta):
 	if timer2!=0:
 		timer2 -=1 
 	if timer2 ==0:
-		if $CollisionShape2D.disabled == false:
-			$CollisionShape2D.disabled = true
+		if $CollisionShape2D.disabled == true:
+			$CollisionShape2D.disabled = false
 		
 
 	
