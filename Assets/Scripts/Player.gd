@@ -95,6 +95,7 @@ func attack():
 func check_death():
 	if currentHealth <= 0:
 		hide()
+		moving = false
 
 func get_hurt(damage):
 	currentHealth -= damage
