@@ -121,6 +121,8 @@ func check_death():
 	if currentHealth <= 0:
 		print("died")
 		moving = false
+		moveTimer = -1
+		shootTimer = -1
 		hide()
 		$CollisionShape2D.disabled=true
 
