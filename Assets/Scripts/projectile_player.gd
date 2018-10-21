@@ -26,9 +26,9 @@ func move():
 				self.queue_free()
 			else:
 				self.queue_free()
-		else:
-			$CollisionShape2D.disabled = true
-			timer2 = 10
+#		else:
+#			$CollisionShape2D.disabled = true
+#			timer2 = 10
 	
 
 func _process(delta):
