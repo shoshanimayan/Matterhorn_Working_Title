@@ -5,7 +5,7 @@ var chealth
 var mhealth
 
 var full	# number of FULL hearts to render
-var half	# flag: should i render half of a heart?
+var half	# flag: should we render half of a heart?
 var empty	# number of EMPTY hearts to render
 
 var fulltex = preload("res://Assets/Art/UI Sprites/Heart_Full_UI.png")
@@ -24,13 +24,15 @@ func _process(delta):
 	chealth = player.currentHealth
 	mhealth = player.maxHealth
 
-	full = floor(chealth/2)
-	half = chealth % 2
-	empty = mhealth/2 - (full + half)
-	
-	for i in range(full):
-		hearts[i].set_texture(fulltex)
-	if half == 1:
-		hearts[ceil(chealth/2)].set_texture(halftex)
-	for i in range(empty):
-		hearts[(mhealth/2)-1 - i].set_texture(emptytex)
+	if chealth >= 0:
+		full = floor(chealth/2)
+		half = abs(chealth % 2)		# 1 if odd or 0 if even
+		empty = mhealth/2 - (full + half)
+		
+		for i in range(full):
+			hearts[i].set_texture(fulltex)
+		if half == 1:
+			hearts[ceil(chealth/2)].set_texture(halftex)
+		if empty <= mhealth/2:
+			for i in range(empty):
+				hearts[(mhealth/2)-1 - i].set_texture(emptytex)

@@ -12,8 +12,8 @@ func _process(delta):
 	chealth = player.currentHealth
 	mhealth = player.maxHealth
 	
-	half = chealth % 2
 	full = floor(chealth/2)
+	half = abs(chealth % 2)
 	empty = mhealth/2 - (full + half)
 	
 	# boring debug printouts
