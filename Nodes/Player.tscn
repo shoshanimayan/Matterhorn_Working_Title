@@ -46,7 +46,7 @@ custom_solver_bias = 0.0
 radius = 18.0
 height = 0.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 16, 24 )
 input_pickable = false
@@ -101,8 +101,8 @@ editor_draw_drag_margin = false
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="3"]
 
-position = Vector2( 0, 5.60325 )
-scale = Vector2( 1, 1.0749 )
+position = Vector2( 0, 8.60323 )
+scale = Vector2( 1, 1.16865 )
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 0, 50 )
