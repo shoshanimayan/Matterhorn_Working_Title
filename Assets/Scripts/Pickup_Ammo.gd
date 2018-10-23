@@ -1,6 +1,6 @@
 extends Area2D
 
-var ammoRestored = 1
+export(int) var ammoRestored = 1
 
 var book1tex = preload("res://Assets/Art/Pickups/Textbook_1.png")
 var book2tex = preload("res://Assets/Art/Pickups/Textbook_2.png")

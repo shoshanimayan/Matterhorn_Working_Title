@@ -20,6 +20,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
+ammoRestored = 4
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

@@ -3,33 +3,27 @@ var timer2 = 0
 var velocity= Vector2()
 const speed = 4
 var timer = 30
+var ranged_damage = 1
 
+func set_damage(damageValue):
+	"""Sets the bullet's damage value from the value provided by the player"""
+	ranged_damage = damageValue
 
-
-func _ready():
-	pass
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-#func _on_Player_body_entered(body):
-#	if body != null and body.has_method("hit"):
-#			body.hit()
-#	self.queue_free()
 func move():
 	var motion = velocity.normalized() * speed
-	#move_and_slide(motion, Vector2(0,0))
 	var col = move_and_collide( motion)
 	if col:
 		col = col.get_collider()
 		if col!=null && !col.has_method("rangedAttack"):
 			if col.has_method("hit"):
-				col.hit(1)
+				col.hit(ranged_damage)
 				self.queue_free()
 			else:
 				self.queue_free()
 #		else:
 #			$CollisionShape2D.disabled = true
 #			timer2 = 10
-	
+
 
 func _process(delta):
 	if timer != 0:

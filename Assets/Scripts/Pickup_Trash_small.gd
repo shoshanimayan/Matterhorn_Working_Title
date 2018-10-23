@@ -1,6 +1,6 @@
 extends Area2D
 
-var value = 1
+export (int) var value = 1
 
 var disabled = false
 

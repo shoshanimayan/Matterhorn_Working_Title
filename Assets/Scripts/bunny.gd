@@ -7,14 +7,16 @@ var moveTickMax = moveTick
 var motion
 
 var playerDist 
-var health = 1
+export (int) var health = 1
 
 var d
 var distance
 
-var heartPre = preload("res://Nodes/pickups/Health.tscn")
+var heartDrop = preload("res://Nodes/pickups/Health.tscn")
+var ammoDrop = preload("res://Nodes/pickups/Ammo.tscn")
+var trashSmallDrop = preload("res://Nodes/pickups/Trash_small.tscn")
+
 var newHeart
-var newPosition
 
 func _ready():
 	moveDir = direction.random()
@@ -50,20 +52,20 @@ func runAway(a):
 					moveDir.y = -1
 
 func _physics_process(delta):
-	#getting distance between player and bunny
+	# Get distance between player and bunny
 	playerDist =  get_parent().get_node("Player").position
 	d = Vector2(playerDist-position)#.normalized()
 	distance = sqrt((d.x*d.x)+(d.y*d.y))
 	movementLoop()
 	
-	#check if player is close, thn run
+	# If player is close, run away
 	if distance <= 125:
 		speed = 80
 		moveDir = Vector2(0,0)
 		moveTick= moveTickMax
 		runAway(d)
-	#not close, idly wander
-	else: 
+	# Player is not close, idly wander
+	else:
 		speed = 40
 		if moveTick > 0:
 			moveTick -= 1
@@ -86,16 +88,14 @@ func hit(damage):
 	health -= damage
 	dieCheck()
 
-#death and drop items
+func dropItems():
+	newHeart = heartDrop.instance()
+	newHeart.position = position
+	get_tree().get_root().add_child(newHeart)
+
 func dieCheck():
 	if health == 0:
 		self.hide()
 		#print(self.name, " has died")
-		#set up heart
-		newHeart = heartPre.instance()
-		newPosition= position
-		newHeart.position = newPosition
-		get_tree().get_root().add_child(newHeart) 
-		#spawn
-		#kill bunny process
+		dropItems()
 		self.queue_free()

@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Nodes/maps/Level1_PAL.tres" type="TileSet" id=1]
 [ext_resource path="res://Nodes/maps/InvisibleWall_PAL.tres" type="TileSet" id=2]
-[ext_resource path="res://Nodes/enemies/bunny.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Nodes/pickups/Health.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Nodes/pickups/Ammo.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Nodes/pickups/Trash_small.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Nodes/pickups/Health.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Nodes/pickups/Ammo.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Nodes/pickups/Trash_small.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Nodes/enemies/bunny.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=7]
 
 [node name="Level1" type="Node" index="0"]
@@ -58,89 +58,94 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Bunny" parent="." index="2" instance=ExtResource( 3 )]
-
-position = Vector2( 196.887, 23.0114 )
-
-[node name="Bunny2" parent="." index="3" instance=ExtResource( 3 )]
-
-position = Vector2( 372.688, 257.589 )
-
-[node name="Bunny3" parent="." index="4" instance=ExtResource( 3 )]
-
-position = Vector2( 401.357, 187.755 )
-
-[node name="Bunny4" parent="." index="5" instance=ExtResource( 3 )]
-
-position = Vector2( 242.499, 216.863 )
-
-[node name="Health Pickup" parent="." index="6" instance=ExtResource( 4 )]
+[node name="Health Pickup" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 43.9161, 315.971 )
 
-[node name="Health Pickup3" parent="." index="7" instance=ExtResource( 4 )]
+[node name="Health Pickup3" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 391.971, 55.7607 )
 
-[node name="Health Pickup2" parent="." index="8" instance=ExtResource( 4 )]
+[node name="Health Pickup2" parent="." index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 52.1972, 61.6068 )
 
-[node name="Health Pickup4" parent="." index="9" instance=ExtResource( 4 )]
+[node name="Health Pickup4" parent="." index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 401.62, 330.393 )
 
-[node name="Ammo Pickup" parent="." index="10" instance=ExtResource( 5 )]
+[node name="Ammo Pickup" parent="." index="6" instance=ExtResource( 4 )]
 
 position = Vector2( 482.187, 187.336 )
 
-[node name="Ammo Pickup2" parent="." index="11" instance=ExtResource( 5 )]
+[node name="Ammo Pickup2" parent="." index="7" instance=ExtResource( 4 )]
 
 position = Vector2( 155.57, 158.828 )
 
-[node name="Ammo Pickup3" parent="." index="12" instance=ExtResource( 5 )]
+[node name="Ammo Pickup3" parent="." index="8" instance=ExtResource( 4 )]
 
 position = Vector2( 259.012, 161.272 )
 
-[node name="Trash_small Pickup" parent="." index="13" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup" parent="." index="9" instance=ExtResource( 5 )]
 
 position = Vector2( 47.2413, 137.651 )
 
-[node name="Trash_small Pickup2" parent="." index="14" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup2" parent="." index="10" instance=ExtResource( 5 )]
 
 position = Vector2( 115.66, 57.0153 )
 
-[node name="Trash_small Pickup3" parent="." index="15" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup3" parent="." index="11" instance=ExtResource( 5 )]
 
 position = Vector2( 197.925, 55.3863 )
 
-[node name="Trash_small Pickup4" parent="." index="16" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup4" parent="." index="12" instance=ExtResource( 5 )]
 
 position = Vector2( 292.407, 61.0878 )
 
-[node name="Trash_small Pickup5" parent="." index="17" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup5" parent="." index="13" instance=ExtResource( 5 )]
 
 position = Vector2( 390.962, 111.587 )
 
-[node name="Trash_small Pickup6" parent="." index="18" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup6" parent="." index="14" instance=ExtResource( 5 )]
 
 position = Vector2( 394.22, 193.038 )
 
-[node name="Trash_small Pickup7" parent="." index="19" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup7" parent="." index="15" instance=ExtResource( 5 )]
 
 position = Vector2( 396.664, 275.302 )
 
-[node name="Trash_small Pickup8" parent="." index="20" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup8" parent="." index="16" instance=ExtResource( 5 )]
 
 position = Vector2( 315.213, 326.616 )
 
-[node name="Trash_small Pickup9" parent="." index="21" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup9" parent="." index="17" instance=ExtResource( 5 )]
 
 position = Vector2( 221.545, 330.689 )
 
-[node name="Trash_small Pickup10" parent="." index="22" instance=ExtResource( 6 )]
+[node name="Trash_small Pickup10" parent="." index="18" instance=ExtResource( 5 )]
 
 position = Vector2( 127.877, 329.874 )
+
+[node name="Bunny" parent="." index="19" instance=ExtResource( 6 )]
+
+position = Vector2( 196.887, 23.0114 )
+
+[node name="Bunny2" parent="." index="20" instance=ExtResource( 6 )]
+
+position = Vector2( 200, 320 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Bunny3" parent="." index="21" instance=ExtResource( 6 )]
+
+position = Vector2( 240, 187.755 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Buffs Bunny" parent="." index="22" instance=ExtResource( 6 )]
+
+position = Vector2( 360, 216.863 )
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform" ]
+health = 3
 
 [node name="Player" parent="." index="23" instance=ExtResource( 7 )]
 
