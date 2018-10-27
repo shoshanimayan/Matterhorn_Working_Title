@@ -16,7 +16,7 @@ var heartDrop = preload("res://Nodes/pickups/Health.tscn")
 var ammoDrop = preload("res://Nodes/pickups/Ammo.tscn")
 var trashSmallDrop = preload("res://Nodes/pickups/Trash_small.tscn")
 
-var newHeart
+var newItem
 
 func _ready():
 	moveDir = direction.random()
@@ -74,6 +74,7 @@ func _physics_process(delta):
 			moveTick = moveTickMax
 
 func _process(delta):
+	
 	$AnimatedSprite.play()
 	if moveDir == direction.right:
 		$AnimatedSprite.animation = "right"
@@ -89,9 +90,21 @@ func hit(damage):
 	dieCheck()
 
 func dropItems():
-	newHeart = heartDrop.instance()
-	newHeart.position = position
-	get_tree().get_root().add_child(newHeart)
+	var num =randi()%3+1
+	print(num)
+	match num:
+		2: 
+			newItem = heartDrop.instance()
+			newItem.position = position
+			get_tree().get_root().add_child(newItem)
+		1:
+			newItem = ammoDrop.instance()
+			newItem.position = position
+			get_tree().get_root().add_child(newItem)
+		3:
+			newItem = trashSmallDrop.instance()
+			newItem.position = position
+			get_tree().get_root().add_child(newItem)
 
 func dieCheck():
 	if health == 0:

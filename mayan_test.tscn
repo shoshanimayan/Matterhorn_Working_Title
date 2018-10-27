@@ -51,6 +51,8 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="Player" parent="." index="2" instance=ExtResource( 3 )]
 
+ammo = 1
+
 [node name="Bunny" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 403, 205 )
