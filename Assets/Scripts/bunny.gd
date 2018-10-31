@@ -74,7 +74,6 @@ func _physics_process(delta):
 			moveTick = moveTickMax
 
 func _process(delta):
-	
 	$AnimatedSprite.play()
 	if moveDir == direction.right:
 		$AnimatedSprite.animation = "right"

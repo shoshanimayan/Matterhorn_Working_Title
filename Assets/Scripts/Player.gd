@@ -15,6 +15,8 @@ var meleeAttackRange = 50
 
 var moveTimer = 0
 var shootTimer = 0
+export (int) var moveTimerMax = 5
+export (int) var shootTimerMax = 30
 var can_move = true
 
 ### Used in main movement logic
@@ -52,12 +54,12 @@ func _process(delta):
 			if Input.is_action_pressed("ui_down"):
 				dir.y += 1
 		if Input.is_action_just_pressed("ui_select"):
-			if shootTimer==0 and ammo > 0:
+			if shootTimer == 0 and ammo > 0:
 				ammo -= 1
 				dir = Vector2(0,0)
 				rangedAttack($AnimatedSprite.animation)
-				moveTimer = 5
-				shootTimer =30
+				moveTimer = moveTimerMax
+				shootTimer = shootTimerMax
 		if Input.is_action_just_pressed("ui_accept"):
 			match $AnimatedSprite.animation:
 				"left":
@@ -82,6 +84,14 @@ func _process(delta):
 		$AnimatedSprite.animation = "up"
 	if dir.y > 0 && dir.x == 0:
 		$AnimatedSprite.animation = "down"
+		
+	if dir.length() > 0:
+		$AnimatedSprite.play()
+		move(dir.normalized() * speed)
+		dir = Vector2()
+	else:
+		$AnimatedSprite.set_frame(0)
+		$AnimatedSprite.stop()
 
 func move(dir):
 	# move_and_collide() returns the object that got collided with
@@ -105,14 +115,14 @@ func move(dir):
 			get_hurt(1)
 			can_move = true
 
-func _physics_process(delta):
-	if dir.length() > 0:
-		$AnimatedSprite.play()
-		move(dir.normalized() * speed)
-		dir = Vector2()
-	else:
-		$AnimatedSprite.set_frame(0)
-		$AnimatedSprite.stop()
+#func _physics_process(delta):
+#	if dir.length() > 0:
+#		$AnimatedSprite.play()
+#		move(dir.normalized() * speed)
+#		dir = Vector2()
+#	else:
+#		$AnimatedSprite.set_frame(0)
+#		$AnimatedSprite.stop()
 
 func rangedAttack(dir):
 	newProjectile = projectilePre.instance()
