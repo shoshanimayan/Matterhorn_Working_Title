@@ -5,9 +5,29 @@ const speed = 4
 var timer = 30
 var ranged_damage = 1
 
+var tex1 = preload("res://Assets/Art/Raccoon/Attack/Projectiles/Paper_1.png")
+var tex2 = preload("res://Assets/Art/Raccoon/Attack/Projectiles/Paper_2.png")
+var tex3 = preload("res://Assets/Art/Raccoon/Attack/Projectiles/Paper_3.png")
+
+
+func _ready():
+	# randomize sprite
+	var t = randi() % 3
+	match t:
+		0:
+			$Sprite.set_texture(tex1)
+		1:
+			$Sprite.set_texture(tex2)
+		2:
+			$Sprite.set_texture(tex3)
+		_:	# just to be safe.......
+			$Sprite.set_texture(tex1)
+
+
 func set_damage(damageValue):
 	"""Sets the bullet's damage value from the value provided by the player"""
 	ranged_damage = damageValue
+
 
 func move():
 	var motion = velocity.normalized() * speed
@@ -35,17 +55,15 @@ func _process(delta):
 	if timer2 ==0:
 		if $CollisionShape2D.disabled == true:
 			$CollisionShape2D.disabled = false
-		
 
-	
 
 func _physics_process(delta):
 	move()
 	if velocity == direction.center:
 		self.queue_free()
 
+
 func set_v(v,p):
-	
 	match v:
 		"left":
 			velocity = direction.left
@@ -68,4 +86,3 @@ func set_v(v,p):
 #			print("down")
 			position = p
 #	print(position)
-	

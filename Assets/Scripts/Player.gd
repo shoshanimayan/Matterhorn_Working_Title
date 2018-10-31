@@ -12,6 +12,7 @@ export (int) var trash = 0
 export (int) var meleeDamage = 1
 export (int) var rangedDamage = 1
 var meleeAttackRange = 50
+var clawAnimOffset = 25
 
 var moveTimer = 0
 var shootTimer = 0
@@ -44,6 +45,7 @@ func _process(delta):
 		moveTimer -= 1
 	
 	if can_move:
+		# DIRECTIONAL INPUT
 		if moveTimer == 0:
 			if Input.is_action_pressed("ui_right"):
 				dir.x += 1
@@ -53,6 +55,8 @@ func _process(delta):
 				dir.y -= 1
 			if Input.is_action_pressed("ui_down"):
 				dir.y += 1
+		
+		# RANGED ATTACK
 		if Input.is_action_just_pressed("ui_select"):
 			if shootTimer == 0 and ammo > 0:
 				ammo -= 1
@@ -60,21 +64,36 @@ func _process(delta):
 				rangedAttack($AnimatedSprite.animation)
 				moveTimer = moveTimerMax
 				shootTimer = shootTimerMax
+		
+		# MELEE ATTACK
 		if Input.is_action_just_pressed("ui_accept"):
+			$AnimatedClawSprite.set_frame(0)
 			match $AnimatedSprite.animation:
 				"left":
 					$RayCast2D.cast_to.x = -meleeAttackRange
 					$RayCast2D.cast_to.y = 0
+					$AnimatedClawSprite.offset = Vector2(-meleeAttackRange + clawAnimOffset, 0)
+					$AnimatedClawSprite.animation = "left_claw"
 				"right":
 					$RayCast2D.cast_to.x = meleeAttackRange
 					$RayCast2D.cast_to.y = 0
+					$AnimatedClawSprite.offset = Vector2(meleeAttackRange - clawAnimOffset, 0)
+					$AnimatedClawSprite.animation = "right_claw"
 				"up":
 					$RayCast2D.cast_to.x = 0
 					$RayCast2D.cast_to.y = -meleeAttackRange
-				"down":	
+					$AnimatedClawSprite.offset = Vector2(0, -meleeAttackRange + clawAnimOffset)
+					$AnimatedClawSprite.animation = "up_claw"
+				"down":
 					$RayCast2D.cast_to.x =0
 					$RayCast2D.cast_to.y = meleeAttackRange
+					$AnimatedClawSprite.offset = Vector2(0, meleeAttackRange - clawAnimOffset)
+					$AnimatedClawSprite.animation = "down_claw"
 			attack()
+			$AnimatedClawSprite.show()
+			$AnimatedClawSprite.play()	# auto-hides, implemented in the claw animation's script
+	
+	# setting up player animations (before animations are played)
 	if dir.x > 0:
 		$AnimatedSprite.animation = "right"
 	if dir.x < 0:
@@ -85,11 +104,11 @@ func _process(delta):
 	if dir.y > 0 && dir.x == 0:
 		$AnimatedSprite.animation = "down"
 		
-	if dir.length() > 0:
+	if dir.length() > 0:	# player is walking
 		$AnimatedSprite.play()
 		move(dir.normalized() * speed)
 		dir = Vector2()
-	else:
+	else:		# player is NOT walking
 		$AnimatedSprite.set_frame(0)
 		$AnimatedSprite.stop()
 
@@ -111,7 +130,7 @@ func move(dir):
 				v.x = 0
 			can_move = false
 			move(v.normalized()*30)
-			# REPLACE "1" WITH THE OTHER ENTITY'S DAMAGE
+			# REPLACE "1" WITH THE OTHER ENTITY'S DAMAGE - TODO
 			get_hurt(1)
 			can_move = true
 
