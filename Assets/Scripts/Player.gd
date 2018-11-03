@@ -74,7 +74,7 @@ func _process(delta):
 				ammo -= 1
 				dir = Vector2(0,0)
 				rangedAttack($AnimatedSprite.animation)
-				moveTimer = moveTimerMax
+			#	moveTimer = moveTimerMax
 				shootTimer = shootTimerMax
 		
 		# MELEE ATTACK
