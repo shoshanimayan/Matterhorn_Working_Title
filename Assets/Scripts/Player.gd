@@ -39,12 +39,15 @@ var newPosition
 var Ray_Mid
 var Ray_Left
 var Ray_Right
-
+var Ray_Left_Mid
+var Ray_Right_Mid
 
 func _ready():
 	Ray_Mid = get_node("RayCast2D")
 	Ray_Left = get_node("RayCast2D2")
 	Ray_Right = get_node("RayCast2D3")
+	Ray_Left_Mid = get_node("RayCast2D4")
+	Ray_Right_Mid = get_node("RayCast2D5")
 
 #########################
 
@@ -88,6 +91,10 @@ func _process(delta):
 					Ray_Left.cast_to.y = 15
 					Ray_Right.cast_to.x = -65
 					Ray_Right.cast_to.y = -15
+					Ray_Left_Mid.cast_to.x = -67
+					Ray_Left_Mid.cast_to.x = 7
+					Ray_Right_Mid.cast_to.x = -67
+					Ray_Right_Mid.cast_to.x = -7
 					$AnimatedClawSprite.offset = Vector2(-meleeAttackRange + clawAnimOffset, 0)
 					$AnimatedClawSprite.animation = "left_claw"
 				"right":
@@ -97,6 +104,10 @@ func _process(delta):
 					Ray_Left.cast_to.y = 15
 					Ray_Right.cast_to.x = 65
 					Ray_Right.cast_to.y = -15
+					Ray_Left_Mid.cast_to.x = 67
+					Ray_Left_Mid.cast_to.x = 7
+					Ray_Right_Mid.cast_to.x = 67
+					Ray_Right_Mid.cast_to.x = -7
 					$AnimatedClawSprite.offset = Vector2(meleeAttackRange - clawAnimOffset, 0)
 					$AnimatedClawSprite.animation = "right_claw"
 				"up":
@@ -106,6 +117,10 @@ func _process(delta):
 					Ray_Left.cast_to.y = -65
 					Ray_Right.cast_to.x = 15
 					Ray_Right.cast_to.y = -65
+					Ray_Left_Mid.cast_to.x = 7
+					Ray_Left_Mid.cast_to.x = -67
+					Ray_Right_Mid.cast_to.x = -7
+					Ray_Right_Mid.cast_to.x = -67
 					$AnimatedClawSprite.offset = Vector2(0, -meleeAttackRange + clawAnimOffset)
 					$AnimatedClawSprite.animation = "up_claw"
 				"down":
@@ -115,6 +130,10 @@ func _process(delta):
 					Ray_Left.cast_to.y = 65
 					Ray_Right.cast_to.x = 15
 					Ray_Right.cast_to.y = 65
+					Ray_Left_Mid.cast_to.x = 7
+					Ray_Left_Mid.cast_to.x = 67
+					Ray_Right_Mid.cast_to.x = -7
+					Ray_Right_Mid.cast_to.x = 67
 					$AnimatedClawSprite.offset = Vector2(0, meleeAttackRange - clawAnimOffset)
 					$AnimatedClawSprite.animation = "down_claw"
 			attack()

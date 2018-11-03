@@ -113,7 +113,7 @@ height = 0.0
 
 [node name="Player" type="KinematicBody2D"]
 
-position = Vector2( 16, 24 )
+position = Vector2( -145, 44 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -194,6 +194,20 @@ collision_mask = 1
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 15, 65 )
+collision_mask = 1
+
+[node name="RayCast2D4" type="RayCast2D" parent="." index="7"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( 7, 67 )
+collision_mask = 1
+
+[node name="RayCast2D5" type="RayCast2D" parent="." index="8"]
+
+enabled = true
+exclude_parent = true
+cast_to = Vector2( -7, 67 )
 collision_mask = 1
 
 [connection signal="animation_finished" from="AnimatedClawSprite" to="AnimatedClawSprite" method="_on_AnimatedClawSprite_animation_finished"]
