@@ -35,7 +35,19 @@ var projectilePre = preload("res://Nodes/projectile_player.tscn")
 var newProjectile
 var newPosition
 
+
+var Ray_Mid
+var Ray_Left
+var Ray_Right
+
+
+func _ready():
+	Ray_Mid = get_node("RayCast2D")
+	Ray_Left = get_node("RayCast2D2")
+	Ray_Right = get_node("RayCast2D3")
+
 #########################
+
 
 func _process(delta):
 	if shootTimer != 0:
@@ -70,23 +82,39 @@ func _process(delta):
 			$AnimatedClawSprite.set_frame(0)
 			match $AnimatedSprite.animation:
 				"left":
-					$RayCast2D.cast_to.x = -meleeAttackRange
-					$RayCast2D.cast_to.y = 0
+					Ray_Mid.cast_to.x = -meleeAttackRange
+					Ray_Mid.cast_to.y = 0
+					Ray_Left.cast_to.x = -65
+					Ray_Left.cast_to.y = 15
+					Ray_Right.cast_to.x = -65
+					Ray_Right.cast_to.y = -15
 					$AnimatedClawSprite.offset = Vector2(-meleeAttackRange + clawAnimOffset, 0)
 					$AnimatedClawSprite.animation = "left_claw"
 				"right":
-					$RayCast2D.cast_to.x = meleeAttackRange
-					$RayCast2D.cast_to.y = 0
+					Ray_Mid.cast_to.x = meleeAttackRange
+					Ray_Mid.cast_to.y = 0
+					Ray_Left.cast_to.x = 65
+					Ray_Left.cast_to.y = 15
+					Ray_Right.cast_to.x = 65
+					Ray_Right.cast_to.y = -15
 					$AnimatedClawSprite.offset = Vector2(meleeAttackRange - clawAnimOffset, 0)
 					$AnimatedClawSprite.animation = "right_claw"
 				"up":
-					$RayCast2D.cast_to.x = 0
-					$RayCast2D.cast_to.y = -meleeAttackRange
+					Ray_Mid.cast_to.x = 0
+					Ray_Mid.cast_to.y = -meleeAttackRange-10
+					Ray_Left.cast_to.x = -15
+					Ray_Left.cast_to.y = -65
+					Ray_Right.cast_to.x = 15
+					Ray_Right.cast_to.y = -65
 					$AnimatedClawSprite.offset = Vector2(0, -meleeAttackRange + clawAnimOffset)
 					$AnimatedClawSprite.animation = "up_claw"
 				"down":
-					$RayCast2D.cast_to.x =0
-					$RayCast2D.cast_to.y = meleeAttackRange
+					Ray_Mid.cast_to.x = 0
+					Ray_Mid.cast_to.y = meleeAttackRange
+					Ray_Left.cast_to.x = -15
+					Ray_Left.cast_to.y = 65
+					Ray_Right.cast_to.x = 15
+					Ray_Right.cast_to.y = 65
 					$AnimatedClawSprite.offset = Vector2(0, meleeAttackRange - clawAnimOffset)
 					$AnimatedClawSprite.animation = "down_claw"
 			attack()
@@ -151,8 +179,16 @@ func rangedAttack(dir):
 	get_tree().get_root().add_child(newProjectile) 
 
 func attack():
-	if $RayCast2D.is_colliding():
-		other = $RayCast2D.get_collider()
+	if Ray_Mid.is_colliding():
+		other = Ray_Mid.get_collider()
+		if other != null and other.has_method("hit"):
+			other.hit(meleeDamage)
+	if Ray_Left.is_colliding():
+		other = Ray_Left.get_collider()
+		if other != null and other.has_method("hit"):
+			other.hit(meleeDamage)
+	if Ray_Right.is_colliding():
+		other = Ray_Right.get_collider()
 		if other != null and other.has_method("hit"):
 			other.hit(meleeDamage)
 
