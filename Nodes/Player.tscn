@@ -13,10 +13,10 @@
 [ext_resource path="res://Assets/Art/Raccoon/Raccoon_front.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_1.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_2.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right_Atk.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_back_Atk.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front_Atk.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left_Atk.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left_Atk.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front_Atk.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right_Atk.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_back_Atk.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_1.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_2.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_3.png" type="Texture" id=20]
@@ -61,22 +61,22 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
-"name": "a_r",
+"name": "a_l",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 15 ) ],
 "loop": true,
-"name": "a_u",
+"name": "a_d",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
-"name": "a_d",
+"name": "a_r",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ) ],
 "loop": true,
-"name": "a_l",
+"name": "a_u",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -184,14 +184,14 @@ collision_mask = 1
 
 [node name="RayCast2D2" type="RayCast2D" parent="." index="5"]
 
-enabled = false
+enabled = true
 exclude_parent = true
 cast_to = Vector2( -15, 65 )
 collision_mask = 1
 
 [node name="RayCast2D3" type="RayCast2D" parent="." index="6"]
 
-enabled = false
+enabled = true
 exclude_parent = true
 cast_to = Vector2( 15, 65 )
 collision_mask = 1
