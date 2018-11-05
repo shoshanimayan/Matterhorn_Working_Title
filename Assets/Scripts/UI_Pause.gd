@@ -1,31 +1,30 @@
 extends Panel
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var game
 
 func _ready():
 	self.hide()
+	game = get_tree()
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_pause"):
-		if get_tree().paused == false:
+		if game.paused == false:
 			pause()
 		else:
 			unpause()
 
 func pause():
-	get_tree().paused = true
+	game.paused = true
 	self.show()
-	print("PAUSED")
+	#print("PAUSED")
 
 func unpause():
 	self.hide()
-	get_tree().paused = false
-	print("UN-PAUSED")
+	game.paused = false
+	#print("UN-PAUSED")
 
 func _on_Resume_Button_pressed():
 	unpause()
 
 func _on_Quit_Button_pressed():
-	get_tree().quit()
+	game.quit()
