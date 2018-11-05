@@ -23,7 +23,7 @@ func _ready():
 func _process(delta):
 	chealth = player.currentHealth
 	mhealth = player.maxHealth
-
+	
 	if chealth >= 0:
 		full = floor(chealth/2)
 		half = abs(chealth % 2)		# 1 if odd or 0 if even
