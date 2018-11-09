@@ -85,8 +85,8 @@ func dieCheck():
 		self.queue_free()
 
 
-func hit():
-	health -= 1
+func hit(damage):
+	health -= damage
 
 #Begin throwing sequence (both for animation and spawning projectile)
 func throw():
@@ -99,5 +99,5 @@ func throw():
 	newProjectile.set_damage(1)
 	newProjectile.add_collision_exception_with(self)
 	get_tree().get_root().add_child(newProjectile) 	
-	timer = 50
+	timer = 90
 	isThrowing = false;
