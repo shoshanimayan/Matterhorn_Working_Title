@@ -4,11 +4,19 @@ extends KinematicBody2D
 var health = 2
 var detectionDistance = 200
 var playerDist
+var timer = 50
 var faceDir = Vector2()
 # projectile <- insert later
 var isThrowing = false #Is mole firing at player
 var isHiding = false #Is mole hiding (reloading)
 
+var heartDrop = preload("res://Nodes/pickups/Health.tscn")
+var ammoDrop = preload("res://Nodes/pickups/Ammo.tscn")
+var trashSmallDrop = preload("res://Nodes/pickups/Trash_small.tscn")
+var projectilePre = preload("res://Nodes/enemies/projectile_enemy.tscn")
+var newProjectile
+var newPosition
+var newItem
 
 func _ready():
 	pass
@@ -32,8 +40,11 @@ func _physics_process(delta):
 		getPlayerDir()
 		
 		if distance < detectionDistance:
-			isThrowing = true
-			throw()
+			if timer ==0:
+				isThrowing = true
+				throw()
+			else:
+				timer -= 1
 	
 	
 
@@ -46,17 +57,28 @@ func getPlayerDir():
 	else:
 		faceDir = direction.right
 
-
+func dropItems():
+	var num =randi()%3+1
+	print(num)
+	match num:
+		2: 
+			newItem = heartDrop.instance()
+			newItem.position = position
+			get_tree().get_root().add_child(newItem)
+		1:
+			newItem = ammoDrop.instance()
+			newItem.position = position
+			get_tree().get_root().add_child(newItem)
+		3:
+			newItem = trashSmallDrop.instance()
+			newItem.position = position
+			get_tree().get_root().add_child(newItem)
 
 func dieCheck():
-	if health==0:
+	if health<=0:
 		print(self.name, " has died")
 		#set up heart
-		var heartPre = preload("res://Nodes/pickups/Health.tscn")
-		var newHeart = heartPre.instance()
-		var newPosition= position
-		newHeart.position = newPosition
-		get_tree().get_root().add_child(newHeart) 
+		dropItems()
 		#spawn
 		self.hide()
 		#kill mole process
@@ -68,7 +90,14 @@ func hit():
 
 #Begin throwing sequence (both for animation and spawning projectile)
 func throw():
-	var throwAngle = get_angle_to(playerDist)
+	#var throwAngle = get_angle_to(playerDist)
 	#start coroutine for throwing
-	print (self.name, throwAngle)
+	#print (self.name, throwAngle)
+	newProjectile = projectilePre.instance()
+	newPosition = position
+	newProjectile.set_v(Vector2(playerDist-position),newPosition)
+	newProjectile.set_damage(1)
+	newProjectile.add_collision_exception_with(self)
+	get_tree().get_root().add_child(newProjectile) 	
+	timer = 50
 	isThrowing = false;
