@@ -1,11 +1,11 @@
 extends KinematicBody2D
-
+var t = 30
 var speed = 40 
 var moveDir = Vector2()
 export(int) var moveTick = 30
 var moveTickMax = moveTick
 var motion
-
+var freeWalk = true 
 var playerDist 
 export (int) var health = 1
 
@@ -18,6 +18,8 @@ var trashSmallDrop = preload("res://Nodes/pickups/Trash_small.tscn")
 
 var newItem
 
+var meleeDamage = 1
+
 func _ready():
 	moveDir = direction.random()
 
@@ -25,6 +27,23 @@ func _ready():
 func movementLoop():
 	motion = moveDir.normalized() * speed
 	move_and_slide(motion, Vector2(0,0))
+
+#todo, no wall crashing, add raycast so no run into wall or others
+func avoidAndAttack():
+	var other
+	if $RayCast2D.is_colliding():
+		
+		other = $RayCast2D.get_collider()
+		if other != null and other.has_method("get_hurt"):
+			#other.get_hurt(meleeDamage)
+			print("hit me")
+		else:
+			print(other)
+			moveDir.x = moveDir.x * -1
+			moveDir.y = moveDir.y * -1
+			freeWalk = false
+	
+
 
 #function for getting direction to avoid player
 func runTowards(a):
@@ -52,19 +71,29 @@ func runTowards(a):
 					moveDir.y = -1
 
 func _physics_process(delta):
-	# Get distance between player and bunny
-	playerDist =  get_parent().get_node("Player").position
-	d = Vector2(playerDist-position)#.normalized()
-	distance = sqrt((d.x*d.x)+(d.y*d.y))
-	movementLoop()
-	
-	# If player is close, run away
-	if distance <= 125:
-		speed = 80
-		moveDir = Vector2(0,0)
-		moveTick= moveTickMax
-		runTowards(d)
-	# Player is not close, idly wander
+	avoidAndAttack()
+	if freeWalk:
+		# Get distance between player and bunny
+		playerDist =  get_parent().get_node("Player").position
+		d = Vector2(playerDist-position)#.normalized()
+		distance = sqrt((d.x*d.x)+(d.y*d.y))
+		movementLoop()
+			
+			# If player is close, run away
+		if distance <= 125:
+			speed = 80
+			moveDir = Vector2(0,0)
+			moveTick= moveTickMax
+			runTowards(d)
+			# Player is not close, idly wander
+		else:
+			speed = 40
+			if moveTick > 0:
+				moveTick -= 1
+			if moveTick == 0 || is_on_wall():
+				moveDir = direction.random()
+				moveTick = moveTickMax
+				
 	else:
 		speed = 40
 		if moveTick > 0:
@@ -72,18 +101,23 @@ func _physics_process(delta):
 		if moveTick == 0 || is_on_wall():
 			moveDir = direction.random()
 			moveTick = moveTickMax
-
+			freeWalk = true
+			
 func _process(delta):
 	
 	$AnimatedSprite.play()
 	if moveDir == direction.right:
 		$AnimatedSprite.animation = "right"
+		$RayCast2D.cast_to = Vector2(25,0)
 	if moveDir == direction.left:
 		$AnimatedSprite.animation = "left"
+		$RayCast2D.cast_to = Vector2(-25,0)
 	if moveDir == direction.up:
 		$AnimatedSprite.animation = "up"
+		$RayCast2D.cast_to = Vector2(0,-25)
 	if moveDir == direction.down:
 		$AnimatedSprite.animation = "down"
+		$RayCast2D.cast_to = Vector2(0,25)
 
 func hit(damage):
 	health -= damage

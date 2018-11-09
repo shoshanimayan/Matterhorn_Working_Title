@@ -210,6 +210,14 @@ func attack():
 		other = Ray_Right.get_collider()
 		if other != null and other.has_method("hit"):
 			other.hit(meleeDamage)
+	if Ray_Right_Mid.is_colliding():
+		other = Ray_Right_Mid.get_collider()
+		if other != null and other.has_method("hit"):
+			other.hit(meleeDamage)
+	if Ray_Left_Mid.is_colliding():
+		other = Ray_Left_Mid.get_collider()
+		if other != null and other.has_method("hit"):
+			other.hit(meleeDamage)
 
 func check_death():
 	if currentHealth <= 0:
