@@ -4,7 +4,8 @@ extends KinematicBody2D
 var health = 2
 var detectionDistance = 200
 var playerDist
-var timer = 50
+var timer = 150
+var timer2 = 150
 var faceDir = Vector2()
 # projectile <- insert later
 var isThrowing = false #Is mole firing at player
@@ -31,20 +32,20 @@ func _process(delta):
 
 func _physics_process(delta):
 	dieCheck()
-	
+	hide()
 	#Checks to see if the enemy is already firing a projectile, in which case do not interrupt (unless death)
 	if !isThrowing:
 		playerDist =  get_parent().get_node("Player").position
 		var d= Vector2(playerDist-position)#.normalized()
 		var distance = sqrt((d.x*d.x)+(d.y*d.y))
 		getPlayerDir()
-		
-		if distance < detectionDistance:
-			if timer ==0:
-				isThrowing = true
-				throw()
-			else:
-				timer -= 1
+		if !$CollisionShape2D.disabled:
+			if distance < detectionDistance:
+				if timer ==0:
+					isThrowing = true
+					throw()
+				else:
+					timer -= 1
 	
 	
 
@@ -56,6 +57,18 @@ func getPlayerDir():
 		faceDir = direction.left
 	else:
 		faceDir = direction.right
+
+func hide():
+	if timer2 ==0:
+		if $CollisionShape2D.disabled:
+			$CollisionShape2D.disabled = true
+			#isThrowing= false
+		else:
+			$CollisionShape2D.disabled = false 
+			#isthrowing = true 
+		timer2 = 150
+	else:
+		timer2 -=1
 
 func dropItems():
 	var num =randi()%3+1
@@ -99,5 +112,5 @@ func throw():
 	newProjectile.set_damage(1)
 	newProjectile.add_collision_exception_with(self)
 	get_tree().get_root().add_child(newProjectile) 	
-	timer = 90
+	timer = 100
 	isThrowing = false;
