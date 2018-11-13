@@ -20,33 +20,19 @@ var newItem
 
 var meleeDamage = 1
 
+var Ray1
+
 func _ready():
 	moveDir = direction.random()
-
+	Ray1 = get_node("RayCast2D")
 #loop for random movement
 func movementLoop():
 	motion = moveDir.normalized() * speed
 	move_and_slide(motion, Vector2(0,0))
 
 #todo, no wall crashing, add raycast so no run into wall or others
-func avoidAndAttack():
-	var other
-	if $RayCast2D.is_colliding():
-		
-		other = $RayCast2D.get_collider()
-		if other != null and other.has_method("get_hurt"):
-			#other.get_hurt(meleeDamage)
-			print("hit me")
-		else:
-			print(other)
-			moveDir.x = moveDir.x * -1
-			moveDir.y = moveDir.y * -1
-			freeWalk = false
-	
-
-
-#function for getting direction to avoid player
 func runTowards(a):
+	speed = 80
 	a = a.normalized() 
 	if 1-abs(a.x) < 1-abs(a.y):
 		moveDir.x= direction.orientation(a.x)
@@ -70,8 +56,31 @@ func runTowards(a):
 				-1: 
 					moveDir.y = -1
 
+func runLine(a):
+	var other
+	if Ray1.is_colliding():
+		other = Ray1.get_collider()
+		if other != null and other.has_method("get_hurt"):
+			speed = 250
+	#		runTowards(a)
+
+			match $AnimatedSprite.animation:
+				"left":
+					moveDir = direction.left
+					return true
+				"right":
+					moveDir = direction.right
+					return true
+				"up":
+					moveDir = direction.up
+					return true 
+				"down":
+					moveDir = direction.down
+					return true 
+
+			
 func _physics_process(delta):
-	avoidAndAttack()
+	
 	if freeWalk:
 		# Get distance between player and bunny
 		playerDist =  get_parent().get_node("Player").position
@@ -80,12 +89,33 @@ func _physics_process(delta):
 		movementLoop()
 			
 			# If player is close, run away
-		if distance <= 125:
+		if distance <= 100:
 			speed = 80
 			moveDir = Vector2(0,0)
 			moveTick= moveTickMax
 			runTowards(d)
-			# Player is not close, idly wander
+		elif distance <= 125 && distance >=100:
+			speed = 80
+			d = d.normalized() 
+			if 1-abs(d.x) < 1-abs(d.y):
+				match direction.orientation(d.x):
+					1: 
+						$AnimatedSprite.animation = "right"
+						Ray1.cast_to = Vector2(200,0)
+					0:
+						$AnimatedSprite.animation = "left"
+						Ray1.cast_to = Vector2(-200,0)
+			else:
+				match direction.orientation(d.y):
+					1: 
+						$AnimatedSprite.animation = "down"
+						Ray1.cast_to = Vector2(0,200)
+					0:
+						$AnimatedSprite.animation = "up"
+						Ray1.cast_to = Vector2(0,-200)
+			
+		elif runLine(d):
+			speed = 250
 		else:
 			speed = 40
 			if moveTick > 0:
@@ -108,16 +138,16 @@ func _process(delta):
 	$AnimatedSprite.play()
 	if moveDir == direction.right:
 		$AnimatedSprite.animation = "right"
-		$RayCast2D.cast_to = Vector2(25,0)
+		Ray1.cast_to = Vector2(200,0)
 	if moveDir == direction.left:
 		$AnimatedSprite.animation = "left"
-		$RayCast2D.cast_to = Vector2(-25,0)
+		Ray1.cast_to = Vector2(-200,0)
 	if moveDir == direction.up:
 		$AnimatedSprite.animation = "up"
-		$RayCast2D.cast_to = Vector2(0,-25)
+		Ray1.cast_to = Vector2(0,-200)
 	if moveDir == direction.down:
 		$AnimatedSprite.animation = "down"
-		$RayCast2D.cast_to = Vector2(0,25)
+		Ray1.cast_to = Vector2(0,200)
 
 func hit(damage):
 	health -= damage
