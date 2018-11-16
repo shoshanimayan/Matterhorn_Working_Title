@@ -6,7 +6,7 @@ var disabled = false
 
 func _on_Trash_small_Pickup_body_entered(body):
 	if not disabled and body.get_name() == "Player":
-		body.trash += value
+		body.get_trash(value)
 		# don't delete; just disable
 		disabled = true
 		hide()

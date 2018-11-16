@@ -8,13 +8,13 @@
 [ext_resource path="res://Assets/Font/arcade_classic.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/Scripts/UI_advanced_ammo.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Art/UI Sprites/Empty_Book_UI.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Font/Pause_Panel.tres" type="StyleBox" id=9]
-[ext_resource path="res://Assets/Scripts/UI_basic_health.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Scripts/UI_basic_trash.gd" type="Script" id=11]
-[ext_resource path="res://Assets/Scripts/UI_basic_ammo.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Scripts/UI_basic_health.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Scripts/UI_basic_trash.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Scripts/UI_basic_ammo.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Font/Pause_Panel.tres" type="StyleBox" id=12]
 [ext_resource path="res://Assets/Scripts/UI_Pause.gd" type="Script" id=13]
 
-[node name="UI" type="CanvasLayer" index="0"]
+[node name="UI" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -71,6 +71,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Trash counter" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_group_": true,
@@ -127,6 +128,7 @@ max_lines_visible = -1
 
 [node name="Ammo counter" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 script = ExtResource( 7 )
 
 [node name="Panel2" type="Panel" parent="Ammo counter" index="0"]
@@ -146,6 +148,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/panel = ExtResource( 2 )
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="Book sprite" type="Sprite" parent="Ammo counter" index="1"]
 
@@ -178,6 +181,7 @@ max_lines_visible = -1
 
 [node name="Controls Panel" type="Panel" parent="." index="3"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -224,6 +228,7 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="DEBUG Panel" type="Panel" parent="." index="4"]
 
+editor/display_folded = true
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -240,7 +245,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 9 )
+custom_styles/panel = ExtResource( 2 )
 _sections_unfolded = [ "custom_styles" ]
 
 [node name="Header" type="Label" parent="DEBUG Panel" index="0"]
@@ -285,7 +290,7 @@ text = "Health: DUMMY"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 10 )
+script = ExtResource( 9 )
 
 [node name="Trash Label" type="Label" parent="DEBUG Panel" index="2"]
 
@@ -307,7 +312,7 @@ text = "Trash: DUMMY"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 11 )
+script = ExtResource( 10 )
 
 [node name="Ammo Label" type="Label" parent="DEBUG Panel" index="3"]
 
@@ -329,7 +334,7 @@ text = "Ammo: DUMMY"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 12 )
+script = ExtResource( 11 )
 
 [node name="Pause Panel" type="Panel" parent="." index="5"]
 
@@ -346,7 +351,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 9 )
+custom_styles/panel = ExtResource( 12 )
 script = ExtResource( 13 )
 _sections_unfolded = [ "Pause", "custom_styles" ]
 
@@ -375,7 +380,7 @@ group = null
 text = "Resume"
 flat = false
 align = 1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "Margin", "custom_fonts" ]
 
 [node name="Quit Button" type="Button" parent="Pause Panel" index="1"]
 
@@ -402,7 +407,7 @@ group = null
 text = "Quit"
 flat = false
 align = 1
-_sections_unfolded = [ "custom_fonts" ]
+_sections_unfolded = [ "Margin", "custom_fonts" ]
 
 [connection signal="pressed" from="Pause Panel/Resume Button" to="Pause Panel" method="_on_Resume_Button_pressed"]
 

@@ -27,27 +27,31 @@ var col
 var d
 var v
 
-### Used in attack()
+### Used in attack() [melee attack]
 var other
-
-### Used in ranged_attack()
-var projectilePre = preload("res://Nodes/projectile_player.tscn")
-var newProjectile
-var newPosition
-
-
 var Ray_Mid
 var Ray_Left
 var Ray_Right
 var Ray_Left_Mid
 var Ray_Right_Mid
 
+### Used in ranged_attack()
+var projectilePre = preload("res://Nodes/projectile_player.tscn")
+var newProjectile
+var newPosition
+
+### Temporary win condition
+export (int) var winAmt = 30
+var game
+
 func _ready():
+	show()
 	Ray_Mid = get_node("RayCast2D")
 	Ray_Left = get_node("RayCast2D2")
 	Ray_Right = get_node("RayCast2D3")
 	Ray_Left_Mid = get_node("RayCast2D4")
 	Ray_Right_Mid = get_node("RayCast2D5")
+	game = get_tree()
 
 #########################
 
@@ -221,15 +225,27 @@ func attack():
 
 func check_death():
 	if currentHealth <= 0:
-		print("Player died")
+		$CollisionShape2D.disabled = true
 		can_move = false
 		moveTimer = -1
 		shootTimer = -1
 		# Play animation here, enable fade-in death screen?
+		game.change_scene("res://Nodes/GameOverScreen.tscn")
 		hide()
-		$CollisionShape2D.disabled = true
+		print("u lose :(")
+
+func check_win():
+	# TODO: supply official win condition
+	if trash >= winAmt:
+		print("u win!!")
+		game.change_scene("res://Nodes/WinScreen.tscn")
+	return
 
 func get_hurt(damage):
 	#print(damage)
 	currentHealth -= damage
 	check_death()
+
+func get_trash(amt):
+	trash += amt
+	check_win()
