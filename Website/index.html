@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+
+<!-- index.html -->
+
+<!--
+    For CS 113 / INF 125 
+    Team: Matterhorn
+    Game: Trash Matters
+-->
+
+<head>
+  <!-- Meta Data -->
+  <meta charset="utf-8">
+  <meta name="author" content="Matterhorn">
+  <meta name="description" content="Matterhorn Title Page">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/matterhorn.css">
+
+  <!-- Bootstrap -->
+  <meta name="viewport" content="width-device-width, initial-scale=1">
+  <script src="js/bootstrap.min.js"></script>
+
+  <!-- JavaScript -->
+  <script type="text/javascript" src="js/index.js"></script>
+
+  <!-- Title and Icon -->
+  <link rel="icon" href="Images/racoon.png">
+  <title>Matterhorn</title>
+</head>
+
+<body>
+  <!-- Top Navigation Bar -->
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+    
+      <!--Name Logo (Links to main page) -->
+      <div class="navbar-header">
+        <a href="index.html" class="navbar-brand" id="bname">
+          <img src="Images/Matterhorn_Icon1.png" id="titleIcon">
+          Matterhorn
+        </a>
+      </div>
+    
+      <!--Navbar Menu Items-->
+      <div>
+        <ul class="nav nav-pills">
+          <!-- Game Page -->
+          <li class="nav-item">
+            <a class="nav-link" href="game.html">The Game</a>
+          </li>
+          <!-- Company Page-->
+          <li class="nav-item">
+            <a class="nav-link" href="company.html">About Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TODO: MAKE IMAGES IN BACKGROUND OF SIMPLE TEXT -->
+  <div class="container-fluid">
+    <!-- testing background image -->
+      <div class="row form-group" onclick="clickLink('game.html')">
+        <div class="col-lg-6 col-m-12" id="gameWBackground">
+          <span id="gameTitleText">
+            <a href="game.html">
+              <h2 id="gameTM">Trash Matters</h2>
+            </a>
+            <p>
+              Testing to see how the text would go across </br>
+              Trying out new stuff
+            </p>
+          </span>
+        </div>
+          <div class="col-lg-6 col-m-12" id="gameWBackground">
+            <span id="companyTitleText">
+              <a href="game.html">
+                <h2 id="companyTitle">Team Matterhorn</h2>
+              </a>
+              <p>
+                A group of friends making new games in a new engine.
+              </p>
+            </span>
+          </div>
+        </div>
+  </div>
+
+  <footer>
+    <p>
+      Created for <a href="https://www.ics.uci.edu/~ddenenbe/113-125/">CS 113 / INF 125</a>
+      at UC Irvine, Fall 2018 <br>
+      Website by <a href="http://www.johnlukesaake.com">John Luke Saake</a>
+    </p>
+  </footer>
+</body>
+
+
+</html>

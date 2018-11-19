@@ -1,0 +1,70 @@
+
+/* Background color for entire page */
+body{
+    background-color: rgb(65, 59, 59) ;
+}
+
+/* Sets height to max to allow for full background images */
+html, body{
+    height: 100%;
+}
+
+/* Title in upper left corner of navbar */
+a.navbar-brand{
+    font-size: 2.75em;
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Each individual item on navbar */
+li a.nav-link{
+    font-size: 1.5em;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+
+/* When hovering over navbar item */
+.nav-link:hover{
+    background: brown;
+}
+
+/* When navbar item is active (page user is on) */
+.nav-pills .nav-link.active{
+    background: brown;
+}
+
+/* Sets sizing for title icon on navbar */
+#titleIcon{
+    width: 100px;
+}
+
+/* Base Text */
+p{
+    color: white;
+}
+
+#gameTM, #companyTitle{
+    color: white;
+}
+
+/* Testing Game with background */
+#gameWBackground{
+    background-image: url("../Images/RBatStatue.png");
+    width: 100vw;
+    height: 57vh;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+#gameTitleText, #companyTitleText{
+    position: absolute;
+    bottom: 0;
+}
+
+/* Bottom of the page, should be similar color to base text */
+footer{
+    font-size: .75em;
+    color: white;
+    text-align: center;
+}
