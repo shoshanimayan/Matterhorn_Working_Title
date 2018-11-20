@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Scripts/Coyate.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Art/Rabbit/Rabbit_back.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Art/Rabbit/Rabbit_front.png" type="Texture" id=5]
 
@@ -11,12 +11,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -68,6 +68,13 @@ autostart = false
 enabled = true
 exclude_parent = true
 cast_to = Vector2( 200, 0 )
+collision_mask = 1
+
+[node name="RayCast2D2" type="RayCast2D" parent="." index="4"]
+
+enabled = false
+exclude_parent = true
+cast_to = Vector2( 50, 0 )
 collision_mask = 1
 
 

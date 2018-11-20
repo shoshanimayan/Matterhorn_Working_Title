@@ -21,10 +21,12 @@ var newItem
 var meleeDamage = 1
 
 var Ray1
+var Ray2
 
 func _ready():
 	moveDir = direction.random()
 	Ray1 = get_node("RayCast2D")
+	Ray2 = get_node("RayCast2D2")
 #loop for random movement
 func movementLoop():
 	motion = moveDir.normalized() * speed
@@ -77,8 +79,13 @@ func runLine(a):
 				"down":
 					moveDir = direction.down
 					return true 
-
-			
+func attack():
+	var other
+	print("attacking")
+	if distance <=26:
+		get_parent().get_node("Player").get_hurt(1) 
+		get_parent().get_node("Player").push(moveDir,30) 
+	print(distance)	
 func _physics_process(delta):
 	
 	if freeWalk:
@@ -132,6 +139,8 @@ func _physics_process(delta):
 			moveDir = direction.random()
 			moveTick = moveTickMax
 			freeWalk = true
+
+
 			
 func _process(delta):
 	
@@ -139,15 +148,20 @@ func _process(delta):
 	if moveDir == direction.right:
 		$AnimatedSprite.animation = "right"
 		Ray1.cast_to = Vector2(200,0)
+		Ray2.cast_to = Vector2(50,0)
 	if moveDir == direction.left:
 		$AnimatedSprite.animation = "left"
 		Ray1.cast_to = Vector2(-200,0)
+		Ray2.cast_to = Vector2(-50,0)
 	if moveDir == direction.up:
 		$AnimatedSprite.animation = "up"
 		Ray1.cast_to = Vector2(0,-200)
+		Ray2.cast_to = Vector2(0,-50)
 	if moveDir == direction.down:
 		$AnimatedSprite.animation = "down"
 		Ray1.cast_to = Vector2(0,200)
+		Ray2.cast_to = Vector2(0,50)
+	attack()
 
 func hit(damage):
 	health -= damage
