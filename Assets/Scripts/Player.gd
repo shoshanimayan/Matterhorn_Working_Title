@@ -12,14 +12,18 @@ export (int) var trash = 0
 export (int) var meleeDamage = 1
 export (int) var rangedDamage = 1
 var meleeAttackRange = 50
+
+var PlayerAnimator
 var clawAnimOffset = 25
 
 var meleeTimer = 0
 var moveTimer = 0
 var shootTimer = 0
+var hurtTimer = 0
 export (int) var meleeTimerMax = 20
 export (int) var moveTimerMax = 5
 export (int) var shootTimerMax = 30
+export (int) var hurtTimerMax = 15
 var can_move = true
 
 ### Used in main movement logic
@@ -48,6 +52,7 @@ export (int) var winAmt = 30
 var game
 
 func _ready():
+	PlayerAnimator = $AnimatedSprite
 	show()
 	Ray_Mid = get_node("RayCast2D")
 	Ray_Left = get_node("RayCast2D2")
@@ -66,6 +71,8 @@ func _process(delta):
 		shootTimer -= 1
 	if moveTimer != 0:
 		moveTimer -= 1
+	if hurtTimer != 0:
+		hurtTimer -= 1
 	
 	if can_move:
 		# DIRECTIONAL INPUT
@@ -78,96 +85,42 @@ func _process(delta):
 				dir.y -= 1
 			if Input.is_action_pressed("ui_down"):
 				dir.y += 1
+			
 		
-		# RANGED ATTACK
-		if Input.is_action_just_pressed("ui_select"):
-			if shootTimer == 0 and ammo > 0:
-				ammo -= 1
-				dir = Vector2(0,0)
-				rangedAttack($AnimatedSprite.animation)
-			#	moveTimer = moveTimerMax
-				shootTimer = shootTimerMax
+		if hurtTimer == 0:
+			# RANGED ATTACK
+			if Input.is_action_just_pressed("ui_select") and shootTimer == 0:
+					dir = Vector2(0,0)
+					rangedAttack(PlayerAnimator.animation)
+			
+			# MELEE ATTACK
+			if Input.is_action_just_pressed("ui_accept") and meleeTimer == 0:
+				meleeAttack()
 		
-		# MELEE ATTACK
-		if Input.is_action_just_pressed("ui_accept") and meleeTimer == 0:
-			$AnimatedClawSprite.set_frame(0)
-			match $AnimatedSprite.animation:
-				"left":
-					Ray_Mid.cast_to.x = -meleeAttackRange
-					Ray_Mid.cast_to.y = 0
-					Ray_Left.cast_to.x = -65
-					Ray_Left.cast_to.y = 15
-					Ray_Right.cast_to.x = -65
-					Ray_Right.cast_to.y = -15
-					Ray_Left_Mid.cast_to.x = -67
-					Ray_Left_Mid.cast_to.x = 7
-					Ray_Right_Mid.cast_to.x = -67
-					Ray_Right_Mid.cast_to.x = -7
-					$AnimatedClawSprite.offset = Vector2(-meleeAttackRange + clawAnimOffset, 0)
-					$AnimatedClawSprite.animation = "left_claw"
-				"right":
-					Ray_Mid.cast_to.x = meleeAttackRange
-					Ray_Mid.cast_to.y = 0
-					Ray_Left.cast_to.x = 65
-					Ray_Left.cast_to.y = 15
-					Ray_Right.cast_to.x = 65
-					Ray_Right.cast_to.y = -15
-					Ray_Left_Mid.cast_to.x = 67
-					Ray_Left_Mid.cast_to.x = 7
-					Ray_Right_Mid.cast_to.x = 67
-					Ray_Right_Mid.cast_to.x = -7
-					$AnimatedClawSprite.offset = Vector2(meleeAttackRange - clawAnimOffset, 0)
-					$AnimatedClawSprite.animation = "right_claw"
-				"up":
-					Ray_Mid.cast_to.x = 0
-					Ray_Mid.cast_to.y = -meleeAttackRange-10
-					Ray_Left.cast_to.x = -15
-					Ray_Left.cast_to.y = -65
-					Ray_Right.cast_to.x = 15
-					Ray_Right.cast_to.y = -65
-					Ray_Left_Mid.cast_to.x = 7
-					Ray_Left_Mid.cast_to.x = -67
-					Ray_Right_Mid.cast_to.x = -7
-					Ray_Right_Mid.cast_to.x = -67
-					$AnimatedClawSprite.offset = Vector2(0, -meleeAttackRange + clawAnimOffset)
-					$AnimatedClawSprite.animation = "up_claw"
-				"down":
-					Ray_Mid.cast_to.x = 0
-					Ray_Mid.cast_to.y = meleeAttackRange
-					Ray_Left.cast_to.x = -15
-					Ray_Left.cast_to.y = 65
-					Ray_Right.cast_to.x = 15
-					Ray_Right.cast_to.y = 65
-					Ray_Left_Mid.cast_to.x = 7
-					Ray_Left_Mid.cast_to.x = 67
-					Ray_Right_Mid.cast_to.x = -7
-					Ray_Right_Mid.cast_to.x = 67
-					$AnimatedClawSprite.offset = Vector2(0, meleeAttackRange - clawAnimOffset)
-					$AnimatedClawSprite.animation = "down_claw"
-			speed /= 3
-			attack()
-			$AnimatedClawSprite.show()
-			$AnimatedClawSprite.play()	# auto-hides, implemented in the claw animation's script
-			meleeTimer = meleeTimerMax
-	
-	# setting up player animations (before animations are played)
+			set_up_animations("walk")
+			if dir.length() > 0:	# player is walking
+				PlayerAnimator.play()
+				move(dir.normalized() * speed)
+				dir = Vector2()
+			else:		# player is NOT walking
+				PlayerAnimator.set_frame(0)
+				PlayerAnimator.stop()
+		else:
+			# player is getting hurt right now
+			set_up_animations("hurt")
+			PlayerAnimator.play()
+
+func set_up_animations(action):
 	if dir.x > 0:
-		$AnimatedSprite.animation = "right"
+		PlayerAnimator.animation = action+"_right"
 	if dir.x < 0:
-		$AnimatedSprite.animation = "left"
+		PlayerAnimator.animation = action+"_left"
 	# only use the up/down anims if the player goes directly up/down
 	if dir.y < 0 && dir.x == 0:
-		$AnimatedSprite.animation = "up"
+		PlayerAnimator.animation = action+"_up"
 	if dir.y > 0 && dir.x == 0:
-		$AnimatedSprite.animation = "down"
-		
-	if dir.length() > 0:	# player is walking
-		$AnimatedSprite.play()
-		move(dir.normalized() * speed)
-		dir = Vector2()
-	else:		# player is NOT walking
-		$AnimatedSprite.set_frame(0)
-		$AnimatedSprite.stop()
+		PlayerAnimator.animation = action+"_down"
+
 
 func move(dir):
 	# move_and_collide() returns the object that got collided with
@@ -177,7 +130,7 @@ func move(dir):
 		# check for collision with an enemy
 		if collided_with.get_class() == "KinematicBody2D" and !collided_with.has_method("set_v"):
 			#print(collided_with.name)
-			d = Vector2(collided_with.position-position).normalized() * -1
+			d = Vector2(collided_with.position - position).normalized() * -1
 			v  = Vector2()
 			if 1-abs(d.x) < 1-abs(d.y):
 				v.x = direction.orientation(d.x)
@@ -190,19 +143,83 @@ func move(dir):
 
 #func _physics_process(delta):
 #	if dir.length() > 0:
-#		$AnimatedSprite.play()
+#		PlayerAnimator.play()
 #		move(dir.normalized() * speed)
 #		dir = Vector2()
 #	else:
-#		$AnimatedSprite.set_frame(0)
-#		$AnimatedSprite.stop()
+#		PlayerAnimator.set_frame(0)
+#		PlayerAnimator.stop()
 
 func rangedAttack(dir):
-	newProjectile = projectilePre.instance()
-	newPosition = position
-	newProjectile.set_v($AnimatedSprite.animation,newPosition)
-	newProjectile.set_damage(rangedDamage)
-	get_tree().get_root().add_child(newProjectile) 
+	if ammo > 0:
+		ammo -= 1
+		newProjectile = projectilePre.instance()
+		newPosition = position
+		newProjectile.set_v(PlayerAnimator.animation, newPosition)
+		newProjectile.set_damage(rangedDamage)
+		get_tree().get_root().add_child(newProjectile)
+		shootTimer = shootTimerMax
+
+func meleeAttack():
+	$AnimatedClawSprite.set_frame(0)
+	match PlayerAnimator.animation:
+		"walk_left":
+			Ray_Mid.cast_to.x = -meleeAttackRange
+			Ray_Mid.cast_to.y = 0
+			Ray_Left.cast_to.x = -65
+			Ray_Left.cast_to.y = 15
+			Ray_Right.cast_to.x = -65
+			Ray_Right.cast_to.y = -15
+			Ray_Left_Mid.cast_to.x = -67
+			Ray_Left_Mid.cast_to.x = 7
+			Ray_Right_Mid.cast_to.x = -67
+			Ray_Right_Mid.cast_to.x = -7
+			$AnimatedClawSprite.offset = Vector2(-meleeAttackRange + clawAnimOffset, 0)
+			$AnimatedClawSprite.animation = "left_claw"
+		"walk_right":
+			Ray_Mid.cast_to.x = meleeAttackRange
+			Ray_Mid.cast_to.y = 0
+			Ray_Left.cast_to.x = 65
+			Ray_Left.cast_to.y = 15
+			Ray_Right.cast_to.x = 65
+			Ray_Right.cast_to.y = -15
+			Ray_Left_Mid.cast_to.x = 67
+			Ray_Left_Mid.cast_to.x = 7
+			Ray_Right_Mid.cast_to.x = 67
+			Ray_Right_Mid.cast_to.x = -7
+			$AnimatedClawSprite.offset = Vector2(meleeAttackRange - clawAnimOffset, 0)
+			$AnimatedClawSprite.animation = "right_claw"
+		"walk_up":
+			Ray_Mid.cast_to.x = 0
+			Ray_Mid.cast_to.y = -meleeAttackRange-10
+			Ray_Left.cast_to.x = -15
+			Ray_Left.cast_to.y = -65
+			Ray_Right.cast_to.x = 15
+			Ray_Right.cast_to.y = -65
+			Ray_Left_Mid.cast_to.x = 7
+			Ray_Left_Mid.cast_to.x = -67
+			Ray_Right_Mid.cast_to.x = -7
+			Ray_Right_Mid.cast_to.x = -67
+			$AnimatedClawSprite.offset = Vector2(0, -meleeAttackRange + clawAnimOffset)
+			$AnimatedClawSprite.animation = "up_claw"
+		"walk_down":
+			Ray_Mid.cast_to.x = 0
+			Ray_Mid.cast_to.y = meleeAttackRange
+			Ray_Left.cast_to.x = -15
+			Ray_Left.cast_to.y = 65
+			Ray_Right.cast_to.x = 15
+			Ray_Right.cast_to.y = 65
+			Ray_Left_Mid.cast_to.x = 7
+			Ray_Left_Mid.cast_to.x = 67
+			Ray_Right_Mid.cast_to.x = -7
+			Ray_Right_Mid.cast_to.x = 67
+			$AnimatedClawSprite.offset = Vector2(0, meleeAttackRange - clawAnimOffset)
+			$AnimatedClawSprite.animation = "down_claw"
+	speed /= 3
+	attack()
+	$AnimatedClawSprite.show()
+	$AnimatedClawSprite.play()	# auto-hides, implemented in the claw animation's script
+	meleeTimer = meleeTimerMax
 
 func attack():
 	if Ray_Mid.is_colliding():
@@ -239,6 +256,7 @@ func check_death():
 
 func get_hurt(damage):
 	#print(damage)
+	hurtTimer = hurtTimerMax
 	currentHealth -= damage
 	check_death()
 
