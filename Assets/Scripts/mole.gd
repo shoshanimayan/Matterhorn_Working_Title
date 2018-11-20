@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+
+
+
 # class member variables 
 var health = 2
 var detectionDistance = 200
@@ -21,6 +24,13 @@ var newItem
 
 func _ready():
 	pass
+
+func setup(h, t1, t2, detection):
+	health = h
+	timer = t1
+	timer2 = t2
+	detectionDistance = detection
+
 
 func _process(delta):
 	dieCheck()
