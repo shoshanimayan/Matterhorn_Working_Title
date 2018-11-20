@@ -146,10 +146,12 @@ position = Vector2( 360, 216.863 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
 health = 3
+damage = 3
 
 [node name="Player" parent="." index="23" instance=ExtResource( 7 )]
 
 position = Vector2( 46.4494, 221.384 )
 _sections_unfolded = [ "Collision", "Transform" ]
+winAmt = 10
 
 

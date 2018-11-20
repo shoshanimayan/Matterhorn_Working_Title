@@ -8,6 +8,7 @@ var motion
 
 var playerDist 
 export (int) var health = 1
+export (int) var damage = 1
 
 var d
 var distance
@@ -87,6 +88,9 @@ func _process(delta):
 func hit(damage):
 	health -= damage
 	dieCheck()
+
+func get_damage():
+	return damage
 
 func dropItems():
 	var num =randi()%3+1

@@ -14,8 +14,10 @@ export (int) var rangedDamage = 1
 var meleeAttackRange = 50
 var clawAnimOffset = 25
 
+var meleeTimer = 0
 var moveTimer = 0
 var shootTimer = 0
+export (int) var meleeTimerMax = 20
 export (int) var moveTimerMax = 5
 export (int) var shootTimerMax = 30
 var can_move = true
@@ -24,6 +26,7 @@ var can_move = true
 var dir = Vector2()
 # used with applying knockback
 var col
+var collided_with
 var d
 var v
 
@@ -57,9 +60,10 @@ func _ready():
 
 
 func _process(delta):
+	if meleeTimer != 0:
+		meleeTimer -= 1
 	if shootTimer != 0:
 		shootTimer -= 1
-	
 	if moveTimer != 0:
 		moveTimer -= 1
 	
@@ -85,7 +89,7 @@ func _process(delta):
 				shootTimer = shootTimerMax
 		
 		# MELEE ATTACK
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept") and meleeTimer == 0:
 			$AnimatedClawSprite.set_frame(0)
 			match $AnimatedSprite.animation:
 				"left":
@@ -140,9 +144,11 @@ func _process(delta):
 					Ray_Right_Mid.cast_to.x = 67
 					$AnimatedClawSprite.offset = Vector2(0, meleeAttackRange - clawAnimOffset)
 					$AnimatedClawSprite.animation = "down_claw"
+			speed /= 3
 			attack()
 			$AnimatedClawSprite.show()
 			$AnimatedClawSprite.play()	# auto-hides, implemented in the claw animation's script
+			meleeTimer = meleeTimerMax
 	
 	# setting up player animations (before animations are played)
 	if dir.x > 0:
@@ -167,11 +173,11 @@ func move(dir):
 	# move_and_collide() returns the object that got collided with
 	col = move_and_collide(dir)
 	if col:
-		col = col.get_collider()
+		collided_with = col.get_collider()
 		# check for collision with an enemy
-		if col.get_class() == "KinematicBody2D" and !col.has_method("set_v"):
-			print (col.name)
-			d = Vector2(col.position-position).normalized() * -1
+		if collided_with.get_class() == "KinematicBody2D" and !collided_with.has_method("set_v"):
+			#print(collided_with.name)
+			d = Vector2(collided_with.position-position).normalized() * -1
 			v  = Vector2()
 			if 1-abs(d.x) < 1-abs(d.y):
 				v.x = direction.orientation(d.x)
@@ -179,11 +185,8 @@ func move(dir):
 			else:
 				v.y = direction.orientation(d.y)
 				v.x = 0
-			can_move = false
 			move(v.normalized()*30)
-			# REPLACE "1" WITH THE OTHER ENTITY'S DAMAGE - TODO
-			get_hurt(1)
-			can_move = true
+			get_hurt(collided_with.get_damage())
 
 #func _physics_process(delta):
 #	if dir.length() > 0:
@@ -234,24 +237,22 @@ func check_death():
 		hide()
 		print("u lose :(")
 
-func check_win():
-	# TODO: supply official win condition
-	if trash >= winAmt:
-		print("u win!!")
-		game.change_scene("res://Nodes/WinScreen.tscn")
-	return
-	
-func push(v,s):
-	move(v.normalized()*s)
-	
-	
-
-
 func get_hurt(damage):
 	#print(damage)
 	currentHealth -= damage
 	check_death()
 
+func check_win():
+	# TODO: supply official win condition
+	# for now: trash >= winAmt
+	if trash >= winAmt:
+		print("u win!!")
+		game.change_scene("res://Nodes/WinScreen.tscn")
+	return
+
 func get_trash(amt):
 	trash += amt
 	check_win()
+
+func push(v,s):
+	move(v.normalized()*s)

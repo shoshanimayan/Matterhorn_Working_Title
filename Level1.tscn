@@ -8,7 +8,7 @@
 [ext_resource path="res://Nodes/pickups/Trash_small.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=7]
 
-[node name="Level1" type="Node" index="0"]
+[node name="Level1" type="Node"]
 
 [node name="Background" type="TileMap" parent="." index="0"]
 
@@ -61,426 +61,532 @@ __meta__ = {
 [node name="KinematicBody2D" parent="." index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 401.357, 187.755 )
+damage = 1
 
 [node name="Bunny" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 466, -332 )
+damage = 1
 
 [node name="Bunny2" parent="." index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 784.306, -270.93 )
+damage = 1
 
 [node name="Bunny3" parent="." index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 721.385, -468.946 )
+damage = 1
 
 [node name="Bunny4" parent="." index="6" instance=ExtResource( 3 )]
 
 position = Vector2( 847.227, -657.709 )
+damage = 1
 
 [node name="Bunny5" parent="." index="7" instance=ExtResource( 3 )]
 
 position = Vector2( 815.767, -950.106 )
+damage = 1
 
 [node name="Bunny6" parent="." index="8" instance=ExtResource( 3 )]
 
 position = Vector2( 1084.11, -716.929 )
+damage = 1
 
 [node name="Bunny7" parent="." index="9" instance=ExtResource( 3 )]
 
 position = Vector2( 205.063, -901.99 )
+damage = 1
 
 [node name="Bunny8" parent="." index="10" instance=ExtResource( 3 )]
 
 position = Vector2( 205.063, -1329.48 )
+damage = 1
 
 [node name="Bunny9" parent="." index="11" instance=ExtResource( 3 )]
 
 position = Vector2( 299.444, -1544.15 )
+damage = 1
 
 [node name="Bunny10" parent="." index="12" instance=ExtResource( 3 )]
 
 position = Vector2( 114.383, -1768.08 )
+damage = 1
 
 [node name="Bunny11" parent="." index="13" instance=ExtResource( 3 )]
 
 position = Vector2( 193.959, -1927.23 )
+damage = 1
 
 [node name="Bunny12" parent="." index="14" instance=ExtResource( 3 )]
 
 position = Vector2( 332.755, -1890.22 )
+damage = 1
 
 [node name="Bunny13" parent="." index="15" instance=ExtResource( 3 )]
 
 position = Vector2( 334.606, -2014.21 )
+damage = 1
 
 [node name="Bunny14" parent="." index="16" instance=ExtResource( 3 )]
 
 position = Vector2( 367.917, -2117.85 )
+damage = 1
 
 [node name="Bunny15" parent="." index="17" instance=ExtResource( 3 )]
 
 position = Vector2( 469.701, -2153.01 )
+damage = 1
 
 [node name="Bunny16" parent="." index="18" instance=ExtResource( 3 )]
 
 position = Vector2( 440.091, -2040.12 )
+damage = 1
 
 [node name="Bunny17" parent="." index="19" instance=ExtResource( 3 )]
 
 position = Vector2( 558.531, -2062.33 )
+damage = 1
 
 [node name="Bunny18" parent="." index="20" instance=ExtResource( 3 )]
 
 position = Vector2( 503.012, -1938.34 )
+damage = 1
 
 [node name="Bunny19" parent="." index="21" instance=ExtResource( 3 )]
 
 position = Vector2( 501.162, -1677.4 )
+damage = 1
 
 [node name="Bunny20" parent="." index="22" instance=ExtResource( 3 )]
 
 position = Vector2( 736.19, -1675.55 )
+damage = 1
 
 [node name="Bunny21" parent="." index="23" instance=ExtResource( 3 )]
 
 position = Vector2( 732.489, -1806.94 )
+damage = 1
 
 [node name="Bunny22" parent="." index="24" instance=ExtResource( 3 )]
 
 position = Vector2( 776.904, -1930.93 )
+damage = 1
 
 [node name="Bunny23" parent="." index="25" instance=ExtResource( 3 )]
 
 position = Vector2( 1322.84, -2127.1 )
+damage = 1
 
 [node name="Bunny24" parent="." index="26" instance=ExtResource( 3 )]
 
 position = Vector2( 1370.95, -2412.09 )
+damage = 1
 
 [node name="Bunny25" parent="." index="27" instance=ExtResource( 3 )]
 
 position = Vector2( 1576.37, -2236.29 )
+damage = 1
 
 [node name="Bunny26" parent="." index="28" instance=ExtResource( 3 )]
 
 position = Vector2( 1720.72, -2127.1 )
+damage = 1
 
 [node name="Bunny27" parent="." index="29" instance=ExtResource( 3 )]
 
 position = Vector2( 1454.23, -2034.57 )
+damage = 1
 
 [node name="Bunny28" parent="." index="30" instance=ExtResource( 3 )]
 
 position = Vector2( 1413.52, -1877.27 )
+damage = 1
 
 [node name="Bunny29" parent="." index="31" instance=ExtResource( 3 )]
 
 position = Vector2( 1589.32, -1938.34 )
+damage = 1
 
 [node name="Bunny30" parent="." index="32" instance=ExtResource( 3 )]
 
 position = Vector2( 1707.76, -1951.29 )
+damage = 1
 
 [node name="Bunny31" parent="." index="33" instance=ExtResource( 3 )]
 
 position = Vector2( 941.608, -1514.55 )
+damage = 1
 
 [node name="Bunny32" parent="." index="34" instance=ExtResource( 3 )]
 
 position = Vector2( 1143.33, -1479.38 )
+damage = 1
 
 [node name="Bunny33" parent="." index="35" instance=ExtResource( 3 )]
 
 position = Vector2( 1293.23, -1453.47 )
+damage = 1
 
 [node name="Bunny34" parent="." index="36" instance=ExtResource( 3 )]
 
 position = Vector2( 965.666, -1399.81 )
+damage = 1
 
 [node name="Bunny35" parent="." index="37" instance=ExtResource( 3 )]
 
 position = Vector2( 1150.73, -1353.54 )
+damage = 1
 
 [node name="Bunny36" parent="." index="38" instance=ExtResource( 3 )]
 
 position = Vector2( 941.608, -1225.85 )
+damage = 1
 
 [node name="Bunny37" parent="." index="39" instance=ExtResource( 3 )]
 
 position = Vector2( 1130.15, -956.943 )
+damage = 1
 
 [node name="Bunny38" parent="." index="40" instance=ExtResource( 3 )]
 
 position = Vector2( 1482.51, -1031.12 )
+damage = 1
 
 [node name="Bunny39" parent="." index="41" instance=ExtResource( 3 )]
 
 position = Vector2( 1609.52, -824.318 )
+damage = 1
 
 [node name="Bunny40" parent="." index="42" instance=ExtResource( 3 )]
 
 position = Vector2( 1495.91, -1262.83 )
+damage = 1
 
 [node name="Bunny41" parent="." index="43" instance=ExtResource( 3 )]
 
 position = Vector2( 1563.74, -1528.12 )
+damage = 1
 
 [node name="Bunny42" parent="." index="44" instance=ExtResource( 3 )]
 
 position = Vector2( 1838.08, -1724.07 )
+damage = 1
 
 [node name="Bunny43" parent="." index="45" instance=ExtResource( 3 )]
 
 position = Vector2( 2112.42, -1730.1 )
+damage = 1
 
 [node name="Bunny44" parent="." index="46" instance=ExtResource( 3 )]
 
 position = Vector2( 2413.88, -1728.6 )
+damage = 1
 
 [node name="Bunny45" parent="." index="47" instance=ExtResource( 3 )]
 
 position = Vector2( 2643, -1612.53 )
+damage = 1
 
 [node name="Bunny46" parent="." index="48" instance=ExtResource( 3 )]
 
 position = Vector2( 2695.76, -1406.03 )
+damage = 1
 
 [node name="Bunny47" parent="." index="49" instance=ExtResource( 3 )]
 
 position = Vector2( 2555.57, -1097.02 )
+damage = 1
 
 [node name="Bunny48" parent="." index="50" instance=ExtResource( 3 )]
 
 position = Vector2( 2267.67, -1124.15 )
+damage = 1
 
 [node name="Bunny49" parent="." index="51" instance=ExtResource( 3 )]
 
 position = Vector2( 2124.47, -1161.84 )
+damage = 1
 
 [node name="Bunny50" parent="." index="52" instance=ExtResource( 3 )]
 
 position = Vector2( 1991.83, -1198.01 )
+damage = 1
 
 [node name="Bunny51" parent="." index="53" instance=ExtResource( 3 )]
 
 position = Vector2( 1868.23, -1237.2 )
+damage = 1
 
 [node name="Bunny52" parent="." index="54" instance=ExtResource( 3 )]
 
 position = Vector2( 1871.24, -1369.85 )
+damage = 1
 
 [node name="Bunny53" parent="." index="55" instance=ExtResource( 3 )]
 
 position = Vector2( 2026.5, -1339.7 )
+damage = 1
 
 [node name="Bunny54" parent="." index="56" instance=ExtResource( 3 )]
 
 position = Vector2( 1975.25, -1470.84 )
+damage = 1
 
 [node name="Bunny55" parent="." index="57" instance=ExtResource( 3 )]
 
 position = Vector2( 1972.23, -1585.4 )
+damage = 1
 
 [node name="Bunny56" parent="." index="58" instance=ExtResource( 3 )]
 
 position = Vector2( 2150.1, -1571.83 )
+damage = 1
 
 [node name="Bunny57" parent="." index="59" instance=ExtResource( 3 )]
 
 position = Vector2( 2136.53, -1409.04 )
+damage = 1
 
 [node name="Bunny58" parent="." index="60" instance=ExtResource( 3 )]
 
 position = Vector2( 2320.43, -1479.89 )
+damage = 1
 
 [node name="Bunny59" parent="." index="61" instance=ExtResource( 3 )]
 
 position = Vector2( 2324.95, -1332.17 )
+damage = 1
 
 [node name="Bunny60" parent="." index="62" instance=ExtResource( 3 )]
 
 position = Vector2( 2483.22, -1282.42 )
+damage = 1
 
 [node name="Bunny61" parent="." index="63" instance=ExtResource( 3 )]
 
 position = Vector2( 2475.68, -1461.8 )
+damage = 1
 
 [node name="Bunny62" parent="." index="64" instance=ExtResource( 3 )]
 
 position = Vector2( 2493.77, -1565.8 )
+damage = 1
 
 [node name="Bunny63" parent="." index="65" instance=ExtResource( 3 )]
 
 position = Vector2( 2618.88, -1314.08 )
+damage = 1
 
 [node name="Bunny64" parent="." index="66" instance=ExtResource( 3 )]
 
 position = Vector2( 2416.9, -1053.31 )
+damage = 1
 
 [node name="Bunny65" parent="." index="67" instance=ExtResource( 3 )]
 
 position = Vector2( 2576.68, -961.36 )
+damage = 1
 
 [node name="Bunny66" parent="." index="68" instance=ExtResource( 3 )]
 
 position = Vector2( 2858.55, -1051.8 )
+damage = 1
 
 [node name="Bunny67" parent="." index="69" instance=ExtResource( 3 )]
 
 position = Vector2( 3089.87, -1420.07 )
+damage = 1
 
 [node name="Bunny68" parent="." index="70" instance=ExtResource( 3 )]
 
 position = Vector2( 3278.64, -1686.56 )
+damage = 1
 
 [node name="Bunny69" parent="." index="71" instance=ExtResource( 3 )]
 
 position = Vector2( 3010.3, -2102.95 )
+damage = 1
 
 [node name="Bunny70" parent="." index="72" instance=ExtResource( 3 )]
 
 position = Vector2( 2419.95, -2062.24 )
+damage = 1
 
 [node name="Bunny71" parent="." index="73" instance=ExtResource( 3 )]
 
 position = Vector2( 2571.7, -2295.42 )
+damage = 1
 
 [node name="Bunny72" parent="." index="74" instance=ExtResource( 3 )]
 
 position = Vector2( 3713.53, -2302.82 )
+damage = 1
 
 [node name="Bunny73" parent="." index="75" instance=ExtResource( 3 )]
 
 position = Vector2( 4118.82, -2260.25 )
+damage = 1
 
 [node name="Bunny74" parent="." index="76" instance=ExtResource( 3 )]
 
 position = Vector2( 3706.13, -2114.05 )
+damage = 1
 
 [node name="Bunny75" parent="." index="77" instance=ExtResource( 3 )]
 
 position = Vector2( 3987.42, -1964.15 )
+damage = 1
 
 [node name="Bunny76" parent="." index="78" instance=ExtResource( 3 )]
 
 position = Vector2( 4392.71, -2104.8 )
+damage = 1
 
 [node name="Bunny77" parent="." index="79" instance=ExtResource( 3 )]
 
 position = Vector2( 4592.58, -2399.05 )
+damage = 1
 
 [node name="Bunny78" parent="." index="80" instance=ExtResource( 3 )]
 
 position = Vector2( 3994.83, -1712.47 )
+damage = 1
 
 [node name="Bunny79" parent="." index="81" instance=ExtResource( 3 )]
 
 position = Vector2( 4485.24, -1634.74 )
+damage = 1
 
 [node name="Bunny80" parent="." index="82" instance=ExtResource( 3 )]
 
 position = Vector2( 3917.1, -1323.84 )
+damage = 1
 
 [node name="Bunny81" parent="." index="83" instance=ExtResource( 3 )]
 
 position = Vector2( 4326.09, -1403.42 )
+damage = 1
 
 [node name="Bunny82" parent="." index="84" instance=ExtResource( 3 )]
 
 position = Vector2( 4561.12, -1240.56 )
+damage = 1
 
 [node name="Bunny83" parent="." index="85" instance=ExtResource( 3 )]
 
 position = Vector2( 4190.99, -1138.78 )
+damage = 1
 
 [node name="Bunny84" parent="." index="86" instance=ExtResource( 3 )]
 
 position = Vector2( 4477.84, -977.776 )
+damage = 1
 
 [node name="Bunny85" parent="." index="87" instance=ExtResource( 3 )]
 
 position = Vector2( 3943.01, -814.921 )
+damage = 1
 
 [node name="Bunny86" parent="." index="88" instance=ExtResource( 3 )]
 
 position = Vector2( 3080.62, -589.146 )
+damage = 1
 
 [node name="Bunny87" parent="." index="89" instance=ExtResource( 3 )]
 
 position = Vector2( 3308.25, -398.532 )
+damage = 1
 
 [node name="Bunny88" parent="." index="90" instance=ExtResource( 3 )]
 
 position = Vector2( 3471.1, -711.287 )
+damage = 1
 
 [node name="Bunny89" parent="." index="91" instance=ExtResource( 3 )]
 
 position = Vector2( 4352, -705.735 )
+damage = 1
 
 [node name="Bunny90" parent="." index="92" instance=ExtResource( 3 )]
 
 position = Vector2( 4018.89, -552.133 )
+damage = 1
 
 [node name="Bunny91" parent="." index="93" instance=ExtResource( 3 )]
 
 position = Vector2( 4527.81, -550.283 )
+damage = 1
 
 [node name="Bunny92" parent="." index="94" instance=ExtResource( 3 )]
 
 position = Vector2( 4572.22, -426.291 )
+damage = 1
 
 [node name="Bunny93" parent="." index="95" instance=ExtResource( 3 )]
 
 position = Vector2( 4555.57, -320.806 )
+damage = 1
 
 [node name="Bunny94" parent="." index="96" instance=ExtResource( 3 )]
 
 position = Vector2( 4474.14, -243.08 )
+damage = 1
 
 [node name="Bunny95" parent="." index="97" instance=ExtResource( 3 )]
 
 position = Vector2( 4309.43, -222.723 )
+damage = 1
 
 [node name="Bunny96" parent="." index="98" instance=ExtResource( 3 )]
 
 position = Vector2( 4109.57, -207.918 )
+damage = 1
 
 [node name="Bunny97" parent="." index="99" instance=ExtResource( 3 )]
 
 position = Vector2( 4028.14, -322.657 )
+damage = 1
 
 [node name="Bunny98" parent="." index="100" instance=ExtResource( 3 )]
 
 position = Vector2( 4133.63, -446.648 )
+damage = 1
 
 [node name="Bunny99" parent="." index="101" instance=ExtResource( 3 )]
 
 position = Vector2( 4337.19, -396.681 )
+damage = 1
 
 [node name="Bunny100" parent="." index="102" instance=ExtResource( 3 )]
 
 position = Vector2( 4257.62, -555.834 )
+damage = 1
 
 [node name="Bunny101" parent="." index="103" instance=ExtResource( 3 )]
 
 position = Vector2( 2277.18, -164.794 )
+damage = 1
 
 [node name="Bunny102" parent="." index="104" instance=ExtResource( 3 )]
 
 position = Vector2( 2302.41, -412.873 )
+damage = 1
 
 [node name="Bunny103" parent="." index="105" instance=ExtResource( 3 )]
 
 position = Vector2( 1902.96, -261.503 )
+damage = 1
 
 [node name="Bunny104" parent="." index="106" instance=ExtResource( 3 )]
 
 position = Vector2( 1570.79, -324.574 )
+damage = 1
 
 [node name="Bunny105" parent="." index="107" instance=ExtResource( 3 )]
 
 position = Vector2( 1865.12, -442.307 )
+damage = 1
 
 [node name="Ammo" type="Node2D" parent="." index="108"]
 
@@ -757,6 +863,7 @@ position = Vector2( 597.136, -1073.2 )
 [node name="Player" parent="." index="111" instance=ExtResource( 7 )]
 
 position = Vector2( 281.048, -219.663 )
+meleeTimerMax = 20
 winAmt = 30
 
 
