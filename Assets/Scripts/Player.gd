@@ -240,6 +240,12 @@ func check_win():
 		print("u win!!")
 		game.change_scene("res://Nodes/WinScreen.tscn")
 	return
+	
+func push(v,s):
+	move(v.normalized()*s)
+	
+	
+
 
 func get_hurt(damage):
 	#print(damage)
