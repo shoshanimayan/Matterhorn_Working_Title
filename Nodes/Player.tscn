@@ -1,38 +1,38 @@
 [gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_left_Walk_1.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_left_Walk_2.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_right_Walk_1.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_right_Walk_2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_right_Walk_1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_right_Walk_2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_left_Walk_1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_left_Walk_2.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Art/Raccoon/Raccoon_back.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_back_Walk_1.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_back_Walk_2.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_1.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_2.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_back_Atk.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right_Atk.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left_Atk.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front_Atk.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right_Atk.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left_Atk.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front_Atk.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_1.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_2.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_back_Atk.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_1.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_2.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_3.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_4.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_1.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_2.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_3.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_4.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_1.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_2.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_3.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_4.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_1.png" type="Texture" id=30]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_2.png" type="Texture" id=31]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_3.png" type="Texture" id=32]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_4.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_1.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_2.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_3.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_4.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_1.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_2.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_3.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_4.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_1.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_2.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_3.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_4.png" type="Texture" id=33]
 [ext_resource path="res://Assets/Scripts/ClawmarksAnimation.gd" type="Script" id=34]
 [ext_resource path="res://Nodes/UI.tscn" type="PackedScene" id=35]
 
@@ -41,12 +41,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 7.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 10 ) ],
@@ -54,29 +54,29 @@ animations = [ {
 "name": "up",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "down",
-"speed": 7.0
-}, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "a_u",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 15 ) ],
+"frames": [ ExtResource( 11 ) ],
 "loop": true,
 "name": "a_r",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
 "name": "a_l",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "a_d",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "down",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "a_u",
 "speed": 5.0
 } ]
 _sections_unfolded = [ "Resource" ]
@@ -91,17 +91,17 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": false,
-"name": "up_claw",
+"name": "down_claw",
 "speed": 14.0
 }, {
 "frames": [ ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ],
 "loop": false,
-"name": "left_claw",
+"name": "up_claw",
 "speed": 14.0
 }, {
 "frames": [ ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ) ],
 "loop": false,
-"name": "down_claw",
+"name": "left_claw",
 "speed": 14.0
 } ]
 
@@ -111,7 +111,7 @@ custom_solver_bias = 0.0
 radius = 18.0
 height = 0.0
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 position = Vector2( -145, 44 )
 input_pickable = false
@@ -125,6 +125,7 @@ ammo = 0
 trash = 0
 meleeDamage = 1
 rangedDamage = 1
+meleeTimerMax = 20
 moveTimerMax = 5
 shootTimerMax = 30
 winAmt = 3

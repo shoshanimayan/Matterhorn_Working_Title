@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/scripts/bunny.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Art/Rabbit/Rabbit_back.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Art/Rabbit/Rabbit_front.png" type="Texture" id=5]
 
@@ -11,12 +11,12 @@
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -35,7 +35,7 @@ animations = [ {
 custom_solver_bias = 0.0
 extents = Vector2( 7.84666, 10 )
 
-[node name="Bunny" type="KinematicBody2D" index="0"]
+[node name="Bunny" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -44,6 +44,7 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 moveTick = 30
 health = 1
+damage = 1
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
