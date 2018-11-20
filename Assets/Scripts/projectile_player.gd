@@ -68,22 +68,22 @@ func _physics_process(delta):
 
 func set_v(v,p):
 	match v:
-		"left":
+		"walk_left":
 			velocity = direction.left
 			p.x = p.x - 37
 #			print(p)
 			position = p
-		"right":
+		"walk_right":
 			velocity = direction.right
 			p.x = p.x + 37
 #			print(p)
 			position = p
-		"up":
+		"walk_up":
 			velocity = direction.up
 			p.y = p.y-37
 #			print(p)
 			position = p
-		"down":
+		"walk_down":
 			velocity = direction.down
 			p.y = p.y+37
 #			print("down")

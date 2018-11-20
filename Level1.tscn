@@ -864,6 +864,7 @@ position = Vector2( 597.136, -1073.2 )
 
 position = Vector2( 281.048, -219.663 )
 meleeTimerMax = 20
+hurtTimerMax = 15
 winAmt = 30
 
 
