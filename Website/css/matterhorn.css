@@ -73,9 +73,19 @@ h3, h5{
     color: white;
 }
 
+/* Removes margine from bottom */
+.noMarg{
+    margin-bottom: 0;
+}
+
+#gameImg, #companyImg{
+    opacity: .7;
+}
+
 #gameTM, #companyTitle{
     color: white;
 }
+
 
 /* Container holding the image and the text */
 .container {

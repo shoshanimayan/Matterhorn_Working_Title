@@ -64,14 +64,14 @@
   <!-- TODO: MAKE IMAGES IN BACKGROUND OF SIMPLE TEXT -->
   <div class="container-fluid divMargins">
       <div class="row form-group divMargins">
-        <div class="col-lg-6 col-m-12 divMargins" onclick="clickLink('game.html')">
+        <div class="col-lg-6 col-m-12 divMargins" onclick="clickLink('game.html')" onmouseenter="hoverOn('gameImg')" onmouseout="hoverOff('gameImg')">
           <div class="container divMargins">
-            <img class="indexContain" src="Images/Gameplay.png">
-            <div class="bottom">
+            <img id="gameImg" class="indexContain" src="Images/Gameplay.png" onmouseenter="hoverOn('gameImg')" onmouseout="hoverOff('gameImg')">
+            <div class="bottom" onmouseenter="hoverOn('gameImg')" onmouseout="hoverOff('gameImg')">
               <a href="game.html">
-                <h2 id="gameTM">Trash Matters</h2>
+                <h2 id="gameTM" class="noMarg" onmouseenter="hoverOn('gameImg')" onmouseout="hoverOff('gameImg')">Trash Matters</h2>
               </a>
-              <p>
+              <p class="noMarg" onmouseenter="hoverOn('gameImg')" onmouseout="hoverOff('gameImg')">
                 Testing to see how the text would go across </br>
                 Trying out new stuff
               </p>
@@ -79,48 +79,20 @@
           </div>
         </div>
 
-        <div class="col-lg-6 col-m-12 divMargins" onclick="clickLink('company.html')">
+        <div class="col-lg-6 col-m-12 divMargins" onclick="clickLink('company.html')" onmouseenter="hoverOn('companyImg')" onmouseout="hoverOff('companyImg')">
           <div class="container divMargins">
-            <img class="indexContain" src="Images/RBatStatue.png">
-            <div class="bottom">
+            <img id="companyImg" class="indexContain" src="Images/RBatStatue.png">
+            <div class="bottom" onmouseenter="hoverOn('companyImg')" onmouseout="hoverOff('companyImg')">
               <a href="company.html">
-                <h2 id="companyTitle">Matterhorn Team</h2>
+                <h2 id="companyTitle" class="noMarg" onmouseenter="hoverOn('companyImg')" onmouseout="hoverOff('companyImg')">Matterhorn Team</h2>
               </a>
-              <p>
+              <p class="noMarg" onmouseenter="hoverOn('companyImg')" onmouseout="hoverOff('companyImg')">
                 Testing to see how the text would go across </br>
                 Trying out new stuff
               </p>
             </div>
           </div>
         </div>
-
-<!--
-
-      <div class="row form-group">
-        <div class="col-lg-6 col-m-12 titleBackground" id="gameWBackground"
-         onclick="clickLink('game.html')">
-          <span id="gameTitleText">
-            <a href="game.html">
-              <h2 id="gameTM">Trash Matters</h2>
-            </a>
-            <p>
-              Testing to see how the text would go across </br>
-              Trying out new stuff
-            </p>
-          </span>
-        </div>
-          <div class="col-lg-6 col-m-12 titleBackground" id="companyWBackground"
-          onclick="clickLink('company.html')">
-            <span id="companyTitleText">
-              <a href="company.html">
-                <h2 id="companyTitle">Team Matterhorn</h2>
-              </a>
-              <p>
-                A group of friends making new games in a new engine.
-              </p>
-            </span>
-          </div>
-        -->
 
         </div>
   </div>
