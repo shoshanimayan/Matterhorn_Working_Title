@@ -22,11 +22,15 @@ var meleeDamage = 1
 
 var Ray1
 var Ray2
+var Ray3
+var Ray4
 
 func _ready():
 	moveDir = direction.random()
 	Ray1 = get_node("RayCast2D")
 	Ray2 = get_node("RayCast2D2")
+	Ray3 = get_node("RayCast2D3")
+	Ray4 = get_node("RayCast2D4")
 #loop for random movement
 func movementLoop():
 	motion = moveDir.normalized() * speed
@@ -149,23 +153,34 @@ func _process(delta):
 		$AnimatedSprite.animation = "right"
 		Ray1.cast_to = Vector2(200,0)
 		Ray2.cast_to = Vector2(50,0)
+		Ray3.cast_to = Vector2(50,-15)
+		Ray4.cast_to = Vector2(50,15)
 	if moveDir == direction.left:
 		$AnimatedSprite.animation = "left"
 		Ray1.cast_to = Vector2(-200,0)
 		Ray2.cast_to = Vector2(-50,0)
+		Ray3.cast_to = Vector2(-50,-15)
+		Ray4.cast_to = Vector2(-50,15)
 	if moveDir == direction.up:
 		$AnimatedSprite.animation = "up"
 		Ray1.cast_to = Vector2(0,-200)
 		Ray2.cast_to = Vector2(0,-50)
+		Ray3.cast_to = Vector2(-15,-50)
+		Ray4.cast_to = Vector2(15,-50)
 	if moveDir == direction.down:
 		$AnimatedSprite.animation = "down"
 		Ray1.cast_to = Vector2(0,200)
 		Ray2.cast_to = Vector2(0,50)
+		Ray3.cast_to = Vector2(-15,50)
+		Ray4.cast_to = Vector2(15,50)
 	attack()
 
 func hit(damage):
 	health -= damage
 	dieCheck()
+
+func get_damage():
+	return 1
 
 func dropItems():
 	var num =randi()%3+1

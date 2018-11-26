@@ -7,7 +7,7 @@ var nwp3
 var np3
 
 func _ready():
-	setup(20, 74, 150, 300)
+	setup(20, 140, 150, 300)
 	
 	
 	
@@ -34,7 +34,7 @@ func throw():
 	nwp2.add_collision_exception_with(self)
 	get_tree().get_root().add_child(nwp2) 	
 	
-	nwp3 = projectilePre.instance()
+	"""nwp3 = projectilePre.instance()
 	p = position
 	p.x = p.x-30
 	np3 = position
@@ -42,7 +42,7 @@ func throw():
 	nwp3.set_v(Vector2(playerDist-p),np3)
 	nwp3.set_damage(1)
 	nwp3.add_collision_exception_with(self)
-	get_tree().get_root().add_child(nwp3) 	
+	get_tree().get_root().add_child(nwp3) 	"""
 	
 	timer = 74
 	isThrowing = false;

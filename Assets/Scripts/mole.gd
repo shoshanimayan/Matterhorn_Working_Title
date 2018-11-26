@@ -31,7 +31,8 @@ func setup(h, t1, t2, detection):
 	timer2 = t2
 	detectionDistance = detection
 
-
+func get_damage():
+	return 1
 func _process(delta):
 	dieCheck()
 	$AnimatedSprite.play()
