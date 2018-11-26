@@ -1,7 +1,19 @@
 
+/*
+Icon Colors
+
+White: rgb(248, 251, 255) R(248) G(251) B(255) A(255)
+Light Blue: rgb(173, 213, 255) R(173) G(213) B(255) A(255)
+Light Grey: rgb(218, 218, 218) R(218) G(218) B(218) A(255)
+Grey: rgb(126, 138, 151) R(173) G(138) B(151) A(255)
+Dark Grey: rgb(67, 84, 103) R(67) G(84) B(103) A(255)
+
+*/
+
+
 /* Background color for entire page */
 body{
-    background-color: rgb(65, 59, 59);
+    background-color: rgb(126, 138, 151);
     width: 99%;
 }
 
@@ -33,6 +45,10 @@ nav{
     width: 100%;
 }
 
+.bgCustom{
+    background: rgb(67, 84, 103);
+}
+
 /* Title in upper left corner of navbar */
 a.navbar-brand{
     font-size: 2.75em;
@@ -45,17 +61,18 @@ a.navbar-brand{
 li a.nav-link{
     font-size: 1.5em;
     font-family: 'Times New Roman', Times, serif;
-    color: white;
+    color: rgb(173, 213, 255);
 }
 
 /* When hovering over navbar item */
 .nav-link:hover{
-    background: brown;
+    background: rgb(126, 138, 151);
 }
 
 /* When navbar item is active (page user is on) */
 .nav-pills .nav-link.active{
-    background: brown;
+    background: rgb(126, 138, 151);
+    color: rgb(173, 213, 255);
 }
 
 /* Sets sizing for title icon on navbar */
