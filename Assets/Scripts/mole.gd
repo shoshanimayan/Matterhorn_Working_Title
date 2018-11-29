@@ -1,8 +1,5 @@
 extends KinematicBody2D
 
-
-
-
 # class member variables 
 var health = 2
 var detectionDistance = 200
@@ -22,17 +19,23 @@ var newProjectile
 var newPosition
 var newItem
 
+var dmg = 1
+var projectile_dmg = 1
+
 func _ready():
 	pass
 
-func setup(h, t1, t2, detection):
+func setup(h, t1, t2, detection, damage, pdmg):
 	health = h
 	timer = t1
 	timer2 = t2
 	detectionDistance = detection
+	dmg = damage
+	projectile_dmg = pdmg
 
 func get_damage():
-	return 1
+	return dmg
+
 func _process(delta):
 	dieCheck()
 	$AnimatedSprite.play()
@@ -43,7 +46,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	dieCheck()
-	hide()
+	duck()
 	#Checks to see if the enemy is already firing a projectile, in which case do not interrupt (unless death)
 	if !isThrowing:
 		playerDist =  get_parent().get_node("Player").position
@@ -69,13 +72,13 @@ func getPlayerDir():
 	else:
 		faceDir = direction.right
 
-func hide():
+func duck():
 	if timer2 ==0:
 		if $CollisionShape2D.disabled:
 			$CollisionShape2D.disabled = true
 			#isThrowing= false
 		else:
-			$CollisionShape2D.disabled = false 
+			$CollisionShape2D.disabled = false
 			#isthrowing = true 
 		timer2 = 150
 	else:
@@ -99,7 +102,7 @@ func dropItems():
 			get_tree().get_root().add_child(newItem)
 
 func dieCheck():
-	if health<=0:
+	if health <= 0:
 		print(self.name, " has died")
 		#set up heart
 		dropItems()
@@ -111,6 +114,7 @@ func dieCheck():
 
 func hit(damage):
 	health -= damage
+	# play hurt animation here
 
 #Begin throwing sequence (both for animation and spawning projectile)
 func throw():
@@ -120,8 +124,8 @@ func throw():
 	newProjectile = projectilePre.instance()
 	newPosition = position
 	newProjectile.set_v(Vector2(playerDist-position),newPosition)
-	newProjectile.set_damage(1)
+	newProjectile.set_damage(projectile_dmg)
 	newProjectile.add_collision_exception_with(self)
-	get_tree().get_root().add_child(newProjectile) 	
+	get_tree().get_root().add_child(newProjectile)
 	timer = 100
 	isThrowing = false;
