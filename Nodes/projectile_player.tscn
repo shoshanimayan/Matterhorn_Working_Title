@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="KinematicBody2D" type="KinematicBody2D" index="0"]
+[node name="KinematicBody2D" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -24,5 +24,19 @@ _sections_unfolded = [ "Transform" ]
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = true
+autostart = true
+
+[node name="Timer2" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = true
+autostart = true
 
 

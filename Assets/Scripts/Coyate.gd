@@ -1,4 +1,5 @@
 extends KinematicBody2D
+
 var t = 30
 var speed = 40 
 var moveDir = Vector2()
@@ -8,6 +9,7 @@ var motion
 var freeWalk = true 
 var playerDist 
 export (int) var health = 1
+export (int) var dmg = 1
 
 var d
 var distance
@@ -25,12 +27,16 @@ var Ray2
 var Ray3
 var Ray4
 
+var player
+
 func _ready():
+	player = get_parent().get_node("Player")
 	moveDir = direction.random()
 	Ray1 = get_node("RayCast2D")
 	Ray2 = get_node("RayCast2D2")
 	Ray3 = get_node("RayCast2D3")
 	Ray4 = get_node("RayCast2D4")
+
 #loop for random movement
 func movementLoop():
 	motion = moveDir.normalized() * speed
@@ -82,24 +88,26 @@ func runLine(a):
 					return true 
 				"down":
 					moveDir = direction.down
-					return true 
+					return true
+
 func attack():
 	var other
-	print("attacking")
-	if distance <=26:
-		get_parent().get_node("Player").get_hurt(1) 
-		get_parent().get_node("Player").push(moveDir,30) 
-	print(distance)	
+	#print("attacking")
+	if distance <= 26:
+		player.get_hurt(dmg)
+		player.push(moveDir,30)
+	#print(distance)
+
 func _physics_process(delta):
 	
 	if freeWalk:
 		# Get distance between player and bunny
-		playerDist =  get_parent().get_node("Player").position
+		playerDist =  player.position
 		d = Vector2(playerDist-position)#.normalized()
 		distance = sqrt((d.x*d.x)+(d.y*d.y))
 		movementLoop()
-			
-			# If player is close, run away
+		
+		# If player is close, chase!
 		if distance <= 100:
 			speed = 80
 			moveDir = Vector2(0,0)
@@ -134,7 +142,7 @@ func _physics_process(delta):
 			if moveTick == 0 || is_on_wall():
 				moveDir = direction.random()
 				moveTick = moveTickMax
-				
+	
 	else:
 		speed = 40
 		if moveTick > 0:
@@ -144,10 +152,7 @@ func _physics_process(delta):
 			moveTick = moveTickMax
 			freeWalk = true
 
-
-			
 func _process(delta):
-	
 	$AnimatedSprite.play()
 	if moveDir == direction.right:
 		$AnimatedSprite.animation = "right"
@@ -183,9 +188,7 @@ func get_damage():
 	return 1
 
 func dropItems():
-	var num =randi()%3+1
-	print(num)
-	match num:
+	match randi() % 3 + 1:
 		2: 
 			newItem = heartDrop.instance()
 			newItem.position = position

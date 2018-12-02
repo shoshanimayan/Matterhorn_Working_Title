@@ -1,5 +1,4 @@
 extends KinematicBody2D
-#signal hit
 
 ### Player properties
 export (int) var speed = 4
@@ -22,6 +21,7 @@ var alive = true
 
 ### Used in main movement logic
 var dir = Vector2()
+var facing = Vector2()
 var col				# used with applying knockback
 var collided_with
 var d
@@ -61,17 +61,22 @@ func _ready():
 
 
 func _process(delta):
+	# DIRECTIONAL INPUT
+	# bottom right is positive
+	if Input.is_action_pressed("ui_right"):
+		dir.x += 1
+		facing = Vector2(1,0)
+	if Input.is_action_pressed("ui_left"):
+		dir.x -= 1
+		facing = Vector2(-1,0)
+	if Input.is_action_pressed("ui_up"):
+		dir.y -= 1
+		facing = Vector2(0,-1)
+	if Input.is_action_pressed("ui_down"):
+		dir.y += 1
+		facing = Vector2(0,1)
+	
 	if alive:
-		# DIRECTIONAL INPUT
-		if Input.is_action_pressed("ui_right"):
-			dir.x += 1
-		if Input.is_action_pressed("ui_left"):
-			dir.x -= 1
-		if Input.is_action_pressed("ui_up"):
-			dir.y -= 1
-		if Input.is_action_pressed("ui_down"):
-			dir.y += 1
-		
 		if _HurtTimer.is_stopped():
 			# RANGED ATTACK
 			if Input.is_action_just_pressed("ui_select") and _ShootTimer.is_stopped():
@@ -80,7 +85,7 @@ func _process(delta):
 			# MELEE ATTACK
 			if Input.is_action_just_pressed("ui_accept") and _MeleeTimer.is_stopped():
 				meleeAttack()
-		
+			
 			set_up_animations("walk")
 			if dir.length() > 0:	# player is walking
 				PlayerAnimator.play()
@@ -96,14 +101,14 @@ func _process(delta):
 
 func set_up_animations(action):
 	"""Uses string concatenation to select a set of animations (DOES NOT PLAY ANIMATIONS)"""
-	if dir.x > 0:
+	if facing.x > 0:
 		PlayerAnimator.animation = action+"_right"
-	if dir.x < 0:
+	if facing.x < 0:
 		PlayerAnimator.animation = action+"_left"
 	# only use the up/down anims if the player goes directly up/down
-	if dir.y < 0 && dir.x == 0:
+	if facing.y < 0 && facing.x == 0:
 		PlayerAnimator.animation = action+"_up"
-	if dir.y > 0 && dir.x == 0:
+	if facing.y > 0 && facing.x == 0:
 		PlayerAnimator.animation = action+"_down"
 
 
@@ -125,6 +130,7 @@ func move(dir):
 				v.y = direction.orientation(d.y)
 				v.x = 0
 			move(v.normalized()*30)
+			get_hurt(collided_with.get_damage())
 
 func rangedAttack():
 	if ammo > 0:

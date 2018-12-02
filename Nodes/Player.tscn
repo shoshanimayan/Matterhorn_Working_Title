@@ -2,27 +2,27 @@
 
 [ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Raccoon/Raccoon_right_Atk.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_left_Walk_1.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_left_Walk_2.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front_Atk.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_back_Atk.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_front_hit_1.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_front_hit_2.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_right_hit_2.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_right_hit_1.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_left_hit_2.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_left_hit_1.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_back.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_back_Walk_1.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_back_Walk_2.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_right_Walk_1.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_right_Walk_2.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_1.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_2.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left_Atk.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_back.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_back_Walk_1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_back_Walk_2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_right_hit_2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_right_hit_1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_right.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_front_Walk_2.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_back_Atk.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_left_hit_2.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_left_hit_1.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_left_Walk_1.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_left_Walk_2.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_front_Atk.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Art/Raccoon/Raccoon_left_Atk.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_front_hit_1.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Art/Raccoon/Damage/Raccoon_front_hit_2.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_right_Walk_1.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Art/Raccoon/Walking/Raccoon_right_Walk_2.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_1.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_2.png" type="Texture" id=25]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Left/Left_Atk_3.png" type="Texture" id=26]
@@ -31,14 +31,14 @@
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_2.png" type="Texture" id=29]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_3.png" type="Texture" id=30]
 [ext_resource path="res://Assets/Art/Raccoon/Attack/Back/Back_Atk_4.png" type="Texture" id=31]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_1.png" type="Texture" id=32]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_2.png" type="Texture" id=33]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_3.png" type="Texture" id=34]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_4.png" type="Texture" id=35]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_1.png" type="Texture" id=36]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_2.png" type="Texture" id=37]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_3.png" type="Texture" id=38]
-[ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_4.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_1.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_2.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_3.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Right/Right_Atk_4.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_1.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_2.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_3.png" type="Texture" id=38]
+[ext_resource path="res://Assets/Art/Raccoon/Attack/Front/Front_Atk_4.png" type="Texture" id=39]
 [ext_resource path="res://Assets/Scripts/ClawmarksAnimation.gd" type="Script" id=40]
 [ext_resource path="res://Nodes/UI.tscn" type="PackedScene" id=41]
 
@@ -52,58 +52,58 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "walk_left",
+"name": "walk_up",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "a_d",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "a_u",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "hurt_down",
-"speed": 14.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "hurt_right",
 "speed": 14.0
 }, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 3 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "hurt_left",
-"speed": 14.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 16 ), ExtResource( 18 ) ],
-"loop": true,
-"name": "walk_up",
-"speed": 7.0
-}, {
-"frames": [ ExtResource( 13 ), ExtResource( 19 ), ExtResource( 13 ), ExtResource( 20 ) ],
-"loop": true,
-"name": "walk_right",
-"speed": 7.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 21 ), ExtResource( 10 ), ExtResource( 22 ) ],
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "walk_down",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 12 ) ],
 "loop": true,
-"name": "hurt_up",
+"name": "a_u",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "hurt_left",
 "speed": 14.0
 }, {
-"frames": [ ExtResource( 23 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "walk_left",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "a_d",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "a_l",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 9 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "hurt_down",
+"speed": 14.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 22 ), ExtResource( 8 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "walk_right",
+"speed": 7.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 3 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "hurt_up",
+"speed": 14.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -122,12 +122,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ) ],
 "loop": false,
-"name": "down_claw",
+"name": "right_claw",
 "speed": 14.0
 }, {
 "frames": [ ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ) ],
 "loop": false,
-"name": "right_claw",
+"name": "down_claw",
 "speed": 14.0
 } ]
 
@@ -137,7 +137,7 @@ custom_solver_bias = 0.0
 radius = 18.0
 height = 0.0
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 position = Vector2( -145, 44 )
 input_pickable = false

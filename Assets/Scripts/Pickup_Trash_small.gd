@@ -5,8 +5,6 @@ export (int) var value = 1
 var pickup1tex = preload("res://Assets/Art/Pickups/TEMP_ammo.png")
 var pickup2tex = preload("res://Assets/Art/Pickups/Screw_1.png")
 
-var disabled = false
-
 func _ready():
 	# randomize sprite
 	var t = randi() % 2
@@ -19,8 +17,6 @@ func _ready():
 			$Sprite.set_texture(pickup1tex)
 
 func _on_Trash_small_Pickup_body_entered(body):
-	if not disabled and body.get_name() == "Player":
+	if body.get_name() == "Player":
 		body.get_trash(value)
-		# don't delete; just disable
-		disabled = true
-		hide()
+		self.queue_free()

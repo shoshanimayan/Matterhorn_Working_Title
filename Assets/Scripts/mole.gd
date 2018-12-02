@@ -85,8 +85,7 @@ func duck():
 		timer2 -=1
 
 func dropItems():
-	var num =randi()%3+1
-	print(num)
+	var num = randi() % 3 + 1
 	match num:
 		2: 
 			newItem = heartDrop.instance()
@@ -103,7 +102,7 @@ func dropItems():
 
 func dieCheck():
 	if health <= 0:
-		print(self.name, " has died")
+		#print(self.name, " has died")
 		#set up heart
 		dropItems()
 		#spawn

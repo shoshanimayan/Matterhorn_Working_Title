@@ -2,19 +2,19 @@
 
 [ext_resource path="res://Assets/Scripts/UI_advanced_health.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Font/UI_Panel.tres" type="StyleBox" id=2]
-[ext_resource path="res://Assets/Art/UI Sprites/Heart_Empty_UI.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/UI Sprites/Heart_Full_UI.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Scripts/UI_advanced_trash.gd" type="Script" id=4]
 [ext_resource path="res://Assets/Art/UI Sprites/Trash_Can_Full_UI.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Font/arcade_classic.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Assets/Scripts/UI_advanced_ammo.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Art/UI Sprites/Empty_Book_UI.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Scripts/UI_basic_health.gd" type="Script" id=9]
-[ext_resource path="res://Assets/Scripts/UI_basic_trash.gd" type="Script" id=10]
-[ext_resource path="res://Assets/Scripts/UI_basic_ammo.gd" type="Script" id=11]
-[ext_resource path="res://Assets/Font/Pause_Panel.tres" type="StyleBox" id=12]
-[ext_resource path="res://Assets/Scripts/UI_Pause.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Font/Pause_Panel.tres" type="StyleBox" id=9]
+[ext_resource path="res://Assets/Scripts/UI_Pause.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Scripts/UI_basic_health.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Scripts/UI_basic_trash.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Scripts/UI_basic_ammo.gd" type="Script" id=13]
 
-[node name="UI" type="CanvasLayer"]
+[node name="UI" type="CanvasLayer" index="0"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -179,9 +179,81 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Controls Panel" type="Panel" parent="." index="3"]
+[node name="Pause Panel" type="Panel" parent="." index="3"]
 
-editor/display_folded = true
+pause_mode = 2
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/panel = ExtResource( 9 )
+script = ExtResource( 10 )
+_sections_unfolded = [ "Pause", "custom_styles" ]
+
+[node name="Resume Button" type="Button" parent="Pause Panel" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 300.0
+margin_top = 760.0
+margin_right = 770.0
+margin_bottom = 1000.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Resume"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "custom_fonts" ]
+
+[node name="Quit Button" type="Button" parent="Pause Panel" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1080.0
+margin_top = 760.0
+margin_right = 1550.0
+margin_bottom = 1000.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Quit"
+flat = false
+align = 1
+_sections_unfolded = [ "Margin", "custom_fonts" ]
+
+[node name="Controls Panel" type="Panel" parent="." index="4"]
+
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -189,7 +261,7 @@ anchor_bottom = 0.0
 margin_left = 1450.0
 margin_top = 20.0
 margin_right = 1890.0
-margin_bottom = 260.0
+margin_bottom = 320.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -197,7 +269,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/panel = ExtResource( 2 )
-_sections_unfolded = [ "Rect", "custom_styles" ]
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="Controls Label" type="Label" parent="Controls Panel" index="0"]
 
@@ -208,7 +280,7 @@ anchor_bottom = 0.0
 margin_left = 40.0
 margin_top = 30.0
 margin_right = 850.0
-margin_bottom = 450.0
+margin_bottom = 527.0
 rect_scale = Vector2( 0.5, 0.5 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -218,15 +290,16 @@ size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 6 )
 text = "WASD     MOVE
-             J      MELEE
-             K      RANGED"
+             J      CLAWS
+             K      RANGED
+		    ESC      PAUSE"
 uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Rect" ]
 
-[node name="DEBUG Panel" type="Panel" parent="." index="4"]
+[node name="DEBUG Panel" type="Panel" parent="." index="5"]
 
 editor/display_folded = true
 visible = false
@@ -290,7 +363,7 @@ text = "Health: DUMMY"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 9 )
+script = ExtResource( 11 )
 
 [node name="Trash Label" type="Label" parent="DEBUG Panel" index="2"]
 
@@ -312,7 +385,7 @@ text = "Trash: DUMMY"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 10 )
+script = ExtResource( 12 )
 
 [node name="Ammo Label" type="Label" parent="DEBUG Panel" index="3"]
 
@@ -334,80 +407,7 @@ text = "Ammo: DUMMY"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-script = ExtResource( 11 )
-
-[node name="Pause Panel" type="Panel" parent="." index="5"]
-
-pause_mode = 2
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_styles/panel = ExtResource( 12 )
 script = ExtResource( 13 )
-_sections_unfolded = [ "Pause", "custom_styles" ]
-
-[node name="Resume Button" type="Button" parent="Pause Panel" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 300.0
-margin_top = 760.0
-margin_right = 770.0
-margin_bottom = 1000.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Resume"
-flat = false
-align = 1
-_sections_unfolded = [ "Margin", "custom_fonts" ]
-
-[node name="Quit Button" type="Button" parent="Pause Panel" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 1080.0
-margin_top = 760.0
-margin_right = 1550.0
-margin_bottom = 1000.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Quit"
-flat = false
-align = 1
-_sections_unfolded = [ "Margin", "custom_fonts" ]
 
 [connection signal="pressed" from="Pause Panel/Resume Button" to="Pause Panel" method="_on_Resume_Button_pressed"]
 
