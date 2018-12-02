@@ -7,8 +7,8 @@
 [ext_resource path="res://Nodes/pickups/Health.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Nodes/pickups/Trash_small.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Nodes/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Nodes/enemies/Coyate.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Nodes/enemies/mole.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Nodes/enemies/mole.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Nodes/enemies/Coyate.tscn" type="PackedScene" id=9]
 
 [node name="Level1" type="Node" index="0"]
 
@@ -761,16 +761,16 @@ position = Vector2( 597.136, -1073.2 )
 position = Vector2( 281.048, -219.663 )
 winAmt = 30
 
-[node name="Bunny106" parent="." index="112" instance=ExtResource( 8 )]
+[node name="KinematicBody2D2" parent="." index="112" instance=ExtResource( 8 )]
+
+position = Vector2( 594, -289 )
+
+[node name="Bunny107" parent="." index="113" instance=ExtResource( 9 )]
+
+position = Vector2( 210, -605 )
+
+[node name="Bunny106" parent="." index="114" instance=ExtResource( 9 )]
 
 position = Vector2( 1534, -531 )
-
-[node name="KinematicBody2D" parent="Bunny106" index="7" instance=ExtResource( 9 )]
-
-position = Vector2( -940, 242 )
-
-[node name="Bunny" parent="Bunny106" index="8" instance=ExtResource( 8 )]
-
-position = Vector2( -1324, -74 )
 
 

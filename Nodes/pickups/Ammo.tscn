@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 12.8632, 12.8739 )
 
-[node name="Ammo Pickup" type="Area2D"]
+[node name="Ammo Pickup" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -20,7 +20,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-ammoRestored = 4
+ammoRestored = 2
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

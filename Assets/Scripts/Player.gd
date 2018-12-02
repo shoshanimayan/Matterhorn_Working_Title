@@ -3,8 +3,7 @@ extends KinematicBody2D
 
 ### Player properties
 export (int) var speed = 4
-# 2 health = 1 heart, so 3 hearts of health
-var maxHealth = 6
+var maxHealth = 6			# 2 health = 1 heart, so 3 hearts of health
 export (int) var currentHealth = 6
 export (int) var ammo = 0
 export (int) var trash = 0
@@ -13,29 +12,23 @@ export (int) var meleeDamage = 1
 export (int) var rangedDamage = 1
 var meleeAttackRange = 50
 
-var PlayerAnimator
-var clawAnimOffset = 25
+var PlayerAnimator			# animator node
+var clawAnimOffset = 25		# how far away from the player sprite to animate the claw sprite
 
-var meleeTimer = 0
-var moveTimer = 0
-var shootTimer = 0
-var hurtTimer = 0
-export (int) var meleeTimerMax = 20
-export (int) var moveTimerMax = 5
-export (int) var shootTimerMax = 30
-export (int) var hurtTimerMax = 15
-var can_move = true
+var _MeleeTimer		# used to prevent melee attacks from being spammed
+var _ShootTimer		# used to prevent ranged attack spam
+var _HurtTimer		# used to stop players from doing anything while they get hurt
+var alive = true
 
 ### Used in main movement logic
 var dir = Vector2()
-# used with applying knockback
-var col
+var col				# used with applying knockback
 var collided_with
 var d
 var v
 
-### Used in attack() [melee attack]
-var other
+### Used in deal_damage() [melee attack]
+var other			# the entity that any of our attack rays collided with
 var Ray_Mid
 var Ray_Left
 var Ray_Right
@@ -59,42 +52,33 @@ func _ready():
 	Ray_Right = get_node("RayCast2D3")
 	Ray_Left_Mid = get_node("RayCast2D4")
 	Ray_Right_Mid = get_node("RayCast2D5")
+	_MeleeTimer = $MeleeTimer
+	_ShootTimer = $ShootTimer
+	_HurtTimer = $HurtTimer
 	game = get_tree()
 
 #########################
 
 
 func _process(delta):
-	if meleeTimer != 0:
-		meleeTimer -= 1
-	if shootTimer != 0:
-		shootTimer -= 1
-	if moveTimer != 0:
-		moveTimer -= 1
-	if hurtTimer != 0:
-		hurtTimer -= 1
-	
-	if can_move:
+	if alive:
 		# DIRECTIONAL INPUT
-		if moveTimer == 0:
-			if Input.is_action_pressed("ui_right"):
-				dir.x += 1
-			if Input.is_action_pressed("ui_left"):
-				dir.x -= 1
-			if Input.is_action_pressed("ui_up"):
-				dir.y -= 1
-			if Input.is_action_pressed("ui_down"):
-				dir.y += 1
-			
+		if Input.is_action_pressed("ui_right"):
+			dir.x += 1
+		if Input.is_action_pressed("ui_left"):
+			dir.x -= 1
+		if Input.is_action_pressed("ui_up"):
+			dir.y -= 1
+		if Input.is_action_pressed("ui_down"):
+			dir.y += 1
 		
-		if hurtTimer == 0:
+		if _HurtTimer.is_stopped():
 			# RANGED ATTACK
-			if Input.is_action_just_pressed("ui_select") and shootTimer == 0:
-					dir = Vector2(0,0)
-					rangedAttack(PlayerAnimator.animation)
+			if Input.is_action_just_pressed("ui_select") and _ShootTimer.is_stopped():
+				rangedAttack()
 			
 			# MELEE ATTACK
-			if Input.is_action_just_pressed("ui_accept") and meleeTimer == 0:
+			if Input.is_action_just_pressed("ui_accept") and _MeleeTimer.is_stopped():
 				meleeAttack()
 		
 			set_up_animations("walk")
@@ -111,6 +95,7 @@ func _process(delta):
 			PlayerAnimator.play()
 
 func set_up_animations(action):
+	"""Uses string concatenation to select a set of animations (DOES NOT PLAY ANIMATIONS)"""
 	if dir.x > 0:
 		PlayerAnimator.animation = action+"_right"
 	if dir.x < 0:
@@ -123,6 +108,7 @@ func set_up_animations(action):
 
 
 func move(dir):
+	"""Handles the actual movement of the player and manages enemy collision"""
 	# move_and_collide() returns the object that got collided with
 	col = move_and_collide(dir)
 	if col:
@@ -139,18 +125,8 @@ func move(dir):
 				v.y = direction.orientation(d.y)
 				v.x = 0
 			move(v.normalized()*30)
-			get_hurt(collided_with.get_damage())
 
-#func _physics_process(delta):
-#	if dir.length() > 0:
-#		PlayerAnimator.play()
-#		move(dir.normalized() * speed)
-#		dir = Vector2()
-#	else:
-#		PlayerAnimator.set_frame(0)
-#		PlayerAnimator.stop()
-
-func rangedAttack(dir):
+func rangedAttack():
 	if ammo > 0:
 		ammo -= 1
 		newProjectile = projectilePre.instance()
@@ -158,7 +134,7 @@ func rangedAttack(dir):
 		newProjectile.set_v(PlayerAnimator.animation, newPosition)
 		newProjectile.set_damage(rangedDamage)
 		get_tree().get_root().add_child(newProjectile)
-		shootTimer = shootTimerMax
+		_ShootTimer.start()
 
 func meleeAttack():
 	$AnimatedClawSprite.set_frame(0)
@@ -216,12 +192,13 @@ func meleeAttack():
 			$AnimatedClawSprite.offset = Vector2(0, meleeAttackRange - clawAnimOffset)
 			$AnimatedClawSprite.animation = "down_claw"
 	speed /= 3
-	attack()
+	deal_damage()
 	$AnimatedClawSprite.show()
 	$AnimatedClawSprite.play()	# auto-hides, implemented in the claw animation's script
-	meleeTimer = meleeTimerMax
+	_MeleeTimer.start()
 
-func attack():
+func deal_damage():
+	"""Checks each attack ray for collision with something; if that something can be hit, then hit it"""
 	if Ray_Mid.is_colliding():
 		other = Ray_Mid.get_collider()
 		if other != null and other.has_method("hit"):
@@ -246,17 +223,16 @@ func attack():
 func check_death():
 	if currentHealth <= 0:
 		$CollisionShape2D.disabled = true
-		can_move = false
-		moveTimer = -1
-		shootTimer = -1
+		alive = false
+		_ShootTimer.stop()
 		# Play animation here, enable fade-in death screen?
 		game.change_scene("res://Nodes/GameOverScreen.tscn")
 		hide()
-		print("u lose :(")
+		#print("u lose :(")
 
 func get_hurt(damage):
 	#print(damage)
-	hurtTimer = hurtTimerMax
+	_HurtTimer.start()
 	currentHealth -= damage
 	check_death()
 
@@ -264,9 +240,8 @@ func check_win():
 	# TODO: supply official win condition
 	# for now: trash >= winAmt
 	if trash >= winAmt:
-		print("u win!!")
+		#print("u win!!")
 		game.change_scene("res://Nodes/WinScreen.tscn")
-	return
 
 func get_trash(amt):
 	trash += amt

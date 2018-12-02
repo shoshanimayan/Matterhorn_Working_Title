@@ -7,7 +7,6 @@ var ranged_damage = 1
 
 
 func set_damage(damageValue):
-	"""Sets the bullet's damage value from the value provided by the player"""
 	ranged_damage = damageValue
 
 
@@ -17,7 +16,7 @@ func move():
 	var data
 	if col:
 		data = col.get_collider()
-		if data!=null:
+		if data != null:
 			if data.has_method("get_hurt") && !data.has_method("throw"):
 				data.get_hurt(1)
 				self.queue_free()
@@ -36,6 +35,7 @@ func _process(delta):
 		timer-=1
 	if timer == 0:
 		velocity = direction.center
+	
 	if timer2!=0:
 		timer2 -=1 
 	if timer2 ==0:
@@ -50,7 +50,6 @@ func _physics_process(delta):
 
 
 func set_v(v,p):
-	
 	velocity = v#Vector2(cos(v),sin(v)).normalized() 
 	position = p
 	
