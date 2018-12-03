@@ -8,9 +8,10 @@ var moveTickMax = moveTick
 var motion
 var freeWalk = true 
 var playerDist 
-export (int) var health = 1
+export (int) var health = 2
 export (int) var dmg = 1
-
+var hurt_ = false 
+var hurt_timer = 0
 var d
 var distance
 
@@ -68,6 +69,8 @@ func runTowards(a):
 				-1: 
 					moveDir.y = -1
 
+
+
 func runLine(a):
 	var other
 	if Ray1.is_colliding():
@@ -77,25 +80,25 @@ func runLine(a):
 	#		runTowards(a)
 
 			match $AnimatedSprite.animation:
-				"left":
+				"walk_left":
 					moveDir = direction.left
 					return true
-				"right":
+				"walk_right":
 					moveDir = direction.right
 					return true
-				"up":
+				"walk_up":
 					moveDir = direction.up
 					return true 
-				"down":
+				"walk_down":
 					moveDir = direction.down
 					return true
 
 func attack():
 	var other
 	#print("attacking")
-	if distance <= 26:
+	if distance <= 35:
 		player.get_hurt(dmg)
-		player.push(moveDir,30)
+		player.push(moveDir,35)
 	#print(distance)
 
 func _physics_process(delta):
@@ -118,18 +121,18 @@ func _physics_process(delta):
 			if 1-abs(d.x) < 1-abs(d.y):
 				match direction.orientation(d.x):
 					1: 
-						$AnimatedSprite.animation = "right"
+						$AnimatedSprite.animation = "walk_right"
 						Ray1.cast_to = Vector2(200,0)
 					0:
-						$AnimatedSprite.animation = "left"
+						$AnimatedSprite.animation = "walk_left"
 						Ray1.cast_to = Vector2(-200,0)
 			else:
 				match direction.orientation(d.y):
 					1: 
-						$AnimatedSprite.animation = "down"
+						$AnimatedSprite.animation = "walk_down"
 						Ray1.cast_to = Vector2(0,200)
 					0:
-						$AnimatedSprite.animation = "up"
+						$AnimatedSprite.animation = "walk_up"
 						Ray1.cast_to = Vector2(0,-200)
 			
 		elif runLine(d):
@@ -154,25 +157,41 @@ func _physics_process(delta):
 func _process(delta):
 	$AnimatedSprite.play()
 	if moveDir == direction.right:
-		$AnimatedSprite.animation = "right"
+		if hurt_timer==0:
+			$AnimatedSprite.animation = "walk_right"
+		else:
+			$AnimatedSprite.animation = "hurt_right"
+			hurt_timer-=1
 		Ray1.cast_to = Vector2(200,0)
 		Ray2.cast_to = Vector2(50,0)
 		Ray3.cast_to = Vector2(50,-15)
 		Ray4.cast_to = Vector2(50,15)
 	if moveDir == direction.left:
-		$AnimatedSprite.animation = "left"
+		if hurt_timer==0:
+			$AnimatedSprite.animation = "walk_left"
+		else:
+			$AnimatedSprite.animation = "hurt_left"
+			hurt_timer-=1
 		Ray1.cast_to = Vector2(-200,0)
 		Ray2.cast_to = Vector2(-50,0)
 		Ray3.cast_to = Vector2(-50,-15)
 		Ray4.cast_to = Vector2(-50,15)
 	if moveDir == direction.up:
-		$AnimatedSprite.animation = "up"
+		if hurt_timer==0:
+			$AnimatedSprite.animation = "walk_up"
+		else:
+			$AnimatedSprite.animation = "hurt_up"
+			hurt_timer-=1
 		Ray1.cast_to = Vector2(0,-200)
 		Ray2.cast_to = Vector2(0,-50)
 		Ray3.cast_to = Vector2(-15,-50)
 		Ray4.cast_to = Vector2(15,-50)
 	if moveDir == direction.down:
-		$AnimatedSprite.animation = "down"
+		if hurt_timer==0:
+			$AnimatedSprite.animation = "walk_down"
+		else:
+			$AnimatedSprite.animation = "hurt_down"
+			hurt_timer-=1
 		Ray1.cast_to = Vector2(0,200)
 		Ray2.cast_to = Vector2(0,50)
 		Ray3.cast_to = Vector2(-15,50)
@@ -180,6 +199,8 @@ func _process(delta):
 	attack()
 
 func hit(damage):
+	hurt_ = true 
+	hurt_timer = 15
 	health -= damage
 	dieCheck()
 

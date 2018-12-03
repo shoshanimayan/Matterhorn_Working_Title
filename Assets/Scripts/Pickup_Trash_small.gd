@@ -2,7 +2,7 @@ extends Area2D
 
 export (int) var value = 1
 
-var pickup1tex = preload("res://Assets/Art/Pickups/TEMP_ammo.png")
+var pickup1tex = preload("res://Assets/Art/Pickups/Gear_1.png")
 var pickup2tex = preload("res://Assets/Art/Pickups/Screw_1.png")
 
 var disabled = false

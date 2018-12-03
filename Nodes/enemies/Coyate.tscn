@@ -1,40 +1,63 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Scripts/Coyate.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_back.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_front.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sounds/sfx_enemy_kill.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Art/Coyote/Coyote_Front_Back_dmg.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Coyote/Coyote_Right_dmg.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Coyote/Coyote_Left.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Coyote/Coyote_Front.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Coyote/Coyote_Left_dmg.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/Coyote/Coyote_Right.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/Coyote/Coyote_Back.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sounds/sfx_enemy_kill.wav" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "left",
+"name": "hurt_up",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "right",
+"name": "hurt_right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "up",
+"name": "walk_left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "down",
+"name": "walk_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "hurt_left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "hurt_down",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "walk_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "walk_up",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 7.84666, 10 )
+extents = Vector2( 12.5, 10 )
 
 [node name="Coyote" type="KinematicBody2D"]
 
@@ -44,18 +67,18 @@ collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 moveTick = 30
-health = 1
+health = 2
 dmg = 1
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "right"
+animation = "walk_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, 0.25 )
-scale = Vector2( 1, 1.59615 )
+position = Vector2( 0, 0.750085 )
+scale = Vector2( 1, 2.38462 )
 shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="." index="2"]
@@ -76,7 +99,7 @@ collision_mask = 1
 
 enabled = false
 exclude_parent = true
-cast_to = Vector2( 0, -50 )
+cast_to = Vector2( 50, 0 )
 collision_mask = 1
 
 [node name="RayCast2D3" type="RayCast2D" parent="." index="5"]
@@ -95,7 +118,7 @@ collision_mask = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="7"]
 
-stream = ExtResource( 6 )
+stream = ExtResource( 9 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
