@@ -93,9 +93,7 @@ func get_damage():
 	return damage
 
 func dropItems():
-	var num =randi()%3+1
-	print(num)
-	match num:
+	match randi() % 3 + 1:
 		2: 
 			newItem = heartDrop.instance()
 			newItem.position = position
@@ -110,8 +108,13 @@ func dropItems():
 			get_tree().get_root().add_child(newItem)
 
 func dieCheck():
-	if health == 0:
+	if health <= 0:
+		dropItems()
+		$CollisionShape2D.disabled = true
 		self.hide()
 		#print(self.name, " has died")
-		dropItems()
-		self.queue_free()
+		$AudioStreamPlayer.play()
+
+
+func _on_AudioStreamPlayer_finished():
+	self.queue_free()

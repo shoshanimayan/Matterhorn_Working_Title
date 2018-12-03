@@ -99,7 +99,6 @@ func attack():
 	#print(distance)
 
 func _physics_process(delta):
-	
 	if freeWalk:
 		# Get distance between player and bunny
 		playerDist =  player.position
@@ -185,7 +184,7 @@ func hit(damage):
 	dieCheck()
 
 func get_damage():
-	return 1
+	return meleeDamage
 
 func dropItems():
 	match randi() % 3 + 1:
@@ -203,8 +202,13 @@ func dropItems():
 			get_tree().get_root().add_child(newItem)
 
 func dieCheck():
-	if health == 0:
+	if health <= 0:
+		dropItems()
+		$CollisionShape2D.disabled = true
 		self.hide()
 		#print(self.name, " has died")
-		dropItems()
-		self.queue_free()
+		$AudioStreamPlayer.play()
+
+
+func _on_AudioStreamPlayer_finished():
+	self.queue_free()

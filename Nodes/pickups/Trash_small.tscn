@@ -1,14 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Scripts/Pickup_Trash_small.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Pickups/Trash1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sounds/sfx_pickup_item.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8.78123, 6.22768 )
 
-[node name="Trash_small Pickup" type="Area2D" index="0"]
+[node name="Trash_small Pickup" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -30,6 +31,16 @@ texture = ExtResource( 2 )
 
 position = Vector2( -0.0944672, 2.55064 )
 shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+_sections_unfolded = [ "Pause" ]
 
 [connection signal="body_entered" from="." to="." method="_on_Trash_small_Pickup_body_entered"]
 

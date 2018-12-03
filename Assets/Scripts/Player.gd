@@ -40,12 +40,19 @@ var projectilePre = preload("res://Nodes/projectile_player.tscn")
 var newProjectile
 var newPosition
 
+### Sound stuff
+var AudioPlayer
+var sfx_hurt = preload("res://Assets/Sounds/sfx_hurt.wav")
+var sfx_melee = preload("res://Assets/Sounds/sfx_melee.wav")
+var sfx_throw = preload("res://Assets/Sounds/sfx_throw.wav")
+
 ### Temporary win condition
 export (int) var winAmt = 30
 var game
 
 func _ready():
 	PlayerAnimator = $AnimatedSprite
+	AudioPlayer = $AudioPlayer
 	show()
 	Ray_Mid = get_node("RayCast2D")
 	Ray_Left = get_node("RayCast2D2")
@@ -58,7 +65,6 @@ func _ready():
 	game = get_tree()
 
 #########################
-
 
 func _process(delta):
 	# DIRECTIONAL INPUT
@@ -98,6 +104,10 @@ func _process(delta):
 			# player is getting hurt right now
 			set_up_animations("hurt")
 			PlayerAnimator.play()
+
+func play_sound(s):
+	AudioPlayer.stream = s
+	AudioPlayer.play()
 
 func set_up_animations(action):
 	"""Uses string concatenation to select a set of animations (DOES NOT PLAY ANIMATIONS)"""
@@ -140,6 +150,7 @@ func rangedAttack():
 		newProjectile.set_v(PlayerAnimator.animation, newPosition)
 		newProjectile.set_damage(rangedDamage)
 		get_tree().get_root().add_child(newProjectile)
+		play_sound(sfx_throw)
 		_ShootTimer.start()
 
 func meleeAttack():
@@ -201,6 +212,7 @@ func meleeAttack():
 	deal_damage()
 	$AnimatedClawSprite.show()
 	$AnimatedClawSprite.play()	# auto-hides, implemented in the claw animation's script
+	play_sound(sfx_melee)
 	_MeleeTimer.start()
 
 func deal_damage():
@@ -238,9 +250,10 @@ func check_death():
 
 func get_hurt(damage):
 	#print(damage)
-	_HurtTimer.start()
 	currentHealth -= damage
 	check_death()
+	play_sound(sfx_hurt)
+	_HurtTimer.start()
 
 func check_win():
 	# TODO: supply official win condition

@@ -22,9 +22,6 @@ var newItem
 var dmg = 1
 var projectile_dmg = 1
 
-func _ready():
-	pass
-
 func setup(h, t1, t2, detection, damage, pdmg):
 	health = h
 	timer = t1
@@ -37,7 +34,6 @@ func get_damage():
 	return dmg
 
 func _process(delta):
-	dieCheck()
 	$AnimatedSprite.play()
 	if faceDir == direction.right:
 		$AnimatedSprite.animation = "temp_right"
@@ -45,7 +41,6 @@ func _process(delta):
 		$AnimatedSprite.animation = "temp_left"
 
 func _physics_process(delta):
-	dieCheck()
 	duck()
 	#Checks to see if the enemy is already firing a projectile, in which case do not interrupt (unless death)
 	if !isThrowing:
@@ -60,9 +55,6 @@ func _physics_process(delta):
 					throw()
 				else:
 					timer -= 1
-	
-	
-
 
 # Gets which direction the player is from mole to determine which direction for animation to face
 func getPlayerDir():
@@ -84,9 +76,26 @@ func duck():
 	else:
 		timer2 -=1
 
+func hit(damage):
+	health -= damage
+	dieCheck()
+
+#Begin throwing sequence (both for animation and spawning projectile)
+func throw():
+	#var throwAngle = get_angle_to(playerDist)
+	#start coroutine for throwing
+	#print (self.name, throwAngle)
+	newProjectile = projectilePre.instance()
+	newPosition = position
+	newProjectile.set_v(Vector2(playerDist-position),newPosition)
+	newProjectile.set_damage(projectile_dmg)
+	newProjectile.add_collision_exception_with(self)
+	get_tree().get_root().add_child(newProjectile)
+	timer = 100
+	isThrowing = false;
+
 func dropItems():
-	var num = randi() % 3 + 1
-	match num:
+	match randi() % 3 + 1:
 		2: 
 			newItem = heartDrop.instance()
 			newItem.position = position
@@ -102,29 +111,12 @@ func dropItems():
 
 func dieCheck():
 	if health <= 0:
-		#print(self.name, " has died")
-		#set up heart
 		dropItems()
-		#spawn
+		$CollisionShape2D.disabled = true
 		self.hide()
-		#kill mole process
-		self.queue_free()
+		#print(self.name, " has died")
+		$AudioStreamPlayer.play()
 
 
-func hit(damage):
-	health -= damage
-	# play hurt animation here
-
-#Begin throwing sequence (both for animation and spawning projectile)
-func throw():
-	#var throwAngle = get_angle_to(playerDist)
-	#start coroutine for throwing
-	#print (self.name, throwAngle)
-	newProjectile = projectilePre.instance()
-	newPosition = position
-	newProjectile.set_v(Vector2(playerDist-position),newPosition)
-	newProjectile.set_damage(projectile_dmg)
-	newProjectile.add_collision_exception_with(self)
-	get_tree().get_root().add_child(newProjectile)
-	timer = 100
-	isThrowing = false;
+func _on_AudioStreamPlayer_finished():
+	self.queue_free()

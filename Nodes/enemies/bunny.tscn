@@ -1,22 +1,23 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/scripts/bunny.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Art/Rabbit/Rabbit_back.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Art/Rabbit/Rabbit_front.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sounds/sfx_enemy_kill.wav" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "right",
+"name": "left",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "left",
+"name": "right",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -63,5 +64,16 @@ process_mode = 1
 wait_time = 0.3
 one_shot = false
 autostart = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
 
 

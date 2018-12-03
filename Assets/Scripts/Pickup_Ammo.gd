@@ -6,6 +6,8 @@ var book1tex = preload("res://Assets/Art/Pickups/Textbook_1.png")
 var book2tex = preload("res://Assets/Art/Pickups/Textbook_2.png")
 var book3tex = preload("res://Assets/Art/Pickups/Textbook_3.png")
 
+var disabled = false
+
 func _ready():
 	# randomize sprite
 	var t = randi() % 3
@@ -20,6 +22,9 @@ func _ready():
 			$Sprite.set_texture(book1tex)
 
 func _on_Ammo_Pickup_body_entered(body):
-	if body.get_name() == "Player":
+	if not disabled and body.get_name() == "Player":
 		body.ammo += ammoRestored
-		self.queue_free()
+		#ASP.stream = sfx_collect
+		$AudioStreamPlayer.play()
+		disabled = true
+		self.hide()
