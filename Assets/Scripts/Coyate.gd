@@ -14,6 +14,7 @@ var hurt_ = false
 var hurt_timer = 0
 var d
 var distance
+var other
 
 var heartDrop = preload("res://Nodes/pickups/Health.tscn")
 var ammoDrop = preload("res://Nodes/pickups/Ammo.tscn")
@@ -72,7 +73,6 @@ func runTowards(a):
 
 
 func runLine(a):
-	var other
 	if Ray1.is_colliding():
 		other = Ray1.get_collider()
 		if other != null and other.has_method("get_hurt"):
@@ -94,7 +94,6 @@ func runLine(a):
 					return true
 
 func attack():
-	var other
 	#print("attacking")
 	if distance <= 35:
 		player.get_hurt(dmg)
@@ -224,7 +223,6 @@ func dropItems():
 
 func dieCheck():
 	if health <= 0:
-		dropItems()
 		$CollisionShape2D.disabled = true
 		self.hide()
 		#print(self.name, " has died")
@@ -232,4 +230,5 @@ func dieCheck():
 
 
 func _on_AudioStreamPlayer_finished():
+	dropItems()
 	self.queue_free()

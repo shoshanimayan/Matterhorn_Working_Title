@@ -109,7 +109,6 @@ func dropItems():
 
 func dieCheck():
 	if health <= 0:
-		dropItems()
 		$CollisionShape2D.disabled = true
 		self.hide()
 		#print(self.name, " has died")
@@ -117,4 +116,5 @@ func dieCheck():
 
 
 func _on_AudioStreamPlayer_finished():
+	dropItems()
 	self.queue_free()
