@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Scripts/Pickup_Trash_small.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Pickups/Trash1.png" type="Texture" id=2]
@@ -8,6 +8,25 @@
 
 custom_solver_bias = 0.0
 extents = Vector2( 8.78123, 6.22768 )
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Float"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -5 ), Vector2( 0, 0 ) ]
+}
 
 [node name="Trash_small Pickup" type="Area2D"]
 
@@ -26,6 +45,8 @@ value = 1
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
+offset = Vector2( 0, -5 )
+_sections_unfolded = [ "Offset" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
@@ -41,6 +62,16 @@ autoplay = false
 mix_target = 0
 bus = "Master"
 _sections_unfolded = [ "Pause" ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+
+root_node = NodePath("..")
+autoplay = "Float"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Float = SubResource( 2 )
+blend_times = [  ]
 
 [connection signal="body_entered" from="." to="." method="_on_Trash_small_Pickup_body_entered"]
 
