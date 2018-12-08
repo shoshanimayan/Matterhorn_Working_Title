@@ -26,7 +26,7 @@ var col				# used with applying knockback
 var collided_with
 var d
 var v
-
+var colname
 ### Used in deal_damage() [melee attack]
 var other			# the entity that any of our attack rays collided with
 var Ray_Mid
@@ -47,7 +47,7 @@ var sfx_melee = preload("res://Assets/Sounds/sfx_melee.wav")
 var sfx_throw = preload("res://Assets/Sounds/sfx_throw.wav")
 
 ### Temporary win condition
-export (int) var winAmt = 30
+export (int) var winAmt = 1
 var game
 
 func _ready():
@@ -126,8 +126,11 @@ func move(dir):
 	"""Handles the actual movement of the player and manages enemy collision"""
 	# move_and_collide() returns the object that got collided with
 	col = move_and_collide(dir)
+	
 	if col:
+		colname = col.collider.name
 		collided_with = col.get_collider()
+		
 		# check for collision with an enemy
 		if collided_with.get_class() == "KinematicBody2D" and !collided_with.has_method("set_v"):
 			#print(collided_with.name)
@@ -140,7 +143,10 @@ func move(dir):
 				v.y = direction.orientation(d.y)
 				v.x = 0
 			move(v.normalized()*30)
-			get_hurt(collided_with.get_damage())
+			if collided_with.has_method("get_damage"):
+				get_hurt(collided_with.get_damage())
+	else:
+		colname = ""
 
 func rangedAttack():
 	if ammo > 0:
@@ -258,12 +264,18 @@ func get_hurt(damage):
 func check_win():
 	# TODO: supply official win condition
 	# for now: trash >= winAmt
-	if trash >= winAmt:
+
+	print(trash>=winAmt)
+	print(winAmt)
+	if trash >= winAmt :
+		
 		#print("u win!!")
 		game.change_scene("res://Nodes/WinScreen.tscn")
 
 func get_trash(amt):
+	
 	trash += amt
+	print(trash)
 	check_win()
 
 func push(v,s):
