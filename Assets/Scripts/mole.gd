@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
 # class member variables 
-var health = 2
+var health = 1
 var detectionDistance = 200
 var playerDist
 var timer = 150
 var timer2 = 150
 var faceDir = Vector2()
-
+var hidden = false
 # projectile <- insert later
 var isThrowing = false #Is mole firing at player
 var isHiding = false #Is mole hiding (reloading)
@@ -37,7 +37,7 @@ func get_damage():
 
 func _process(delta):
 	$AnimatedSprite.play()
-	if $CollisionShape2D.disabled == true:
+	if hidden == true:
 		$AnimatedSprite.animation = "hidden"
 	else:
 		$AnimatedSprite.animation = "appear"		
@@ -54,7 +54,7 @@ func _physics_process(delta):
 		var d= Vector2(playerDist-position)#.normalized()
 		var distance = sqrt((d.x*d.x)+(d.y*d.y))
 		getPlayerDir()
-		if !$CollisionShape2D.disabled:
+		if !hidden:
 			if distance < detectionDistance:
 				if timer ==0:
 					isThrowing = true
@@ -72,11 +72,12 @@ func getPlayerDir():
 
 func duck():
 	if timer2 ==0:
-		if $CollisionShape2D.disabled:
-			$CollisionShape2D.disabled = true
+		#if $CollisionShape2D.disabled:
+		if !hidden:
+			hidden = true
 			#isThrowing= false
 		else:
-			$CollisionShape2D.disabled = false
+			hidden = false
 
 			#isthrowing = true 
 		timer2 = 150
@@ -84,14 +85,22 @@ func duck():
 		timer2 -=1
 
 func hit(damage):
-	health -= damage
-	dieCheck()
+	print("hit")
+	if !hidden:
+		health -= damage
+		print(health)
+		dieCheck()
 
 #Begin throwing sequence (both for animation and spawning projectile)
 func throw():
 	#var throwAngle = get_angle_to(playerDist)
 	#start coroutine for throwing
 	#print (self.name, throwAngle)
+	if $AnimatedSprite.animation =="temp_right":
+		$AnimatedSprite.animation ="throw_R"
+	if $AnimatedSprite.animation =="temp_left":
+		$AnimatedSprite.animation ="throw_L"
+		
 	newProjectile = projectilePre.instance()
 	newPosition = position
 	newProjectile.set_v(Vector2(playerDist-position),newPosition)
