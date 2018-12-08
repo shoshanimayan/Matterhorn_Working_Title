@@ -103,7 +103,7 @@ func dropItems():
 			newItem.position = position
 			get_tree().get_root().add_child(newItem)
 		3:
-			newItem = trashSmallDrop.instance()
+			newItem = heartDrop.instance()
 			newItem.position = position
 			get_tree().get_root().add_child(newItem)
 

@@ -7,6 +7,7 @@ var playerDist
 var timer = 150
 var timer2 = 150
 var faceDir = Vector2()
+var b
 # projectile <- insert later
 var isThrowing = false #Is mole firing at player
 var isHiding = false #Is mole hiding (reloading)
@@ -18,17 +19,18 @@ var projectilePre = preload("res://Nodes/enemies/projectile_enemy.tscn")
 var newProjectile
 var newPosition
 var newItem
-
+var b = true
 var dmg = 1
 var projectile_dmg = 1
 
-func setup(h, t1, t2, detection, damage, pdmg):
+func setup(h, t1, t2, detection, damage, pdmg, boss):
 	health = h
 	timer = t1
 	timer2 = t2
 	detectionDistance = detection
 	dmg = damage
 	projectile_dmg = pdmg
+	b = boss
 
 func get_damage():
 	return dmg
@@ -94,20 +96,26 @@ func throw():
 	timer = 100
 	isThrowing = false;
 
-func dropItems():
-	match randi() % 3 + 1:
-		2: 
-			newItem = heartDrop.instance()
-			newItem.position = position
-			get_tree().get_root().add_child(newItem)
-		1:
-			newItem = ammoDrop.instance()
-			newItem.position = position
-			get_tree().get_root().add_child(newItem)
-		3:
-			newItem = trashSmallDrop.instance()
-			newItem.position = position
-			get_tree().get_root().add_child(newItem)
+func dropItems(b):
+	if b == true:
+		match randi() % 3 + 1:
+			2: 
+				newItem = heartDrop.instance()
+				newItem.position = position
+				get_tree().get_root().add_child(newItem)
+			1:
+				newItem = ammoDrop.instance()
+				newItem.position = position
+				get_tree().get_root().add_child(newItem)
+			3:
+				newItem = ammoDrop.instance()
+				newItem.position = position
+				get_tree().get_root().add_child(newItem)
+	else:
+		newItem = trashSmallDrop.instance()
+		newItem.position = position
+		get_tree().get_root().add_child(newItem)
+		
 
 func dieCheck():
 	if health <= 0:
