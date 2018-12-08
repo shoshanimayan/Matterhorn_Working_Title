@@ -7,7 +7,7 @@ var playerDist
 var timer = 150
 var timer2 = 150
 var faceDir = Vector2()
-var b
+
 # projectile <- insert later
 var isThrowing = false #Is mole firing at player
 var isHiding = false #Is mole hiding (reloading)
@@ -37,10 +37,14 @@ func get_damage():
 
 func _process(delta):
 	$AnimatedSprite.play()
-	if faceDir == direction.right:
-		$AnimatedSprite.animation = "temp_right"
-	if faceDir == direction.left:
-		$AnimatedSprite.animation = "temp_left"
+	if $CollisionShape2D.disabled == true:
+		$AnimatedSprite.animation = "hidden"
+	else:
+		$AnimatedSprite.animation = "appear"		
+		if faceDir == direction.right:
+			$AnimatedSprite.animation = "temp_right"
+		if faceDir == direction.left:
+			$AnimatedSprite.animation = "temp_left"
 
 func _physics_process(delta):
 	duck()
@@ -73,6 +77,7 @@ func duck():
 			#isThrowing= false
 		else:
 			$CollisionShape2D.disabled = false
+
 			#isthrowing = true 
 		timer2 = 150
 	else:
@@ -126,5 +131,5 @@ func dieCheck():
 
 
 func _on_AudioStreamPlayer_finished():
-	dropItems()
+	dropItems(b)
 	self.queue_free()
