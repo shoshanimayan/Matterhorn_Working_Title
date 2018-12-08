@@ -1,28 +1,45 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Scripts/mole.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_front.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_back.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sounds/sfx_enemy_kill.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Mound.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Left.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Right.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Right_Atk.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Pop.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Left_Atk.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sounds/sfx_enemy_kill.wav" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
-"loop": false,
-"name": "throw",
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "hidden",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "temp_left",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "temp_right",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "throw_R",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "appear",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "throw_L",
 "speed": 5.0
 } ]
 
@@ -32,7 +49,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 26.0
 
-[node name="Mole" type="KinematicBody2D" index="0"]
+[node name="Mole" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -53,7 +70,7 @@ shape = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
 
-stream = ExtResource( 6 )
+stream = ExtResource( 8 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
