@@ -1,17 +1,25 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Scripts/Boss_mole.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_front.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_back.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_left.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Art/Rabbit/Rabbit_right.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Mound.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_DMG.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Left.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Right.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Right_Atk.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Pop.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Left_Atk.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
-"loop": false,
-"name": "throw",
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "hidden",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "hurt",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
@@ -23,7 +31,23 @@ animations = [ {
 "loop": true,
 "name": "temp_right",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "throw_R",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "appear",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "throw_L",
+"speed": 5.0
 } ]
+_sections_unfolded = [ "Resource" ]
 
 [sub_resource type="CapsuleShape2D" id=2]
 
@@ -44,7 +68,7 @@ _sections_unfolded = [ "Pause", "Transform" ]
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
 frames = SubResource( 1 )
-animation = "temp_left"
+animation = "hidden"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 

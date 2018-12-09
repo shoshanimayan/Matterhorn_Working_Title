@@ -85,8 +85,9 @@ func duck():
 		timer2 -=1
 
 func hit(damage):
-	print("hit")
+	#print("hit")
 	if !hidden:
+		$AnimatedSprite.animation = "hurt"
 		health -= damage
 		print(health)
 		dieCheck()
