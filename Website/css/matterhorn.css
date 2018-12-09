@@ -87,7 +87,7 @@ p{
     font-family: 'Times New Roman', Times, serif;
 }
 
-.hyperlink, footer a{
+.hyperlink, footer a, #downloadGame{
     color: mediumblue;
     font-weight: 500;
 }
@@ -189,4 +189,9 @@ img.center {
 .controls{
     font-size: 200%;
     font-weight: 500%;
+}
+
+#theTeamCmpy{
+    width: 100%;
+    height: auto;
 }
