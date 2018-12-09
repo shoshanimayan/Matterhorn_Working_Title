@@ -48,6 +48,7 @@ var sfx_throw = preload("res://Assets/Sounds/sfx_throw.wav")
 
 ### Temporary win condition
 export (int) var winAmt = 1
+
 var game
 
 func _ready():
@@ -132,7 +133,7 @@ func move(dir):
 		collided_with = col.get_collider()
 		
 		# check for collision with an enemy
-		if collided_with.get_class() == "KinematicBody2D" and !collided_with.has_method("set_v"):
+		if collided_with.get_class() == "KinematicBody2D" and !collided_with.has_method("set_v") and !collided_with.has_method("goHome"):
 			#print(collided_with.name)
 			d = Vector2(collided_with.position - position).normalized() * -1
 			v  = Vector2()
@@ -145,6 +146,9 @@ func move(dir):
 			move(v.normalized()*30)
 			if collided_with.has_method("get_damage"):
 				get_hurt(collided_with.get_damage())
+		if collided_with.get_class() == "KinematicBody2D" and collided_with.has_method("goHome"):
+			colname= "base"
+			check_win()
 	else:
 		colname = ""
 
@@ -264,10 +268,8 @@ func get_hurt(damage):
 func check_win():
 	# TODO: supply official win condition
 	# for now: trash >= winAmt
-
-	print(trash>=winAmt)
-	print(winAmt)
-	if trash >= winAmt :
+	print(colname)
+	if trash >= winAmt  && colname =="base":
 		
 		#print("u win!!")
 		game.change_scene("res://Nodes/WinScreen.tscn")
