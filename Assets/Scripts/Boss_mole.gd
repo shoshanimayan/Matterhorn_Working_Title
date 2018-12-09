@@ -2,7 +2,7 @@ extends "res://Assets/Scripts/mole.gd"
 
 var nwp2
 var np2
-
+var droptimer =15
 var nwp3
 var np3
 
@@ -47,4 +47,36 @@ func throw():
 		
 		timer = 74
 		isThrowing = false
+		
+func dropItems(b):
+	if droptimer ==15:
+		droptimer =0
+		if b == true:
+			match randi() % 3 + 1:
+				2: 
+					newItem = heartDrop.instance()
+					newItem.position = position
+					get_tree().get_root().add_child(newItem)
+				1:
+					newItem = ammoDrop.instance()
+					newItem.position = position
+					get_tree().get_root().add_child(newItem)
+				3:
+					newItem = ammoDrop.instance()
+					newItem.position = position
+					get_tree().get_root().add_child(newItem)
+		else:
+			newItem = trashSmallDrop.instance()
+			newItem.position = position
+			get_tree().get_root().add_child(newItem)
+		self.queue_free()
+
+func dieCheck():
+	if health <= 0:
+		print("i died")
+		dropItems(b)
+		
+
+
+	
 
