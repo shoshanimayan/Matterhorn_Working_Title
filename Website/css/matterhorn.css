@@ -98,7 +98,7 @@ h1, h2, h3, h5{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h1{
+h1, h2{
     font-weight: bold;
 }
 
@@ -112,7 +112,7 @@ h3{
 }
 
 #gameImg, #companyImg{
-    opacity: .7;
+    opacity: .6;
 }
 
 #gameTM, #companyTitle{
