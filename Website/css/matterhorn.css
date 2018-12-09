@@ -100,7 +100,9 @@ h1, h2, h3, h5{
 
 h1, h2{
     font-weight: bold;
+    color:  rgb(173, 213, 255);
 }
+
 
 h3{
     text-decoration: underline;
@@ -179,7 +181,12 @@ img.center {
 }
 
 /* For editing rows of employees on company page */
-.employeeRow{
+.employeeRow, .characterRow{
     margin-top: 60px;
     margin-bottom: 60px;
+}
+
+.controls{
+    font-size: 200%;
+    font-weight: 500%;
 }
