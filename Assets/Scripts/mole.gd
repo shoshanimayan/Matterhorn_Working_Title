@@ -1,5 +1,6 @@
 extends KinematicBody2D
-
+var isdead = false
+var hurt_timer = 0 
 # class member variables 
 var health = 1
 var detectionDistance = 200
@@ -37,15 +38,18 @@ func get_damage():
 
 func _process(delta):
 	$AnimatedSprite.play()
-	if hidden == true:
-		$AnimatedSprite.animation = "hidden"
+	if hurt_timer == 0 :
+		if hidden == true:
+			$AnimatedSprite.animation = "hidden"
+		else:
+			$AnimatedSprite.animation = "appear"		
+			if faceDir == direction.right:
+				$AnimatedSprite.animation = "temp_right"
+			if faceDir == direction.left:
+				$AnimatedSprite.animation = "temp_left"
 	else:
-		$AnimatedSprite.animation = "appear"		
-		if faceDir == direction.right:
-			$AnimatedSprite.animation = "temp_right"
-		if faceDir == direction.left:
-			$AnimatedSprite.animation = "temp_left"
-
+		$AnimatedSprite.animation = "hurt"
+		hurt_timer-=1
 func _physics_process(delta):
 	duck()
 	#Checks to see if the enemy is already firing a projectile, in which case do not interrupt (unless death)
@@ -89,7 +93,7 @@ func hit(damage):
 	if !hidden:
 		$AnimatedSprite.animation = "hurt"
 		health -= damage
-		print(health)
+		hurt_timer = 15
 		dieCheck()
 
 #Begin throwing sequence (both for animation and spawning projectile)
@@ -97,19 +101,20 @@ func throw():
 	#var throwAngle = get_angle_to(playerDist)
 	#start coroutine for throwing
 	#print (self.name, throwAngle)
-	if $AnimatedSprite.animation =="temp_right":
-		$AnimatedSprite.animation ="throw_R"
-	if $AnimatedSprite.animation =="temp_left":
-		$AnimatedSprite.animation ="throw_L"
-		
-	newProjectile = projectilePre.instance()
-	newPosition = position
-	newProjectile.set_v(Vector2(playerDist-position),newPosition)
-	newProjectile.set_damage(projectile_dmg)
-	newProjectile.add_collision_exception_with(self)
-	get_tree().get_root().add_child(newProjectile)
-	timer = 100
-	isThrowing = false;
+	if !isdead:
+		if $AnimatedSprite.animation =="temp_right":
+			$AnimatedSprite.animation ="throw_R"
+		if $AnimatedSprite.animation =="temp_left":
+			$AnimatedSprite.animation ="throw_L"
+			
+		newProjectile = projectilePre.instance()
+		newPosition = position
+		newProjectile.set_v(Vector2(playerDist-position),newPosition)
+		newProjectile.set_damage(projectile_dmg)
+		newProjectile.add_collision_exception_with(self)
+		get_tree().get_root().add_child(newProjectile)
+		timer = 100
+		isThrowing = false;
 
 func dropItems(b):
 	if b == true:
@@ -136,6 +141,7 @@ func dieCheck():
 	if health <= 0:
 		$CollisionShape2D.disabled = true
 		self.hide()
+		isdead=true
 		#print(self.name, " has died")
 		$AudioStreamPlayer.play()
 

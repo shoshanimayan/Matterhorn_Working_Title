@@ -3,11 +3,11 @@
 [ext_resource path="res://Assets/Scripts/mole.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/Gopher/Gopher_Mound.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Art/Gopher/Gopher_DMG.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Art/Gopher/Gopher_Left.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Pop.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Art/Gopher/Gopher_Right.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Art/Gopher/Gopher_Right_Atk.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Art/Gopher/Gopher_Pop.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Art/Gopher/Gopher_Left_Atk.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Left_Atk.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Right_Atk.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/Gopher/Gopher_Left.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sounds/sfx_enemy_kill.wav" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -25,7 +25,7 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "temp_left",
+"name": "appear",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
@@ -34,18 +34,18 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "throw_R",
+"loop": false,
+"name": "throw_L",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
-"name": "appear",
+"name": "throw_R",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 8 ) ],
-"loop": false,
-"name": "throw_L",
+"loop": true,
+"name": "temp_left",
 "speed": 5.0
 } ]
 
@@ -55,7 +55,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 26.0
 
-[node name="Mole" type="KinematicBody2D" index="0"]
+[node name="Mole" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 1
