@@ -79,9 +79,11 @@ func duck():
 		#if $CollisionShape2D.disabled:
 		if !hidden:
 			hidden = true
+			collisionShape2D.disabled =  true
 			#isThrowing= false
 		else:
 			hidden = false
+			collisionShape2D.disabled =  false
 
 			#isthrowing = true 
 		timer2 = 150
@@ -147,5 +149,6 @@ func dieCheck():
 
 
 func _on_AudioStreamPlayer_finished():
+	print("i died")
 	dropItems(b)
 	self.queue_free()
