@@ -191,7 +191,7 @@ img.center {
     font-weight: 500%;
 }
 
-#theTeamCmpy{
+#theTeamCmpy, .media{
     width: 100%;
     height: auto;
 }
