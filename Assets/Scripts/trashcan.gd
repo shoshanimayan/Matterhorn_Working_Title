@@ -6,13 +6,13 @@ var newItem3
 var newItem4
 var newItem5
 
-var x =0
+var y =0
 
 
 
 func hit(x):
-	if x==0:
-		x=15
+	if y==0:
+		y=15
 		self.hide()
 		newItem = trashSmallDrop.instance()
 		newItem.position = position
