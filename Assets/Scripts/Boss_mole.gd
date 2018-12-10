@@ -9,7 +9,7 @@ var np3
 func _ready():
 	# setup(health, projectile time interval, hiding/ducking interval, \
 	# detection radius, contact damage, projectile damage)
-	setup(20, 140, 150, 300, 2, 2, false)
+	setup(15, 140, 150, 300, 2, 2, false)
 
 func throw():
 	#var throwAngle = get_angle_to(playerDist)
