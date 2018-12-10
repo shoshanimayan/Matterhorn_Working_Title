@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Scripts/base.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Pickups/TEMP_health.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Sprites/Trash_Machine_2.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="KinematicBody2D" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -22,8 +22,8 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
-position = Vector2( 0.293975, -0.177101 )
-scale = Vector2( 1.53125, 1.5625 )
+position = Vector2( 7.86884, 8.35559 )
+scale = Vector2( 1.76796, 1.82915 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 
