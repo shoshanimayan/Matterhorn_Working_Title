@@ -79,11 +79,11 @@ func duck():
 		#if $CollisionShape2D.disabled:
 		if !hidden:
 			hidden = true
-			collisionShape2D.disabled =  true
+
 			#isThrowing= false
 		else:
 			hidden = false
-			collisionShape2D.disabled =  false
+	
 
 			#isthrowing = true 
 		timer2 = 150
